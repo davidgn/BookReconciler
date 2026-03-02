@@ -5,6 +5,12 @@
 - **Who is this for?** Digital humanities researchers, librarians, metadata specialists, and more.
 - **What does it do?** Finds, clusters, and enriches records for books. Adding ISBNS, HathiTrust IDs, subject headings, descriptions, page counts, publication dates, and more.
 
+To learn more about this tool's design, motivations, and related work, or to cite this tool, please see the following paper:
+
+["BookReconciler📘💎: An Open-Source Tool for Metadata Enrichment and Work-Level Clustering"](https://arxiv.org/abs/2512.10165).
+Matt Miller, Dan Sinykin, and Melanie Walsh.
+_Joint Conference on Digital Libraries_. December 2025.
+
 ---
 ### Table of Contents:
 
