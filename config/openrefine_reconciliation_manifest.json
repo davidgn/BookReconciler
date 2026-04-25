@@ -275,6 +275,45 @@
         "attribution_required": "Yes",
         "commercial_safe": "No (Non-Commercial Restriction)"
       }
+    },
+    {
+      "source": "BookSampo (Kirjasampo Finland)",
+      "priority": "P2",
+      "reconciliation_url": "http://ldf.fi/kirjasampo/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P4186",
+      "notes": " Finnish fiction knowledge graph; rich book award metadata.",
+      "data_license": {
+        "name": "CC BY 4.0",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      }
+    },
+    {
+      "source": "Swissbib (Swiss National Library Aggregator)",
+      "priority": "P2",
+      "reconciliation_url": "http://linked.swissbib.ch/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P5604",
+      "notes": "Multilingual Swiss national and cantonal prize metadata.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      }
+    },
+    {
+      "source": "OpenAIRE Graph",
+      "priority": "P2",
+      "reconciliation_url": "https://graph.openaire.eu/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": null,
+      "notes": "European scholarly graph for academic monographs and prizes.",
+      "data_license": {
+        "name": "CC BY",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      }
     }
   ]
 }
