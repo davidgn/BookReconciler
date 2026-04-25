@@ -1,0 +1,71 @@
+{
+  "project": "GSBPDb / Identifier Harvesting Pipeline",
+  "version": "1.0.0",
+  "generated_at": "2026-04-25",
+  "openrefine_reconciliation_services": [
+    {
+      "source": "Wikidata",
+      "priority": "P0",
+      "reconciliation_url": "https://wikidata.reconci.link/en/api",
+      "endpoint_kind": "standard-reconciliation-api",
+      "wd_property": null,
+      "notes": "Primary hub for cross-dataset reconciliation."
+    },
+    {
+      "source": "GND (DNB)",
+      "priority": "P1",
+      "reconciliation_url": "https://lobid.org/gnd/reconcile",
+      "endpoint_kind": "standard-reconciliation-api",
+      "wd_property": "P227",
+      "notes": "Native high-performance OpenRefine endpoint via Lobid."
+    },
+    {
+      "source": "ROR (Research Organization Registry)",
+      "priority": "P1",
+      "reconciliation_url": "https://reconcile.ror.org/reconcile",
+      "endpoint_kind": "standard-reconciliation-api",
+      "wd_property": "P6782",
+      "notes": "Global standard for research institution identifiers."
+    },
+    {
+      "source": "BnF France",
+      "priority": "P1",
+      "reconciliation_url": "https://data.bnf.fr/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P268",
+      "notes": "Use 'Reconcile via SPARQL' extension in OpenRefine."
+    },
+    {
+      "source": "BNE Spain",
+      "priority": "P1",
+      "reconciliation_url": "https://datos.bne.es/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P950",
+      "notes": "Use 'Reconcile via SPARQL' extension in OpenRefine."
+    },
+    {
+      "source": "VIAF (Virtual International Authority File)",
+      "priority": "P2",
+      "reconciliation_url": "https://viaf.org/viaf/AutoSuggest",
+      "endpoint_kind": "suggest-api-wrapper",
+      "wd_property": "P214",
+      "notes": "Use community VIAF wrapper or AutoSuggest endpoint."
+    },
+    {
+      "source": "OpenCorporates",
+      "priority": "P2",
+      "reconciliation_url": "https://opencorporates.com/reconcile",
+      "endpoint_kind": "standard-reconciliation-api",
+      "wd_property": "P1320",
+      "notes": "Requires API key for higher volumes."
+    },
+    {
+      "source": "ULAN (Getty Artist Names)",
+      "priority": "P2",
+      "reconciliation_url": "https://vocab.getty.edu/sparql.json",
+      "endpoint_kind": "sparql",
+      "wd_property": "P245",
+      "notes": "Vital for person/author lane authority control."
+    }
+  ]
+}
