@@ -405,6 +405,58 @@
         "attribution_required": "No",
         "commercial_safe": "Yes"
       }
+    },
+    {
+      "source": "ZBW - German National Library of Economics",
+      "priority": "P2",
+      "reconciliation_url": "https://zbw.eu/beta/sparql/stwv/query",
+      "endpoint_kind": "sparql",
+      "wd_property": "P3911",
+      "notes": "Global authority for economics and business awards.",
+      "data_license": {
+        "name": "CC BY 3.0",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      }
+    },
+    {
+      "source": "Pers\u00e9e (French Scholarly Journals & Books)",
+      "priority": "P2",
+      "reconciliation_url": "https://data.persee.fr/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P5165",
+      "notes": "Francophone scholarly meta-graph.",
+      "data_license": {
+        "name": "Etalab Open License",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      }
+    },
+    {
+      "source": "Agrovoc (FAO - Food & Agriculture Organization)",
+      "priority": "P3",
+      "reconciliation_url": "https://agrovoc.fao.org/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P3500",
+      "notes": "Vital for agricultural and terroir-based book awards.",
+      "data_license": {
+        "name": "CC BY 3.0 IGO",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      }
+    },
+    {
+      "source": "JudaicaLink (Jewish & Hebrew Scholarship)",
+      "priority": "P3",
+      "reconciliation_url": "http://data.judaicalink.org/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": null,
+      "notes": "Niche hub for Jewish studies and Hebrew monograph imprints.",
+      "data_license": {
+        "name": "CC BY-SA 4.0",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      }
     }
   ]
 }
