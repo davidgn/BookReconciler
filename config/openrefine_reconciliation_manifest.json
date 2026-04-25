@@ -66,6 +66,38 @@
       "endpoint_kind": "sparql",
       "wd_property": "P245",
       "notes": "Vital for person/author lane authority control."
+    },
+    {
+      "source": "BVMC (Biblioteca Virtual Miguel de Cervantes)",
+      "priority": "P2",
+      "reconciliation_url": "https://data.cervantesvirtual.com/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P2799",
+      "notes": "Hispanic/Ibero-American corporate body authorities."
+    },
+    {
+      "source": "NDL (Japan National Diet Library)",
+      "priority": "P2",
+      "reconciliation_url": "https://id.ndl.go.jp/auth/ndla/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P349",
+      "notes": "Japanese publisher and scholarly entity authorities."
+    },
+    {
+      "source": "NTA (Netherlands Name Authority)",
+      "priority": "P2",
+      "reconciliation_url": "https://data.bibliotheken.nl/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P1006",
+      "notes": "Benelux-region scholarly entities."
+    },
+    {
+      "source": "SBN (Italy National Library Service)",
+      "priority": "P2",
+      "reconciliation_url": "https://triplestore.iccu.sbn.it/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P396",
+      "notes": "Italian scholarly publishing ecosystem."
     }
   ]
 }
