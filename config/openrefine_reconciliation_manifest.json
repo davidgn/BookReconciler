@@ -89,9 +89,9 @@
       "wd_property": "P1320",
       "notes": "Requires API key for higher volumes.",
       "data_license": {
-        "name": "Unknown",
-        "attribution_required": "Unknown",
-        "commercial_safe": "Unknown"
+        "name": "ODbL",
+        "attribution_required": "Yes",
+        "commercial_safe": "Conditional (Share-Alike)"
       }
     },
     {
@@ -102,9 +102,9 @@
       "wd_property": "P245",
       "notes": "Vital for person/author lane authority control.",
       "data_license": {
-        "name": "Unknown",
-        "attribution_required": "Unknown",
-        "commercial_safe": "Unknown"
+        "name": "ODC-By",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
       }
     },
     {
@@ -115,9 +115,9 @@
       "wd_property": "P2799",
       "notes": "Hispanic/Ibero-American corporate body authorities.",
       "data_license": {
-        "name": "Unknown",
-        "attribution_required": "Unknown",
-        "commercial_safe": "Unknown"
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
       }
     },
     {
@@ -128,9 +128,9 @@
       "wd_property": "P349",
       "notes": "Japanese publisher and scholarly entity authorities.",
       "data_license": {
-        "name": "Unknown",
-        "attribution_required": "Unknown",
-        "commercial_safe": "Unknown"
+        "name": "Attribution-Open",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
       }
     },
     {
@@ -141,9 +141,9 @@
       "wd_property": "P1006",
       "notes": "Benelux-region scholarly entities.",
       "data_license": {
-        "name": "Unknown",
-        "attribution_required": "Unknown",
-        "commercial_safe": "Unknown"
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
       }
     },
     {
@@ -154,9 +154,9 @@
       "wd_property": "P396",
       "notes": "Italian scholarly publishing ecosystem.",
       "data_license": {
-        "name": "Unknown",
-        "attribution_required": "Unknown",
-        "commercial_safe": "Unknown"
+        "name": "Open Data",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
       }
     },
     {
@@ -193,9 +193,9 @@
       "wd_property": "P12354",
       "notes": "Finnish academic and institutional authorities.",
       "data_license": {
-        "name": "Unknown",
-        "attribution_required": "Unknown",
-        "commercial_safe": "Unknown"
+        "name": "Attribution-Open",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
       }
     },
     {
@@ -219,9 +219,9 @@
       "wd_property": "P7704",
       "notes": "Meta-registry for EU cultural heritage.",
       "data_license": {
-        "name": "Unknown",
-        "attribution_required": "Unknown",
-        "commercial_safe": "Unknown"
+        "name": "CC0 (Metadata)",
+        "attribution_required": "Requested",
+        "commercial_safe": "Yes"
       }
     },
     {
@@ -232,9 +232,9 @@
       "wd_property": "P244",
       "notes": "Primary Anglosphere authority. Note: No public SPARQL; use Suggest API.",
       "data_license": {
-        "name": "Unknown",
-        "attribution_required": "Unknown",
-        "commercial_safe": "Unknown"
+        "name": "Public Domain",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
       }
     },
     {
@@ -258,9 +258,9 @@
       "wd_property": "P10832",
       "notes": "Global meta-hub for award and bibliographic reconciliation.",
       "data_license": {
-        "name": "Unknown",
-        "attribution_required": "Unknown",
-        "commercial_safe": "Unknown"
+        "name": "ODC-By",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
       }
     },
     {
@@ -271,9 +271,9 @@
       "wd_property": "P11035",
       "notes": "Specialized Canadian/Francophone literary authorities.",
       "data_license": {
-        "name": "Unknown",
-        "attribution_required": "Unknown",
-        "commercial_safe": "Unknown"
+        "name": "CC BY-NC 4.0",
+        "attribution_required": "Yes",
+        "commercial_safe": "No (Non-Commercial Restriction)"
       }
     }
   ]
