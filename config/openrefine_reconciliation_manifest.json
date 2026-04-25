@@ -98,6 +98,54 @@
       "endpoint_kind": "sparql",
       "wd_property": "P396",
       "notes": "Italian scholarly publishing ecosystem."
+    },
+    {
+      "source": "United Kingdom (British National Bibliography - BL)",
+      "priority": "P2",
+      "reconciliation_url": "http://bnb.data.bl.uk/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P1156",
+      "notes": "Primary authority for UK academic publishers."
+    },
+    {
+      "source": "Sweden (Libris - KB)",
+      "priority": "P2",
+      "reconciliation_url": "https://libris.kb.se/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P1182",
+      "notes": "Authority for Nordic scholarly imprints."
+    },
+    {
+      "source": "Finland (Finto)",
+      "priority": "P2",
+      "reconciliation_url": "https://data.nationallibrary.fi/bib/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P12354",
+      "notes": "Finnish academic and institutional authorities."
+    },
+    {
+      "source": "South Korea (National Library of Korea - NLK)",
+      "priority": "P2",
+      "reconciliation_url": "http://lod.nl.go.kr/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P5034",
+      "notes": "East Asian academic publishing authorities."
+    },
+    {
+      "source": "Europeana (EU Cultural Aggregator)",
+      "priority": "P2",
+      "reconciliation_url": "https://sparql.europeana.eu/",
+      "endpoint_kind": "sparql",
+      "wd_property": "P7704",
+      "notes": "Meta-registry for EU cultural heritage."
+    },
+    {
+      "source": "Library of Congress (LoC - Name Authorities)",
+      "priority": "P2",
+      "reconciliation_url": "https://id.loc.gov/authorities/names/suggest/",
+      "endpoint_kind": "json-suggest",
+      "wd_property": "P244",
+      "notes": "Primary Anglosphere authority. Note: No public SPARQL; use Suggest API."
     }
   ]
 }
