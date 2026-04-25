@@ -314,6 +314,97 @@
         "attribution_required": "Yes",
         "commercial_safe": "Yes"
       }
+    },
+    {
+      "source": "Taiwan National Central Library (NCL)",
+      "priority": "P2",
+      "reconciliation_url": "https://ld.ncl.edu.tw/fuseki/lod/query",
+      "endpoint_kind": "sparql",
+      "wd_property": "P12822",
+      "notes": "Sinophone literary and academic imprints.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      }
+    },
+    {
+      "source": "National Library of Greece (NLG)",
+      "priority": "P2",
+      "reconciliation_url": "https://data.nlg.gr/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P11438",
+      "notes": "Hellenic academic and national award authorities.",
+      "data_license": {
+        "name": "Attribution-Open",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      }
+    },
+    {
+      "source": "Chile Library of Congress (BCN)",
+      "priority": "P2",
+      "reconciliation_url": "http://datos.bcn.cl/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P6456",
+      "notes": "South American institutional and legislative data.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      }
+    },
+    {
+      "source": "Czech Republic National Library (NKCR)",
+      "priority": "P2",
+      "reconciliation_url": "https://data.gov.cz/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P691",
+      "notes": "Central European scholarly imprints.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      }
+    },
+    {
+      "source": "Hungary National Sz\u00e9ch\u00e9nyi Library (NSZL)",
+      "priority": "P2",
+      "reconciliation_url": "http://data.oszk.hu/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P12563",
+      "notes": "Hungarian and Austro-Hungarian literary mapping.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      }
+    },
+    {
+      "source": "Redalyc (Ibero-American Scholarly Network)",
+      "priority": "P2",
+      "reconciliation_url": "http://redalyc.org/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": null,
+      "notes": "Massive graph for Latin American academic publications.",
+      "data_license": {
+        "name": "CC BY-NC-SA 4.0",
+        "attribution_required": "Yes",
+        "commercial_safe": "No (Non-Commercial Restriction)"
+      }
+    },
+    {
+      "source": "REDI (Ecuador Research Repository Network)",
+      "priority": "P2",
+      "reconciliation_url": "http://201.159.222.25:8180/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": null,
+      "notes": "Andean scholarly imprints and awards.",
+      "data_license": {
+        "name": "Open Data / CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      }
     }
   ]
 }

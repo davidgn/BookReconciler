@@ -56,11 +56,11 @@ As this project targets **commercial end-use**, reconciliation must be performed
 
 ### **🟢 Green Zone: Safe for Commercial Use**
 The following sources are CC0, Public Domain, or highly permissive. Data derived from these can be redistributed in commercial products with minimal risk.
-*   **Wikidata, GND (DNB), ROR, BNE (Spain), Nobel Prize, Library of Congress, Swissbib.**
+*   **Wikidata, GND (DNB), ROR, BNE (Spain), Nobel Prize, Library of Congress, Swissbib, Taiwan (NCL), Chile (BCN), Czech Republic (NKCR), Hungary (NSZL), REDI (Ecuador).**
 
 ### **🟡 Caution Zone: Attribution & Share-Alike Required**
 These sources allow commercial use but require specific legal handling.
-*   **BnF, Libris, NDL, IdRef, Europeana, BookSampo, OpenAIRE:** Require explicit source attribution in your final data release.
+*   **BnF, Libris, NDL, IdRef, Europeana, BookSampo, OpenAIRE, National Library of Greece (Attr), Redalyc (NC):** Require explicit source attribution in your final data release.
 *   **OpenCorporates (ODbL):** Requires **Share-Alike** (any dataset enriched with this must also be released under ODbL) OR a separate commercial license must be purchased.
 
 ### **🔴 Red Zone: Non-Commercial Only**
