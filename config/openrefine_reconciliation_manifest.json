@@ -9,7 +9,12 @@
       "reconciliation_url": "https://wikidata.reconci.link/en/api",
       "endpoint_kind": "standard-reconciliation-api",
       "wd_property": null,
-      "notes": "Primary hub for cross-dataset reconciliation."
+      "notes": "Primary hub for cross-dataset reconciliation.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      }
     },
     {
       "source": "GND (DNB)",
@@ -17,7 +22,12 @@
       "reconciliation_url": "https://lobid.org/gnd/reconcile",
       "endpoint_kind": "standard-reconciliation-api",
       "wd_property": "P227",
-      "notes": "Native high-performance OpenRefine endpoint via Lobid."
+      "notes": "Native high-performance OpenRefine endpoint via Lobid.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      }
     },
     {
       "source": "ROR (Research Organization Registry)",
@@ -25,7 +35,12 @@
       "reconciliation_url": "https://reconcile.ror.org/reconcile",
       "endpoint_kind": "standard-reconciliation-api",
       "wd_property": "P6782",
-      "notes": "Global standard for research institution identifiers."
+      "notes": "Global standard for research institution identifiers.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      }
     },
     {
       "source": "BnF France",
@@ -33,7 +48,12 @@
       "reconciliation_url": "https://data.bnf.fr/sparql",
       "endpoint_kind": "sparql",
       "wd_property": "P268",
-      "notes": "Use 'Reconcile via SPARQL' extension in OpenRefine."
+      "notes": "Use 'Reconcile via SPARQL' extension in OpenRefine.",
+      "data_license": {
+        "name": "Etalab Open License",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      }
     },
     {
       "source": "BNE Spain",
@@ -41,7 +61,12 @@
       "reconciliation_url": "https://datos.bne.es/sparql",
       "endpoint_kind": "sparql",
       "wd_property": "P950",
-      "notes": "Use 'Reconcile via SPARQL' extension in OpenRefine."
+      "notes": "Use 'Reconcile via SPARQL' extension in OpenRefine.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      }
     },
     {
       "source": "VIAF (Virtual International Authority File)",
@@ -49,7 +74,12 @@
       "reconciliation_url": "https://viaf.org/viaf/AutoSuggest",
       "endpoint_kind": "suggest-api-wrapper",
       "wd_property": "P214",
-      "notes": "Use community VIAF wrapper or AutoSuggest endpoint."
+      "notes": "Use community VIAF wrapper or AutoSuggest endpoint.",
+      "data_license": {
+        "name": "ODC-By",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      }
     },
     {
       "source": "OpenCorporates",
@@ -57,7 +87,12 @@
       "reconciliation_url": "https://opencorporates.com/reconcile",
       "endpoint_kind": "standard-reconciliation-api",
       "wd_property": "P1320",
-      "notes": "Requires API key for higher volumes."
+      "notes": "Requires API key for higher volumes.",
+      "data_license": {
+        "name": "Unknown",
+        "attribution_required": "Unknown",
+        "commercial_safe": "Unknown"
+      }
     },
     {
       "source": "ULAN (Getty Artist Names)",
@@ -65,7 +100,12 @@
       "reconciliation_url": "https://vocab.getty.edu/sparql.json",
       "endpoint_kind": "sparql",
       "wd_property": "P245",
-      "notes": "Vital for person/author lane authority control."
+      "notes": "Vital for person/author lane authority control.",
+      "data_license": {
+        "name": "Unknown",
+        "attribution_required": "Unknown",
+        "commercial_safe": "Unknown"
+      }
     },
     {
       "source": "BVMC (Biblioteca Virtual Miguel de Cervantes)",
@@ -73,7 +113,12 @@
       "reconciliation_url": "https://data.cervantesvirtual.com/sparql",
       "endpoint_kind": "sparql",
       "wd_property": "P2799",
-      "notes": "Hispanic/Ibero-American corporate body authorities."
+      "notes": "Hispanic/Ibero-American corporate body authorities.",
+      "data_license": {
+        "name": "Unknown",
+        "attribution_required": "Unknown",
+        "commercial_safe": "Unknown"
+      }
     },
     {
       "source": "NDL (Japan National Diet Library)",
@@ -81,7 +126,12 @@
       "reconciliation_url": "https://id.ndl.go.jp/auth/ndla/sparql",
       "endpoint_kind": "sparql",
       "wd_property": "P349",
-      "notes": "Japanese publisher and scholarly entity authorities."
+      "notes": "Japanese publisher and scholarly entity authorities.",
+      "data_license": {
+        "name": "Unknown",
+        "attribution_required": "Unknown",
+        "commercial_safe": "Unknown"
+      }
     },
     {
       "source": "NTA (Netherlands Name Authority)",
@@ -89,7 +139,12 @@
       "reconciliation_url": "https://data.bibliotheken.nl/sparql",
       "endpoint_kind": "sparql",
       "wd_property": "P1006",
-      "notes": "Benelux-region scholarly entities."
+      "notes": "Benelux-region scholarly entities.",
+      "data_license": {
+        "name": "Unknown",
+        "attribution_required": "Unknown",
+        "commercial_safe": "Unknown"
+      }
     },
     {
       "source": "SBN (Italy National Library Service)",
@@ -97,7 +152,12 @@
       "reconciliation_url": "https://triplestore.iccu.sbn.it/sparql",
       "endpoint_kind": "sparql",
       "wd_property": "P396",
-      "notes": "Italian scholarly publishing ecosystem."
+      "notes": "Italian scholarly publishing ecosystem.",
+      "data_license": {
+        "name": "Unknown",
+        "attribution_required": "Unknown",
+        "commercial_safe": "Unknown"
+      }
     },
     {
       "source": "United Kingdom (British National Bibliography - BL)",
@@ -105,7 +165,12 @@
       "reconciliation_url": "http://bnb.data.bl.uk/sparql",
       "endpoint_kind": "sparql",
       "wd_property": "P1156",
-      "notes": "Primary authority for UK academic publishers."
+      "notes": "Primary authority for UK academic publishers.",
+      "data_license": {
+        "name": "Unknown",
+        "attribution_required": "Unknown",
+        "commercial_safe": "Unknown"
+      }
     },
     {
       "source": "Sweden (Libris - KB)",
@@ -113,7 +178,12 @@
       "reconciliation_url": "https://libris.kb.se/sparql",
       "endpoint_kind": "sparql",
       "wd_property": "P1182",
-      "notes": "Authority for Nordic scholarly imprints."
+      "notes": "Authority for Nordic scholarly imprints.",
+      "data_license": {
+        "name": "Unknown",
+        "attribution_required": "Unknown",
+        "commercial_safe": "Unknown"
+      }
     },
     {
       "source": "Finland (Finto)",
@@ -121,7 +191,12 @@
       "reconciliation_url": "https://data.nationallibrary.fi/bib/sparql",
       "endpoint_kind": "sparql",
       "wd_property": "P12354",
-      "notes": "Finnish academic and institutional authorities."
+      "notes": "Finnish academic and institutional authorities.",
+      "data_license": {
+        "name": "Unknown",
+        "attribution_required": "Unknown",
+        "commercial_safe": "Unknown"
+      }
     },
     {
       "source": "South Korea (National Library of Korea - NLK)",
@@ -129,7 +204,12 @@
       "reconciliation_url": "http://lod.nl.go.kr/sparql",
       "endpoint_kind": "sparql",
       "wd_property": "P5034",
-      "notes": "East Asian academic publishing authorities."
+      "notes": "East Asian academic publishing authorities.",
+      "data_license": {
+        "name": "Unknown",
+        "attribution_required": "Unknown",
+        "commercial_safe": "Unknown"
+      }
     },
     {
       "source": "Europeana (EU Cultural Aggregator)",
@@ -137,7 +217,12 @@
       "reconciliation_url": "https://sparql.europeana.eu/",
       "endpoint_kind": "sparql",
       "wd_property": "P7704",
-      "notes": "Meta-registry for EU cultural heritage."
+      "notes": "Meta-registry for EU cultural heritage.",
+      "data_license": {
+        "name": "Unknown",
+        "attribution_required": "Unknown",
+        "commercial_safe": "Unknown"
+      }
     },
     {
       "source": "Library of Congress (LoC - Name Authorities)",
@@ -145,7 +230,51 @@
       "reconciliation_url": "https://id.loc.gov/authorities/names/suggest/",
       "endpoint_kind": "json-suggest",
       "wd_property": "P244",
-      "notes": "Primary Anglosphere authority. Note: No public SPARQL; use Suggest API."
+      "notes": "Primary Anglosphere authority. Note: No public SPARQL; use Suggest API.",
+      "data_license": {
+        "name": "Unknown",
+        "attribution_required": "Unknown",
+        "commercial_safe": "Unknown"
+      }
+    },
+    {
+      "source": "Nobel Prize Linked Data",
+      "priority": "P2",
+      "reconciliation_url": "https://data.nobelprize.org/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P802",
+      "notes": "Authoritative Nobel laureates and literature awards.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      }
+    },
+    {
+      "source": "WorldCat Entities (OCLC)",
+      "priority": "P2",
+      "reconciliation_url": "https://entities.oclc.org/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P10832",
+      "notes": "Global meta-hub for award and bibliographic reconciliation.",
+      "data_license": {
+        "name": "Unknown",
+        "attribution_required": "Unknown",
+        "commercial_safe": "Unknown"
+      }
+    },
+    {
+      "source": "CWRC (Canadian Writing Research Collaboratory)",
+      "priority": "P2",
+      "reconciliation_url": "https://sparql.cwrc.ca/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P11035",
+      "notes": "Specialized Canadian/Francophone literary authorities.",
+      "data_license": {
+        "name": "Unknown",
+        "attribution_required": "Unknown",
+        "commercial_safe": "Unknown"
+      }
     }
   ]
 }
