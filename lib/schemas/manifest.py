@@ -213,6 +213,26 @@ manifest = {
     {
       "id": "ANPI_Place",
     {
+      "id": "SevenDays_Person",
+      "name": "Person -- Russian 7 Days"
+    },
+    {
+      "id": "AAA_UK_Org",
+      "name": "Organization -- UK Literary Agents"
+    },
+    {
+      "id": "ADAL_Spain_Org",
+      "name": "Organization -- Spanish Literary Agents"
+    },
+    {
+      "id": "Bavarian_Monument_Place",
+      "name": "Location -- Bavarian Monuments"
+    },
+    {
+      "id": "Australian_Heritage_Place_2",
+      "name": "Location -- Australian Heritage"
+    },
+    {
       "id": "AILA_Org",
       "name": "Organization -- Indigenous Publishers (AILA)"
     },

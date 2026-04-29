@@ -498,6 +498,21 @@ if query[queryId]['type'] == 'Euro08_Person':
                         return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Work")
 
                     if query[queryId]['type'] == 'ANPI_Place':
+if query[queryId]['type'] == 'SevenDays_Person':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'AAA_UK_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://www.agents.org.uk/wp-json/wp/v2/members')
+
+                    if query[queryId]['type'] == 'ADAL_Spain_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://adal.es/wp-json/wp/v2/agencias-asociadas')
+
+                    if query[queryId]['type'] == 'Bavarian_Monument_Place':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Place")
+
+                    if query[queryId]['type'] == 'Australian_Heritage_Place_2':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Place")
+
 if query[queryId]['type'] == 'AILA_Org':
                         return process_wp_json_query(query, current_app.config, 'https://ailanet.org/wp-json/wp/v2/publishers')
 
