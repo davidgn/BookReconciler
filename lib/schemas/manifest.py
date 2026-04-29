@@ -309,6 +309,18 @@ manifest = {
     {
       "id": "IPEDS_Org",
     {
+      "id": "Nobel_Person",
+      "name": "Person -- Nobel Prize Laureates"
+    },
+    {
+      "id": "SECCIK_Org",
+      "name": "Organization -- Mexican Culture (SECCIK)"
+    },
+    {
+      "id": "JTI_Org_2",
+      "name": "Organization -- Japan Tech (JTI)"
+    },
+    {
       "id": "EU_Transparency_Org",
       "name": "Organization -- EU Transparency Register"
     },

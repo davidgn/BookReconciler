@@ -42,6 +42,7 @@ from lib.strategies_acm_author import process_acm_author_query
 from lib.strategies_japanta import process_japanta_query
 from lib.strategies_sherpa import process_sherpa_query
 from lib.strategies_ipeds import process_ipeds_query
+from lib.strategies_nobel import process_nobel_query
 from lib.strategies_eutransparency import process_eutransparency_query
 from lib.strategies_erihplus import process_erihplus_query
 from lib.strategies_crossref_funder import process_crossref_funder_query
@@ -566,6 +567,15 @@ if query[queryId]['type'] == 'ACM_Author_Id':
                         return process_sherpa_query(query, current_app.config)
 
                     if query[queryId]['type'] == 'IPEDS_Org':
+if query[queryId]['type'] == 'Nobel_Person':
+                        return process_nobel_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'SECCIK_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://sic.cultura.gob.mx/opendata/d/0_editorial_directorio.csv')
+
+                    if query[queryId]['type'] == 'JTI_Org_2':
+                        return process_wp_json_query(query, current_app.config, 'https://jti-app.org/api/')
+
 if query[queryId]['type'] == 'EU_Transparency_Org':
                         return process_eutransparency_query(query, current_app.config)
 
