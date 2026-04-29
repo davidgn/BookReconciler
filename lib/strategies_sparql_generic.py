@@ -7,8 +7,8 @@ def process_sparql_generic_query(query, passed_config, sparql_template, endpoint
         if queryId == 'req_ip': continue
         data = query[queryId]
         reconcile_item = _build_recon_dict(data)
-        query_text = reconcile_item['query']
-        
+        query_text = reconcile_item.get('query') or reconcile_item.get('title') or data.get('query', '')
+
         sparql = sparql_template.replace("QUERY_TEXT", query_text)
         try:
             r = requests.get(endpoint_url, params={'query': sparql, 'format': 'json'}, timeout=10)
