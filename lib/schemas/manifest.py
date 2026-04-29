@@ -230,6 +230,38 @@ manifest = {
     },
     {
       "id": "AmericanHeritage_Place",
+    {
+      "id": "ADB_Org_Auth",
+      "name": "Organization -- ADB Australia (Authority)"
+    },
+    {
+      "id": "AEF_Org",
+      "name": "Organization -- European Foundations (AEF)"
+    },
+    {
+      "id": "ALPSP_Org",
+      "name": "Organization -- Scholarly Publishers (ALPSP)"
+    },
+    {
+      "id": "ASALE_Org",
+    {
+      "id": "re3data_Org",
+      "name": "Organization -- re3data Repositories"
+    },
+    {
+      "id": "RussianDict_Person",
+      "name": "Person -- 18th Cent Russian Dictionary"
+    },
+    {
+      "id": "ChineseBio_Person",
+      "name": "Person -- 20th Cent Chinese Bio"
+    },
+    {
+      "id": "QueerScientists_Person",
+      "name": "Person -- 500 Queer Scientists"
+    },
+      "name": "Organization -- Spanish Language Academies (ASALE)"
+    },
       "name": "Location -- American Heritage"
     },
       "name": "Organization -- Argentine Univ Presses (REUN)"

@@ -28,6 +28,8 @@ from lib.strategies_sic_mexico import process_sic_mexico_query
 from lib.strategies_grid import process_grid_query
 from lib.strategies_nla import process_nla_query
 from lib.strategies_propublica import process_propublica_query
+from lib.strategies_adb_org import process_adb_org_query
+from lib.strategies_re3data import process_re3data_query
 from lib.strategies_aat import process_aat_query
 from lib.strategies_datacite import process_datacite_query
 from lib.strategies_geonames import process_geonames_query
@@ -498,6 +500,30 @@ if query[queryId]['type'] == 'AAGM_Org':
                         return process_wp_json_query(query, current_app.config, 'https://api.reliefweb.int/v1/organizations')
 
                     if query[queryId]['type'] == 'AmericanHeritage_Place':
+if query[queryId]['type'] == 'ADB_Org_Auth':
+                        return process_adb_org_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'AEF_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://www.fundaciones.org/es/fundaciones-asociadas')
+
+                    if query[queryId]['type'] == 'ALPSP_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://www.alpsp.org/Member-Directory')
+
+                    if query[queryId]['type'] == 'ASALE_Org':
+if query[queryId]['type'] == 're3data_Org':
+                        return process_re3data_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'RussianDict_Person':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'ChineseBio_Person':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'QueerScientists_Person':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                        return process_wp_json_query(query, current_app.config, 'https://www.asale.org/academias')
+
                         return process_wp_json_query(query, current_app.config, 'https://www.americanheritage.com/wp-json/wp/v2/place', type_name="Place")
 
                         return process_wp_json_query(query, current_app.config, 'https://reun.edu.ar/wp-json/wp/v2/catalog')
