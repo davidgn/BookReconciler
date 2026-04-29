@@ -26,6 +26,26 @@ manifest = {
     },
     {
       "id": "BNE_Person",
+    {
+      "id": "NDL_Person",
+      "name": "Person -- NDL Japan"
+    },
+    {
+      "id": "OpenCorporates_Org",
+      "name": "Organization -- OpenCorporates"
+    },
+    {
+      "id": "LCNAF_Person",
+    {
+      "id": "NTA_Person",
+      "name": "Person -- NTA Netherlands"
+    },
+    {
+      "id": "OpenLibrary_Author",
+      "name": "Person -- Open Library Authors"
+    },
+      "name": "Person -- LCNAF (Library of Congress)"
+    },
       "name": "Person -- BNE"
     },
     {
@@ -108,6 +128,42 @@ manifest = {
     },
     {
       "id": "AIATSIS_Place",
+    {
+      "id": "Canada_Historic_Place",
+      "name": "Location -- Canada Historic Places"
+    },
+    {
+      "id": "ASCE_Landmark_Place",
+      "name": "Location -- ASCE Civil Engineering Landmarks"
+    },
+    {
+      "id": "ADB_Publication_Work",
+      "name": "Work -- ADB Publications"
+    },
+    {
+      "id": "AAGM_Artwork_Work",
+    {
+      "id": "Euro08_Winner",
+      "name": "Winner -- Russian 08euro"
+    },
+    {
+      "id": "TwoGIS_Place",
+      "name": "Location -- 2GIS Gazetteer"
+    },
+    {
+      "id": "Academy_Awards_Film",
+      "name": "Award -- Academy Awards Film"
+    },
+    {
+      "id": "AwardsWinners_Artist",
+      "name": "Winner -- Awards & Winners Artist"
+    },
+      "name": "Work -- Munich AAGM Artwork"
+    },
+    {
+      "id": "ASCAP_Work",
+      "name": "Work -- ASCAP Musical Works"
+    },
     {
       "id": "HAL_Org",
       "name": "Organization -- French HAL (Research Units)"
@@ -206,6 +262,70 @@ manifest = {
     },
     {
       "id": "ACNC_Org",
+    {
+      "id": "Georgia_Emigrants_Person",
+      "name": "Person -- Georgia Emigrants Bio"
+    },
+    {
+      "id": "CESAR_Person",
+      "name": "Person -- French Theatre (CESAR)"
+    },
+    {
+      "id": "ARC_Grant",
+      "name": "Award -- Australian Research Council"
+    },
+    {
+      "id": "OpenDOAR_Org",
+    {
+      "id": "RS_Memoirs_Person",
+      "name": "Person -- Royal Society Memoirs"
+    },
+    {
+      "id": "Rome_Fellow_Person",
+      "name": "Person -- French Academy in Rome Fellow"
+    },
+    {
+      "id": "Royal_Society_Person",
+      "name": "Person -- Royal Society People"
+    },
+    {
+      "id": "SAM_Gov_Org",
+      "name": "Organization -- US Gov Awardees (SAM.gov)"
+    },
+    {
+      "id": "HAL_TEL_Work",
+    {
+      "id": "ACM_Author_Id",
+      "name": "Person -- ACM Digital Library (Author)"
+    },
+    {
+      "id": "JapanNTA_Org",
+      "name": "Organization -- Japan Corporate Number (NTA)"
+    },
+    {
+      "id": "SherpaRomeo_Work",
+      "name": "Journal -- Sherpa/Romeo Policies"
+    },
+    {
+      "id": "IPEDS_Org",
+    {
+      "id": "EU_Transparency_Org",
+      "name": "Organization -- EU Transparency Register"
+    },
+    {
+      "id": "ERIHPLUS_Journal",
+      "name": "Journal -- ERIH PLUS Humanities"
+    },
+    {
+      "id": "Crossref_Funder_Org",
+      "name": "Organization -- Crossref Funder Registry"
+    },
+      "name": "Organization -- US Higher Ed (IPEDS)"
+    },
+      "name": "Work -- French Theses (HAL TEL)"
+    },
+      "name": "Organization -- OpenDOAR Repositories"
+    },
       "name": "Organization -- Australian Charities (ACNC)"
     },
     {

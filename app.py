@@ -18,6 +18,11 @@ from lib.strategies_isni import process_isni_query
 from lib.strategies_gnd import process_gnd_query
 from lib.strategies_bnf import process_bnf_query
 from lib.strategies_bne import process_bne_query
+from lib.strategies_ndl import process_ndl_query
+from lib.strategies_opencorporates import process_opencorporates_query
+from lib.strategies_lcnaf import process_lcnaf_query
+from lib.strategies_nta import process_nta_query
+from lib.strategies_openlibrary_authors import process_ol_authors_query
 from lib.strategies_sirene import process_sirene_query
 from lib.strategies_doaj import process_doaj_query
 from lib.strategies_idref import process_idref_query
@@ -28,6 +33,18 @@ from lib.strategies_sic_mexico import process_sic_mexico_query
 from lib.strategies_grid import process_grid_query
 from lib.strategies_nla import process_nla_query
 from lib.strategies_propublica import process_propublica_query
+from lib.strategies_georgia_emigrants import process_georgia_query
+from lib.strategies_cesar import process_cesar_query
+from lib.strategies_rs_memoirs import process_rs_memoirs_query
+from lib.strategies_sam_gov import process_sam_gov_query
+from lib.strategies_hal_tel import process_hal_tel_query
+from lib.strategies_acm_author import process_acm_author_query
+from lib.strategies_japanta import process_japanta_query
+from lib.strategies_sherpa import process_sherpa_query
+from lib.strategies_ipeds import process_ipeds_query
+from lib.strategies_eutransparency import process_eutransparency_query
+from lib.strategies_erihplus import process_erihplus_query
+from lib.strategies_crossref_funder import process_crossref_funder_query
 from lib.strategies_adb_org import process_adb_org_query
 from lib.strategies_re3data import process_re3data_query
 from lib.strategies_isil import process_isil_query
@@ -50,6 +67,8 @@ from lib.strategies_adb import process_adb_query
 from lib.strategies_acm import process_acm_query
 from lib.strategies_bnmx import process_bnmx_query
 from lib.strategies_aiatsis import process_aiatsis_query
+from lib.strategies_canada_historic import process_canada_historic_query
+from lib.strategies_adb_pubs import process_adb_pubs_query
 from lib.strategies_hal import process_hal_query
 from lib.strategies_awardswinners import process_aw_query
 from lib.strategies_babelnet import process_babelnet_query
@@ -417,6 +436,33 @@ if query[queryId]['type'] == 'ADB_Person':
                         return process_bnmx_query(query, current_app.config)
 
                     if query[queryId]['type'] == 'AIATSIS_Place':
+if query[queryId]['type'] == 'Canada_Historic_Place':
+                        return process_canada_historic_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'ASCE_Landmark_Place':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Place")
+
+                    if query[queryId]['type'] == 'ADB_Publication_Work':
+                        return process_adb_pubs_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'AAGM_Artwork_Work':
+if query[queryId]['type'] == 'Euro08_Winner':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P7111 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "ru") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'TwoGIS_Place':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P12487 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Place")
+
+                    if query[queryId]['type'] == 'Academy_Awards_Film':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P6145 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Award")
+
+                    if query[queryId]['type'] == 'AwardsWinners_Artist':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Work")
+
+                    if query[queryId]['type'] == 'ASCAP_Work':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Work")
+
 if query[queryId]['type'] == 'HAL_Org':
                         return process_hal_query(query, current_app.config)
 
@@ -487,6 +533,54 @@ if query[queryId]['type'] == 'ALCA_Person':
                         return process_wp_json_query(query, current_app.config, 'https://data.cityofnewyork.us/resource/2pg3-gcaa.json', type_name="Place")
 
                     if query[queryId]['type'] == 'ACNC_Org':
+if query[queryId]['type'] == 'Georgia_Emigrants_Person':
+                        return process_georgia_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'CESAR_Person':
+                        return process_cesar_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'ARC_Grant':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Grant")
+
+                    if query[queryId]['type'] == 'OpenDOAR_Org':
+if query[queryId]['type'] == 'RS_Memoirs_Person':
+                        return process_rs_memoirs_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'Rome_Fellow_Person':
+                        return process_agorha_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'Royal_Society_Person':
+                        return process_rs_memoirs_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'SAM_Gov_Org':
+                        return process_sam_gov_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'HAL_TEL_Work':
+if query[queryId]['type'] == 'ACM_Author_Id':
+                        return process_acm_author_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'JapanNTA_Org':
+                        return process_japanta_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'SherpaRomeo_Work':
+                        return process_sherpa_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'IPEDS_Org':
+if query[queryId]['type'] == 'EU_Transparency_Org':
+                        return process_eutransparency_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'ERIHPLUS_Journal':
+                        return process_erihplus_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'Crossref_Funder_Org':
+                        return process_crossref_funder_query(query, current_app.config)
+
+                        return process_ipeds_query(query, current_app.config)
+
+                        return process_hal_tel_query(query, current_app.config)
+
+                        return process_wp_json_query(query, current_app.config, 'https://v2.sherpa.ac.uk/cgi/search/repository/advanced')
+
                         return process_wp_json_query(query, current_app.config, 'https://data.gov.au/api/3/action/datastore_search')
 
 if query[queryId]['type'] == 'ABEU_Org':
@@ -660,6 +754,21 @@ if query[queryId]['type'] == 'ProPublica_Org':
                         return process_sbn_query(query, current_app.config)
 
                     if query[queryId]['type'] == 'BNE_Person':
+if query[queryId]['type'] == 'NDL_Person':
+                        return process_ndl_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'OpenCorporates_Org':
+                        return process_opencorporates_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'LCNAF_Person':
+if query[queryId]['type'] == 'NTA_Person':
+                        return process_nta_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'OpenLibrary_Author':
+                        return process_ol_authors_query(query, current_app.config)
+
+                        return process_lcnaf_query(query, current_app.config)
+
                         return process_bne_query(query, current_app.config)
 
                     if query[queryId]['type'] == 'GND_Person':
