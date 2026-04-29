@@ -1,5 +1,9 @@
 import requests
+
 from .strategies_helpers import _build_recon_dict
+
+
+SPARQL_HEADERS = {"User-Agent": "openrefine-reconciliation-service/0.1 (local research reconciliation)"}
 
 def process_sparql_generic_query(query, passed_config, sparql_template, endpoint_url="https://query.wikidata.org/sparql", type_name="Person"):
     query_response = {}
@@ -11,7 +15,7 @@ def process_sparql_generic_query(query, passed_config, sparql_template, endpoint
 
         sparql = sparql_template.replace("QUERY_TEXT", query_text)
         try:
-            r = requests.get(endpoint_url, params={'query': sparql, 'format': 'json'}, timeout=10)
+            r = requests.get(endpoint_url, params={'query': sparql, 'format': 'json'}, headers=SPARQL_HEADERS, timeout=10)
             if r.status_code == 200:
                 bindings = r.json().get('results', {}).get('bindings', [])
                 matches = []

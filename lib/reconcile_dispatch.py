@@ -153,6 +153,8 @@ DIRECT_HANDLERS = {
 
 
 WP_JSON_ENDPOINTS = {
+    "FIPB_Org": ("http://fipb.org.in/wp-json/wp/v2/members", "Organization"),
+    "AUP_NZ_Org": ("https://www.publishers.org.nz/wp-json/wp/v2/members", "Organization"),
     "ACLS_Org": ("https://www.acls.org/wp-json/wp/v2/member-societies", "Organization"),
     "IFLA_Org": ("https://www.ifla.org/wp-json/wp/v2/members", "Organization"),
     "ISC_Org": ("https://council.science/wp-json/wp/v2/members", "Organization"),
@@ -187,6 +189,9 @@ WP_JSON_ENDPOINTS = {
 
 
 SPARQL_PROPERTIES = {
+    "ACA_Person": ("P6635", "Person", "en"),
+    "RS_Past_Fellow_Person": ("P8612", "Person", "en"),
+    "Ads_Winner": ("P9046", "Winner", "en"),
     "ANZL_Writer": ("P5635", "Person", "en"),
     "Academy_Awards_Nominee": ("P6150", "Winner", "en"),
     "Akadem_Person": ("P12214", "Person", "en"),
@@ -248,7 +253,7 @@ DEFAULT_SPARQL_TEMPLATE = (
     '?item p:PROPERTY [] . '
     '?item rdfs:label ?itemLabel . '
     'FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) '
-    'FILTER(LANG(?itemLabel) = "LANG") '
+    'FILTER(LANG(?itemLabel) = "__LANG__") '
     '} LIMIT 5'
 )
 
@@ -270,7 +275,7 @@ def _process_sparql_property(type_id, query, config):
         type_id,
         ("P1263", _type_name_for_sparql(type_id), "en"),
     )
-    template = DEFAULT_SPARQL_TEMPLATE.replace("PROPERTY", prop).replace("LANG", lang)
+    template = DEFAULT_SPARQL_TEMPLATE.replace("PROPERTY", prop).replace("__LANG__", lang)
     return process_sparql_generic_query(query, config, template, type_name=type_name)
 
 

@@ -158,10 +158,20 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'VIAF_Title',
     'Wikidata_Title',
     'OpenLibrary_Title',
+    'ACA_Person',
+    'RS_Past_Fellow_Person',
+    'Ads_Winner',
+    'FIPB_Org',
+    'AUP_NZ_Org',
     'VIAF_Personal']
 
 
 TYPE_NAME_OVERRIDES = {
+    "ACA_Person": "Person -- Canadian Cinema Academy",
+    "RS_Past_Fellow_Person": "Person -- Royal Society (Past Fellows)",
+    "Ads_Winner": "Winner -- Italian Theatre (Ads)",
+    "FIPB_Org": "Organization -- Indian Publishers (FIPB)",
+    "AUP_NZ_Org": "Organization -- New Zealand Univ Presses (AUP-NZ)",
     "ANZL_Writer": "Person -- Academy of New Zealand Literature",
     "Academy_Awards_Nominee": "Winner -- Academy Awards Nominees",
     "Akadem_Person": "Person -- Russian Academy of Sciences",
