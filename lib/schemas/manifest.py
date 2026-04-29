@@ -189,6 +189,26 @@ manifest = {
     {
       "id": "BaneNOR_Place",
     {
+      "id": "ALCA_Person",
+      "name": "Person -- Catalan Authors (ALCA)"
+    },
+    {
+      "id": "ALCUIN_Person",
+      "name": "Person -- Alcuin Philosophers"
+    },
+    {
+      "id": "AMNH_Org",
+      "name": "Organization -- AMNH Museum"
+    },
+    {
+      "id": "NYC_Art_Place",
+      "name": "Location -- NYC Public Art"
+    },
+    {
+      "id": "ACNC_Org",
+      "name": "Organization -- Australian Charities (ACNC)"
+    },
+    {
       "id": "ABEU_Org",
       "name": "Organization -- Brazilian Univ Presses (ABEU)"
     },
@@ -230,6 +250,42 @@ manifest = {
     },
     {
       "id": "AmericanHeritage_Place",
+    {
+      "id": "ISIL_Org",
+      "name": "Organization -- ISIL Library Registry"
+    },
+    {
+      "id": "ODUCAL_Org",
+      "name": "Organization -- Catholic Univ (ODUCAL)"
+    },
+    {
+      "id": "AFAS_Person",
+      "name": "Person -- AFAS Science Alumni"
+    },
+    {
+      "id": "Ads_Work",
+    {
+      "id": "Antarctic_Place_2",
+      "name": "Location -- Australian Antarctic"
+    },
+    {
+      "id": "IFACCA_Org",
+      "name": "Organization -- Arts Councils (IFACCA)"
+    },
+    {
+      "id": "AGORHA_Person",
+      "name": "Person -- French Art History (AGORHA)"
+    },
+    {
+      "id": "ACE_Org",
+      "name": "Organization -- ASCAP Publishers (ACE)"
+    },
+    {
+      "id": "Bombardirov_Person",
+      "name": "Person -- Russian Military Honorees"
+    },
+      "name": "Work -- Italian Theatre (Ads)"
+    },
     {
       "id": "ADB_Org_Auth",
       "name": "Organization -- ADB Australia (Authority)"

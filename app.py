@@ -30,6 +30,10 @@ from lib.strategies_nla import process_nla_query
 from lib.strategies_propublica import process_propublica_query
 from lib.strategies_adb_org import process_adb_org_query
 from lib.strategies_re3data import process_re3data_query
+from lib.strategies_isil import process_isil_query
+from lib.strategies_antarctic import process_antarctic_query
+from lib.strategies_ifacca import process_ifacca_query
+from lib.strategies_agorha import process_agorha_query
 from lib.strategies_aat import process_aat_query
 from lib.strategies_datacite import process_datacite_query
 from lib.strategies_geonames import process_geonames_query
@@ -470,6 +474,21 @@ if query[queryId]['type'] == 'AJOL_Org':
                         return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Place")
 
                     if query[queryId]['type'] == 'BaneNOR_Place':
+if query[queryId]['type'] == 'ALCA_Person':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'ALCUIN_Person':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'AMNH_Org':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Organization")
+
+                    if query[queryId]['type'] == 'NYC_Art_Place':
+                        return process_wp_json_query(query, current_app.config, 'https://data.cityofnewyork.us/resource/2pg3-gcaa.json', type_name="Place")
+
+                    if query[queryId]['type'] == 'ACNC_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://data.gov.au/api/3/action/datastore_search')
+
 if query[queryId]['type'] == 'ABEU_Org':
                         return process_wp_json_query(query, current_app.config, 'https://abeu.org.br/wp-json/wp/v2/catalog')
 
@@ -500,6 +519,33 @@ if query[queryId]['type'] == 'AAGM_Org':
                         return process_wp_json_query(query, current_app.config, 'https://api.reliefweb.int/v1/organizations')
 
                     if query[queryId]['type'] == 'AmericanHeritage_Place':
+if query[queryId]['type'] == 'ISIL_Org':
+                        return process_isil_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'ODUCAL_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://oducal.com/wp-json/wp/v2/members')
+
+                    if query[queryId]['type'] == 'AFAS_Person':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+if query[queryId]['type'] == 'Antarctic_Place_2':
+                        return process_antarctic_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'IFACCA_Org':
+                        return process_ifacca_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'AGORHA_Person':
+                        return process_agorha_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'ACE_Org':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Organization")
+
+                    if query[queryId]['type'] == 'Bombardirov_Person':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'Ads_Work':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Work")
+
 if query[queryId]['type'] == 'ADB_Org_Auth':
                         return process_adb_org_query(query, current_app.config)
 
