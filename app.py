@@ -18,10 +18,40 @@ from lib.strategies_isni import process_isni_query
 from lib.strategies_gnd import process_gnd_query
 from lib.strategies_bnf import process_bnf_query
 from lib.strategies_bne import process_bne_query
+from lib.strategies_sirene import process_sirene_query
+from lib.strategies_doaj import process_doaj_query
+from lib.strategies_idref import process_idref_query
+from lib.strategies_sbn import process_sbn_query
+from lib.strategies_bvmc import process_bvmc_query
+from lib.strategies_gcd import process_gcd_query
+from lib.strategies_sic_mexico import process_sic_mexico_query
+from lib.strategies_grid import process_grid_query
+from lib.strategies_nla import process_nla_query
+from lib.strategies_propublica import process_propublica_query
 from lib.strategies_aat import process_aat_query
 from lib.strategies_datacite import process_datacite_query
 from lib.strategies_geonames import process_geonames_query
 from lib.strategies_tgn import process_tgn_query
+from lib.strategies_academy import process_academy_query
+from lib.strategies_nsf import process_nsf_query
+from lib.strategies_pen import process_pen_query
+from lib.strategies_members import process_members_query
+from lib.strategies_wp_json import process_wp_json_query
+from lib.strategies_alberta import process_alberta_query
+from lib.strategies_openlibrary_works import process_ol_works_query
+from lib.strategies_sparql_generic import process_sparql_generic_query
+from lib.strategies_adb import process_adb_query
+from lib.strategies_acm import process_acm_query
+from lib.strategies_bnmx import process_bnmx_query
+from lib.strategies_aiatsis import process_aiatsis_query
+from lib.strategies_hal import process_hal_query
+from lib.strategies_awardswinners import process_aw_query
+from lib.strategies_babelnet import process_babelnet_query
+from lib.strategies_coden import process_coden_query
+from lib.strategies_europepmc import process_epmc_query
+from lib.strategies_opencitations import process_opencitations_query
+from lib.strategies_threesixtygiving import process_threesixtygiving_query
+from lib.strategies_grammy import process_grammy_query
 from lib.strategies_helpers import reset_cluster_cache, build_cluster_data
 
 
@@ -326,6 +356,192 @@ if query[queryId]['type'] == 'ROR_Org':
 if query[queryId]['type'] == 'GeoNames_Location':
                         return process_geonames_query(query, current_app.config)
 
+if query[queryId]['type'] == 'ThreeSixtyGiving_Org':
+                        return process_threesixtygiving_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'Grammy_Award':
+                        return process_grammy_query(query, current_app.config)
+
+if query[queryId]['type'] == 'Academy_Award':
+                        return process_academy_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'NSF_Award':
+                        return process_nsf_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'PEN_Org':
+                        return process_pen_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'Members_Org':
+if query[queryId]['type'] == 'ACLS_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://www.acls.org/wp-json/wp/v2/member-societies')
+
+                    if query[queryId]['type'] == 'IFLA_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://www.ifla.org/wp-json/wp/v2/members')
+
+                    if query[queryId]['type'] == 'ISC_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://council.science/wp-json/wp/v2/members')
+
+                    if query[queryId]['type'] == 'Alberta_Place':
+                        return process_alberta_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'OpenLibrary_Work':
+if query[queryId]['type'] == 'SF_Awards_Person':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'ACM_Awards_Person':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'RSC_Fellow':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'TWAS_Fellow':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'EBU_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://www.ebu.ch/wp-json/wp/v2/members')
+
+                    if query[queryId]['type'] == 'EUNIC_Org':
+if query[queryId]['type'] == 'ADB_Person':
+                        return process_adb_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'ACM_Person':
+                        return process_acm_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'BNMX_Person':
+                        return process_bnmx_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'AIATSIS_Place':
+if query[queryId]['type'] == 'HAL_Org':
+                        return process_hal_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'AwardsWinners_Person':
+if query[queryId]['type'] == 'ALS_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://allianceofliterarysocieties.wordpress.com/wp-json/wp/v2/members')
+
+                    if query[queryId]['type'] == 'AAA_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://www.agentsassoc.co.uk/wp-json/wp/v2/members')
+
+                    if query[queryId]['type'] == 'JTI_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://www.jti.or.jp/wp-json/wp/v2/registry')
+
+                    if query[queryId]['type'] == 'AEDA_Place':
+if query[queryId]['type'] == 'MedalHonor_Person':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'AINM_Place':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Place")
+
+                    if query[queryId]['type'] == 'ACER_Org':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Organization")
+
+                    if query[queryId]['type'] == 'ACUM_Org':
+if query[queryId]['type'] == 'Euro08_Person':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'HebrewTheatre_Person':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'AMPAS_Item':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Work")
+
+                    if query[queryId]['type'] == 'ANPI_Place':
+if query[queryId]['type'] == 'AILA_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://ailanet.org/wp-json/wp/v2/publishers')
+
+                    if query[queryId]['type'] == 'Altexto_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://www.altexto.mx/wp-json/wp/v2/catalog')
+
+                    if query[queryId]['type'] == 'Sloan_Prize':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'AMPAS_Person_2':
+if query[queryId]['type'] == 'AJOL_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://www.ajol.info/wp-json/wp/v2/publishers')
+
+                    if query[queryId]['type'] == 'AJUP_Org':
+                        return process_wp_json_query(query, current_app.config, 'http://www.ajup-net.com/wp-json/wp/v2/members')
+
+                    if query[queryId]['type'] == 'AtomicHeritage_Org':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'Antarctic_Place':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Place")
+
+                    if query[queryId]['type'] == 'BaneNOR_Place':
+if query[queryId]['type'] == 'ABEU_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://abeu.org.br/wp-json/wp/v2/catalog')
+
+                    if query[queryId]['type'] == 'AfricanMinds_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://africanminds.co.za/wp-json/wp/v2/mapping')
+
+                    if query[queryId]['type'] == 'AlbinMichel_Person':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'GrantNav_Prize':
+if query[queryId]['type'] == 'AFNIL_Org':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Organization")
+
+                    if query[queryId]['type'] == 'ASEUC_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://aseuc.org.co/wp-json/wp/v2/catalog')
+
+                    if query[queryId]['type'] == 'AlternativaTeatral_Place':
+                        return process_wp_json_query(query, current_app.config, 'https://www.alternativateatral.com/wp-json/wp/v2/place', type_name="Place")
+
+                    if query[queryId]['type'] == 'BHF_Person':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                    if query[queryId]['type'] == 'REUN_Org':
+if query[queryId]['type'] == 'AAGM_Org':
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Organization")
+
+                    if query[queryId]['type'] == 'ReliefWeb_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://api.reliefweb.int/v1/organizations')
+
+                    if query[queryId]['type'] == 'AmericanHeritage_Place':
+                        return process_wp_json_query(query, current_app.config, 'https://www.americanheritage.com/wp-json/wp/v2/place', type_name="Place")
+
+                        return process_wp_json_query(query, current_app.config, 'https://reun.edu.ar/wp-json/wp/v2/catalog')
+
+                        return process_wp_json_query(query, current_app.config, 'https://grantnav.threesixtygiving.org/api/grants')
+
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Place")
+
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5')
+
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Place")
+
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Organization")
+
+                        return process_sparql_generic_query(query, current_app.config, 'SELECT ?item ?itemLabel WHERE { ?item p:P1263 []. ?item rdfs:label ?itemLabel. FILTER(regex(?itemLabel, "QUERY_TEXT", "i")) FILTER(LANG(?itemLabel) = "en") } LIMIT 5', type_name="Place")
+
+if query[queryId]['type'] == 'AAMC_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://aamc-us.org/wp-json/wp/v2/institutions')
+
+                    if query[queryId]['type'] == 'AALA_Org':
+                        return process_wp_json_query(query, current_app.config, 'https://www.aala.org/wp-json/wp/v2/members')
+
+                    if query[queryId]['type'] == 'BabelNet_Entity':
+                        return process_babelnet_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'CODEN_Work':
+                        return process_coden_query(query, current_app.config)
+
+                        return process_aw_query(query, current_app.config)
+
+                        return process_aiatsis_query(query, current_app.config)
+
+                        return process_wp_json_query(query, current_app.config, 'https://www.eunicglobal.eu/wp-json/wp/v2/members')
+
+if query[queryId]['type'] == 'EuropePMC_Work':
+                        return process_epmc_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'OpenCitations_Work':
+                        return process_opencitations_query(query, current_app.config)
+
+                        return process_ol_works_query(query, current_app.config)
+
+                        return process_members_query(query, current_app.config)
+
                     if query[queryId]['type'] == 'TGN_Location':
                         return process_tgn_query(query, current_app.config)
 
@@ -340,6 +556,36 @@ if query[queryId]['type'] == 'ISNI_Person':
 
 if query[queryId]['type'] == 'BnF_Person':
                         return process_bnf_query(query, current_app.config)
+
+if query[queryId]['type'] == 'Sirene_Org':
+                        return process_sirene_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'DOAJ_Journal':
+                        return process_doaj_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'IdRef_Person':
+                        return process_idref_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'SBN_Work':
+if query[queryId]['type'] == 'BVMC_Person':
+                        return process_bvmc_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'GCD_Publisher':
+                        return process_gcd_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'SIC_Mexico':
+                        return process_sic_mexico_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'GRID_Historical':
+                        return process_grid_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'NLA_Person':
+if query[queryId]['type'] == 'ProPublica_Org':
+                        return process_propublica_query(query, current_app.config)
+
+                        return process_nla_query(query, current_app.config)
+
+                        return process_sbn_query(query, current_app.config)
 
                     if query[queryId]['type'] == 'BNE_Person':
                         return process_bne_query(query, current_app.config)
