@@ -9,6 +9,46 @@ manifest = {
   "versions": ["0.2"],
   "defaultTypes": [
     {
+      "id": "ROR_Org",
+      "name": "Organization -- ROR"
+    },
+    {
+      "id": "OpenAlex_Org",
+    {
+      "id": "ISNI_Person",
+      "name": "Person -- ISNI"
+    },
+    {
+      "id": "GND_Person",
+    {
+      "id": "BnF_Person",
+      "name": "Person -- BnF"
+    },
+    {
+      "id": "BNE_Person",
+      "name": "Person -- BNE"
+    },
+    {
+      "id": "AAT_Award",
+      "name": "Award -- Getty AAT"
+    },
+    {
+      "id": "DataCite_Award",
+    {
+      "id": "GeoNames_Location",
+      "name": "Location -- GeoNames"
+    },
+    {
+      "id": "TGN_Location",
+      "name": "Location -- Getty TGN"
+    },
+      "name": "Award -- DataCite"
+    },
+      "name": "Person -- GND"
+    },
+      "name": "Organization -- OpenAlex"
+    },
+    {
       "id": "LC_Work_Id",
       "name": "Title -- id.loc.gov"
     },

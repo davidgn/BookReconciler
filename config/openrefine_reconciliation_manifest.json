@@ -14,7 +14,8 @@
         "name": "CC0",
         "attribution_required": "No",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "Standard Reconciliation (Native)"
     },
     {
       "source": "GND (DNB)",
@@ -27,7 +28,8 @@
         "name": "CC0",
         "attribution_required": "No",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "Standard Reconciliation (Native)"
     },
     {
       "source": "ROR (Research Organization Registry)",
@@ -40,7 +42,8 @@
         "name": "CC0",
         "attribution_required": "No",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "Standard Reconciliation (Native)"
     },
     {
       "source": "BnF France",
@@ -53,7 +56,8 @@
         "name": "Etalab Open License",
         "attribution_required": "Yes",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "BNE Spain",
@@ -66,7 +70,8 @@
         "name": "CC0",
         "attribution_required": "No",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "VIAF (Virtual International Authority File)",
@@ -92,7 +97,8 @@
         "name": "ODbL",
         "attribution_required": "Yes",
         "commercial_safe": "Conditional (Share-Alike)"
-      }
+      },
+      "openrefine_method": "Standard Reconciliation (Native)"
     },
     {
       "source": "ULAN (Getty Artist Names)",
@@ -105,7 +111,8 @@
         "name": "ODC-By",
         "attribution_required": "Yes",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "BVMC (Biblioteca Virtual Miguel de Cervantes)",
@@ -118,7 +125,8 @@
         "name": "CC0",
         "attribution_required": "No",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "NDL (Japan National Diet Library)",
@@ -131,7 +139,8 @@
         "name": "Attribution-Open",
         "attribution_required": "Yes",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "NTA (Netherlands Name Authority)",
@@ -144,7 +153,8 @@
         "name": "CC0",
         "attribution_required": "No",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "SBN (Italy National Library Service)",
@@ -157,7 +167,8 @@
         "name": "Open Data",
         "attribution_required": "Yes",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "United Kingdom (British National Bibliography - BL)",
@@ -170,7 +181,8 @@
         "name": "Unknown",
         "attribution_required": "Unknown",
         "commercial_safe": "Unknown"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "Sweden (Libris - KB)",
@@ -183,7 +195,8 @@
         "name": "Unknown",
         "attribution_required": "Unknown",
         "commercial_safe": "Unknown"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "Finland (Finto)",
@@ -196,7 +209,8 @@
         "name": "Attribution-Open",
         "attribution_required": "Yes",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "South Korea (National Library of Korea - NLK)",
@@ -209,20 +223,8 @@
         "name": "Unknown",
         "attribution_required": "Unknown",
         "commercial_safe": "Unknown"
-      }
-    },
-    {
-      "source": "Europeana (EU Cultural Aggregator)",
-      "priority": "P2",
-      "reconciliation_url": "https://sparql.europeana.eu/",
-      "endpoint_kind": "sparql",
-      "wd_property": "P7704",
-      "notes": "Meta-registry for EU cultural heritage.",
-      "data_license": {
-        "name": "CC0 (Metadata)",
-        "attribution_required": "Requested",
-        "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "Library of Congress (LoC - Name Authorities)",
@@ -248,7 +250,8 @@
         "name": "CC0",
         "attribution_required": "No",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "WorldCat Entities (OCLC)",
@@ -261,7 +264,8 @@
         "name": "ODC-By",
         "attribution_required": "Yes",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "CWRC (Canadian Writing Research Collaboratory)",
@@ -274,7 +278,8 @@
         "name": "CC BY-NC 4.0",
         "attribution_required": "Yes",
         "commercial_safe": "No (Non-Commercial Restriction)"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "BookSampo (Kirjasampo Finland)",
@@ -287,7 +292,8 @@
         "name": "CC BY 4.0",
         "attribution_required": "Yes",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "Swissbib (Swiss National Library Aggregator)",
@@ -300,7 +306,8 @@
         "name": "CC0",
         "attribution_required": "No",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "OpenAIRE Graph",
@@ -313,7 +320,8 @@
         "name": "CC BY",
         "attribution_required": "Yes",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "Taiwan National Central Library (NCL)",
@@ -326,7 +334,8 @@
         "name": "CC0",
         "attribution_required": "No",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "National Library of Greece (NLG)",
@@ -339,7 +348,8 @@
         "name": "Attribution-Open",
         "attribution_required": "Yes",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "Chile Library of Congress (BCN)",
@@ -352,7 +362,8 @@
         "name": "CC0",
         "attribution_required": "No",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "Czech Republic National Library (NKCR)",
@@ -365,7 +376,8 @@
         "name": "CC0",
         "attribution_required": "No",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "Hungary National Sz\u00e9ch\u00e9nyi Library (NSZL)",
@@ -378,7 +390,8 @@
         "name": "CC0",
         "attribution_required": "No",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "Redalyc (Ibero-American Scholarly Network)",
@@ -391,7 +404,8 @@
         "name": "CC BY-NC-SA 4.0",
         "attribution_required": "Yes",
         "commercial_safe": "No (Non-Commercial Restriction)"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "REDI (Ecuador Research Repository Network)",
@@ -404,7 +418,8 @@
         "name": "Open Data / CC0",
         "attribution_required": "No",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "ZBW - German National Library of Economics",
@@ -417,7 +432,8 @@
         "name": "CC BY 3.0",
         "attribution_required": "Yes",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "Pers\u00e9e (French Scholarly Journals & Books)",
@@ -430,7 +446,8 @@
         "name": "Etalab Open License",
         "attribution_required": "Yes",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "Agrovoc (FAO - Food & Agriculture Organization)",
@@ -443,7 +460,8 @@
         "name": "CC BY 3.0 IGO",
         "attribution_required": "Yes",
         "commercial_safe": "Yes"
-      }
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
     },
     {
       "source": "JudaicaLink (Jewish & Hebrew Scholarship)",
@@ -455,6 +473,441 @@
       "data_license": {
         "name": "CC BY-SA 4.0",
         "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "National Library of Hungary (OSZK)",
+      "priority": "P2",
+      "reconciliation_url": "http://nektar.oszk.hu/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P1184",
+      "notes": "Primary authority for Hungarian academic imprints.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "Library of Congress of Chile (BCN)",
+      "priority": "P2",
+      "reconciliation_url": "http://datos.bcn.cl/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P935",
+      "notes": "Essential for Latin American scholarly authority control.",
+      "data_license": {
+        "name": "CC BY 3.0",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "National Library of Korea (NLK)",
+      "priority": "P2",
+      "reconciliation_url": "http://lod.nl.go.kr/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P1015",
+      "notes": "Korean publishing and scholarly entity authorities.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "Europeana (EU Cultural Aggregator)",
+      "priority": "P2",
+      "reconciliation_url": "http://sparql.europeana.eu/",
+      "endpoint_kind": "sparql",
+      "wd_property": null,
+      "notes": "Aggregated records from thousands of European libraries.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "SNAC (Social Networks and Archival Context)",
+      "priority": "P2",
+      "reconciliation_url": "https://snaccooperative.org/reconcile",
+      "endpoint_kind": "standard-reconciliation-api",
+      "wd_property": "P3430",
+      "notes": "High-feasibility aggregator for corporate bodies and creators.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "Standard Reconciliation (Native)"
+    },
+    {
+      "source": "Open Library (Internet Archive)",
+      "priority": "P2",
+      "reconciliation_url": "https://refine.codefork.com/reconcile/openlibrary",
+      "endpoint_kind": "standard-reconciliation-api",
+      "wd_property": "P648",
+      "notes": "Direct reconciliation against the Open Library catalog.",
+      "data_license": {
+        "name": "PDL",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "Standard Reconciliation (Native)"
+    },
+    {
+      "source": "Swissbib (Switzerland)",
+      "priority": "P2",
+      "reconciliation_url": "https://data.swissbib.ch/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": null,
+      "notes": "National hub for Swiss academic and library data.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "DBpedia (Wikipedia Structured Data)",
+      "priority": "P2",
+      "reconciliation_url": "https://dbpedia.org/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": null,
+      "notes": "Broad context for entities and publishers.",
+      "data_license": {
+        "name": "CC BY-SA",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "Getty AAT (Art & Architecture Thesaurus)",
+      "priority": "P3",
+      "reconciliation_url": "https://vocab.getty.edu/sparql.json",
+      "endpoint_kind": "sparql",
+      "wd_property": "P1014",
+      "notes": "Vital for subject and genre authority control.",
+      "data_license": {
+        "name": "ODC-By",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "Getty TGN (Thesaurus of Geographic Names)",
+      "priority": "P3",
+      "reconciliation_url": "https://vocab.getty.edu/sparql.json",
+      "endpoint_kind": "sparql",
+      "wd_property": "P1667",
+      "notes": "Essential for geo-referencing publisher locations.",
+      "data_license": {
+        "name": "ODC-By",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "ORCID (Researcher IDs)",
+      "priority": "P2",
+      "reconciliation_url": "https://refine.codefork.com/reconcile/orcid",
+      "endpoint_kind": "standard-reconciliation-api",
+      "wd_property": "P496",
+      "notes": "Global identifier for individual researchers.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "Standard Reconciliation (Native)"
+    },
+    {
+      "source": "CERL Thesaurus (European Printers/Places)",
+      "priority": "P2",
+      "reconciliation_url": "https://data.cerl.org/thesaurus/_reconcile",
+      "endpoint_kind": "standard-reconciliation-api",
+      "wd_property": "P1871",
+      "notes": "Vital for historical European book history and printers.",
+      "data_license": {
+        "name": "CC BY 4.0",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "Standard Reconciliation (Native)"
+    },
+    {
+      "source": "Library of Congress (Standard Recon)",
+      "priority": "P2",
+      "reconciliation_url": "https://id.loc.gov/reconcile",
+      "endpoint_kind": "standard-reconciliation-api",
+      "wd_property": "P244",
+      "notes": "Official LoC reconciliation endpoint (LCSH, LCNAF).",
+      "data_license": {
+        "name": "Public Domain",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "Standard Reconciliation (Native)"
+    },
+    {
+      "source": "FundRef (Crossref Funder Registry)",
+      "priority": "P2",
+      "reconciliation_url": "http://labs.crossref.org/fundref-reconciliation-service",
+      "endpoint_kind": "standard-reconciliation-api",
+      "wd_property": "P3153",
+      "notes": "Registry of research funding organizations.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "Standard Reconciliation (Native)"
+    },
+    {
+      "source": "EU Open Data Portal",
+      "priority": "P2",
+      "reconciliation_url": "https://data.europa.eu/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": null,
+      "notes": "Metadata for datasets from EU institutions.",
+      "data_license": {
+        "name": "EU Legal Notice",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "Nomenclature.info (Museum Objects)",
+      "priority": "P3",
+      "reconciliation_url": "http://nomenclature.info/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": null,
+      "notes": "Standard for naming museum objects, useful for gift/artifact-based awards.",
+      "data_license": {
+        "name": "CC BY 4.0",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "SIBiLS (Swiss Institute of Bioinformatics)",
+      "priority": "P3",
+      "reconciliation_url": "http://sibils.org/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": null,
+      "notes": "RDF for MedLine and PMC publications.",
+      "data_license": {
+        "name": "CC BY 4.0",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "Fedlex (Swiss Federal Law)",
+      "priority": "P3",
+      "reconciliation_url": "https://data.fedlex.ch/sparqlendpoint",
+      "endpoint_kind": "sparql",
+      "wd_property": null,
+      "notes": "Official Swiss federal law publication platform.",
+      "data_license": {
+        "name": "Public Domain (Swiss Law)",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "Cambridge University Library",
+      "priority": "P3",
+      "reconciliation_url": "http://data.lib.cam.ac.uk/sparql.php",
+      "endpoint_kind": "sparql",
+      "wd_property": null,
+      "notes": "Metadata for Cambridge University collections.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "WarSampo (Finnish WWII Data)",
+      "priority": "P3",
+      "reconciliation_url": "http://ldf.fi/warsa/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": null,
+      "notes": "Linked data for historical events and people in WWII.",
+      "data_license": {
+        "name": "CC BY 4.0",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "National Library of Poland (BN)",
+      "priority": "P2",
+      "reconciliation_url": "https://reconciliation.lab.dariah.pl/bn",
+      "endpoint_kind": "standard-reconciliation-api",
+      "wd_property": "P691",
+      "notes": "Polish national bibliographic and authority records via DARIAH-PL.",
+      "data_license": {
+        "name": "Open Data BN",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "Standard Reconciliation (Native)"
+    },
+    {
+      "source": "Trove (National Library of Australia)",
+      "priority": "P2",
+      "reconciliation_url": "https://reconcile.trove.nla.gov.au/reconcile",
+      "endpoint_kind": "standard-reconciliation-api",
+      "wd_property": "P1315",
+      "notes": "Australian national aggregator for libraries and archives.",
+      "data_license": {
+        "name": "CC BY-NC",
+        "attribution_required": "Yes",
+        "commercial_safe": "No"
+      },
+      "openrefine_method": "Standard Reconciliation (Native)"
+    },
+    {
+      "source": "National Library of Poland (SPARQL)",
+      "priority": "P2",
+      "reconciliation_url": "https://data.bn.org.pl/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P691",
+      "notes": "Direct SPARQL access to the Polish National Library database.",
+      "data_license": {
+        "name": "Open Data BN",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "ISNI (Standard Recon)",
+      "priority": "P2",
+      "reconciliation_url": "https://refine.codefork.com/reconcile/isni",
+      "endpoint_kind": "standard-reconciliation-api",
+      "wd_property": "P213",
+      "notes": "International standard for identifying public identities of parties.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "Standard Reconciliation (Native)"
+    },
+    {
+      "source": "Wikidata (Toolforge)",
+      "priority": "P1",
+      "reconciliation_url": "https://wikidata-reconciliation.wmcloud.org/en/api",
+      "endpoint_kind": "standard-reconciliation-api",
+      "wd_property": null,
+      "notes": "Alternative high-availability Wikidata reconciliation service.",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "Standard Reconciliation (Native)"
+    },
+    {
+      "source": "CERL Thesaurus (SPARQL)",
+      "priority": "P2",
+      "reconciliation_url": "https://data.cerl.org/thesaurus/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P1871",
+      "notes": "SPARQL endpoint for CERL Thesaurus (Printers, Places, Names).",
+      "data_license": {
+        "name": "CC BY 4.0",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      },
+      "openrefine_method": "RDF Extension (SPARQL)"
+    },
+    {
+      "source": "Shanghai Library (China)",
+      "priority": "P2",
+      "reconciliation_url": "https://data.library.sh.cn/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P12354",
+      "notes": "Major hub for Chinese genealogical and bibliographic records.",
+      "openrefine_method": "RDF Extension (SPARQL)",
+      "data_license": {
+        "name": "Open Data NLC",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      }
+    },
+    {
+      "source": "Russian State Library (RSL - Moscow)",
+      "priority": "P2",
+      "reconciliation_url": "https://sparql.rsl.ru/bbkskos",
+      "endpoint_kind": "sparql",
+      "wd_property": null,
+      "notes": "Public endpoint for classification and authority data in Russia.",
+      "openrefine_method": "RDF Extension (SPARQL)",
+      "data_license": {
+        "name": "Open Data RSL",
+        "attribution_required": "Yes",
+        "commercial_safe": "Yes"
+      }
+    },
+    {
+      "source": "Czech National Open Data (NLCR)",
+      "priority": "P2",
+      "reconciliation_url": "https://data.gov.cz/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P691",
+      "notes": "Central European library and scholarly metadata.",
+      "openrefine_method": "RDF Extension (SPARQL)",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      }
+    },
+    {
+      "source": "National Library of Israel (via Wikidata)",
+      "priority": "P1",
+      "reconciliation_url": "https://query.wikidata.org/sparql",
+      "endpoint_kind": "sparql",
+      "wd_property": "P8189",
+      "notes": "Reconcile NLI J9U IDs using Wikidata federated queries.",
+      "openrefine_method": "RDF Extension (SPARQL) or Standard Wikidata Recon",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
+        "commercial_safe": "Yes"
+      }
+    },
+    {
+      "source": "BNE Spain (SRU)",
+      "priority": "P2",
+      "reconciliation_url": "https://catalogo.bne.es/view/sru/34BNE_INST",
+      "endpoint_kind": "sru",
+      "wd_property": "P950",
+      "notes": "High-reliability SRU access to BNE authority records.",
+      "openrefine_method": "Standard Reconciliation (Native) or Custom",
+      "data_license": {
+        "name": "CC0",
+        "attribution_required": "No",
         "commercial_safe": "Yes"
       }
     }

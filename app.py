@@ -12,6 +12,16 @@ from lib.strategies_viaf import process_viaf_query, process_viaf_title_query
 from lib.strategies_hathitrust import process_hathi_query
 from lib.strategies_wikidata import process_wikidata_title_query
 from lib.strategies_openlibrary import process_openlibrary_title_query
+from lib.strategies_ror import process_ror_query
+from lib.strategies_openalex import process_openalex_query
+from lib.strategies_isni import process_isni_query
+from lib.strategies_gnd import process_gnd_query
+from lib.strategies_bnf import process_bnf_query
+from lib.strategies_bne import process_bne_query
+from lib.strategies_aat import process_aat_query
+from lib.strategies_datacite import process_datacite_query
+from lib.strategies_geonames import process_geonames_query
+from lib.strategies_tgn import process_tgn_query
 from lib.strategies_helpers import reset_cluster_cache, build_cluster_data
 
 
@@ -309,6 +319,36 @@ def return_manifest():
                         break
 
 
+
+if query[queryId]['type'] == 'ROR_Org':
+                        return process_ror_query(query, current_app.config)
+
+if query[queryId]['type'] == 'GeoNames_Location':
+                        return process_geonames_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'TGN_Location':
+                        return process_tgn_query(query, current_app.config)
+
+if query[queryId]['type'] == 'AAT_Award':
+                        return process_aat_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'DataCite_Award':
+                        return process_datacite_query(query, current_app.config)
+
+if query[queryId]['type'] == 'ISNI_Person':
+                        return process_isni_query(query, current_app.config)
+
+if query[queryId]['type'] == 'BnF_Person':
+                        return process_bnf_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'BNE_Person':
+                        return process_bne_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'GND_Person':
+                        return process_gnd_query(query, current_app.config)
+
+                    if query[queryId]['type'] == 'OpenAlex_Org':
+                        return process_openalex_query(query, current_app.config)
 
                     if query[queryId]['type'] == 'HathiTrust':
                         # print('**',query,flush=True)
