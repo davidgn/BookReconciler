@@ -216,6 +216,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'French_Academy_Science_Person',
     'Korean_Academy_Science_Person',
     'Liszt_Academy_Person',
+    'APE_Person',
+    'Archnet_Org',
+    'BAnQ_Person',
+    'BDCYL_Person',
+    'Sinica_Person',
     'VIAF_Personal']
 
 
@@ -294,6 +299,11 @@ TYPE_NAME_OVERRIDES = {
     "French_Academy_Science_Person": "Person -- French Academy of Sciences",
     "Korean_Academy_Science_Person": "Person -- Korean Academy of Science",
     "Liszt_Academy_Person": "Person -- Liszt Academy Lexikon",
+    "APE_Person": "Person -- Archives Portal Europe",
+    "Archnet_Org": "Organization -- Archnet Islamic Arch",
+    "BAnQ_Person": "Person -- National Library Quebec",
+    "BDCYL_Person": "Person -- Castilla y Leon Digital",
+    "Sinica_Person": "Person -- Academia Sinica Taiwan",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
