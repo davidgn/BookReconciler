@@ -192,6 +192,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'IPA_Org',
     'PASA_Org',
     'UPAN_Org',
+    'AaRC_Winner',
+    'RussianTV_Winner',
+    'IRINS_Org',
+    'Barcelona_Heritage_Place',
+    'Gatehouse_Place',
     'VIAF_Personal']
 
 
@@ -246,6 +251,11 @@ TYPE_NAME_OVERRIDES = {
     "IPA_Org": "Organization -- IPA Book Fairs",
     "PASA_Org": "Organization -- Publishers South Africa (PASA)",
     "UPAN_Org": "Organization -- Australasian Univ Presses (UPAN)",
+    "AaRC_Winner": "Winner -- Brazil Academy of Arts",
+    "RussianTV_Winner": "Winner -- Russian TV Academy",
+    "IRINS_Org": "Organization -- Indian Research (IRINS)",
+    "Barcelona_Heritage_Place": "Location -- Barcelona Heritage",
+    "Gatehouse_Place": "Location -- Gatehouse Gazetteer",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 

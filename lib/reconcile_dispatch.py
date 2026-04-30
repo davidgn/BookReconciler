@@ -83,6 +83,7 @@ from lib.strategies_ceeol import process_ceeol_query
 from lib.strategies_garuda import process_garuda_query
 from lib.strategies_myjurnal import process_myjurnal_query
 from lib.strategies_cwgc import process_cwgc_query
+from lib.strategies_irins import process_irins_query
 from lib.strategies_wikidata import process_wikidata_title_query
 from lib.strategies_wp_json import process_wp_json_query
 
@@ -172,6 +173,7 @@ DIRECT_HANDLERS = {
     "Garuda_Org": process_garuda_query,
     "MyJurnal_Org": process_myjurnal_query,
     "CWGC_Person": process_cwgc_query,
+    "IRINS_Org": process_irins_query,
     "DOAB_Org": process_doab_query,
     "CharityCommission_Org": process_charity_query,
     "ProjectMUSE_Org": process_muse_query,
@@ -235,6 +237,10 @@ SPARQL_PROPERTIES = {
     "RS_Past_Fellow_Person": ("P8612", "Person", "en"),
     "Ads_Winner": ("P9046", "Winner", "en"),
     "Akadem_Person_2": ("P12214", "Person", "en"),
+    "AaRC_Winner": ("P7533", "Winner", "pt"),
+    "RussianTV_Winner": ("P10062", "Winner", "ru"),
+    "Barcelona_Heritage_Place": ("P11557", "Place", "ca"),
+    "Gatehouse_Place": ("P4141", "Place", "en"),
     "ANZL_Writer": ("P5635", "Person", "en"),
     "Academy_Awards_Nominee": ("P6150", "Winner", "en"),
     "Akadem_Person": ("P12214", "Person", "en"),
