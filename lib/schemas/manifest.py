@@ -244,6 +244,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'US_Congress_Person',
     'Finland_Bio_Person',
     'Finland_Swedish_Bio_Person',
+    'AFI_Person',
+    'BPH_Journal',
+    'Ulster_Bio_Person',
+    'Swedish_Women_Bio_Person',
+    'Poetry_America_Person',
     'VIAF_Personal']
 
 
@@ -350,6 +355,11 @@ TYPE_NAME_OVERRIDES = {
     "US_Congress_Person": "Person -- US Congress Biography",
     "Finland_Bio_Person": "Person -- BiographySampo Finland",
     "Finland_Swedish_Bio_Person": "Person -- Biografiskt Lexikon Finland",
+    "AFI_Person": "Person -- American Film Institute",
+    "BPH_Journal": "Journal -- Botanical Periodicals (BPH)",
+    "Ulster_Bio_Person": "Person -- Dictionary of Ulster Bio",
+    "Swedish_Women_Bio_Person": "Person -- Swedish Women Bio (SKBL)",
+    "Poetry_America_Person": "Person -- Poetry Society of America",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
