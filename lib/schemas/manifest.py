@@ -235,6 +235,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Welsh_Bio_Person',
     'Swedish_Bio_Person',
     'ADAGP_Person',
+    'ABMC_Person',
+    'NZ_Bio_Person',
+    'US_Congress_Person',
+    'Finland_Bio_Person',
+    'Finland_Swedish_Bio_Person',
     'VIAF_Personal']
 
 
@@ -332,6 +337,11 @@ TYPE_NAME_OVERRIDES = {
     "Welsh_Bio_Person": "Person -- Dictionary of Welsh Bio",
     "Swedish_Bio_Person": "Person -- Swedish National Bio",
     "ADAGP_Person": "Person -- French Artists (ADAGP)",
+    "ABMC_Person": "Person -- US Battle Monuments",
+    "NZ_Bio_Person": "Person -- Dictionary of NZ Bio",
+    "US_Congress_Person": "Person -- US Congress Biography",
+    "Finland_Bio_Person": "Person -- BiographySampo Finland",
+    "Finland_Swedish_Bio_Person": "Person -- Biografiskt Lexikon Finland",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 

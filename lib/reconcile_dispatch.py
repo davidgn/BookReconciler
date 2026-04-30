@@ -76,6 +76,7 @@ from lib.strategies_threesixtygiving import process_threesixtygiving_query
 from lib.strategies_viaf import process_viaf_query, process_viaf_title_query
 from lib.strategies_batch49 import process_batch49_query
 from lib.strategies_batch53 import process_batch53_query
+from lib.strategies_batch56 import process_batch56_query
 from lib.strategies_artic import process_artic_query
 from lib.strategies_elem import process_elem_query
 from lib.strategies_bnb_brazil import process_bnb_query
@@ -179,6 +180,8 @@ DIRECT_HANDLERS = {
     "CNKI_Person": process_cnki_query,
     "KUPA_Org": process_kupa_query,
     "CUPA_Org": process_cupa_query,
+    "NZ_Bio_Person": lambda q, c: process_batch56_query(q, c, "NZBio"),
+    "US_Congress_Person": lambda q, c: process_batch56_query(q, c, "USCongress"),
     "BALaT_Person": lambda q, c: process_batch53_query(q, c, "BALaT"),
     "Indy_Place": lambda q, c: process_batch53_query(q, c, "Indy"),
     "CEEOL_Org": process_ceeol_query,
@@ -267,6 +270,9 @@ SPARQL_PROPERTIES = {
     "RussianTV_Winner": ("P10062", "Winner", "ru"),
     "Barcelona_Heritage_Place": ("P11557", "Place", "ca"),
     "Gatehouse_Place": ("P4141", "Place", "en"),
+    "ABMC_Person": ("P5756", "Person", "en"),
+    "Finland_Bio_Person": ("P9324", "Person", "fi"),
+    "Finland_Swedish_Bio_Person": ("P3595", "Person", "sv"),
     "Canadian_Bio_Person": ("P2753", "Person", "en"),
     "ADAGP_Person": ("P3901", "Person", "fr"),
     "Georgia_Bio_Person": ("P4991", "Person", "en"),
