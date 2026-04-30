@@ -171,6 +171,11 @@ DIRECT_HANDLERS = {
 WP_JSON_ENDPOINTS = {
     "FIPB_Org": ("http://fipb.org.in/wp-json/wp/v2/members", "Organization"),
     "AUP_NZ_Org": ("https://www.publishers.org.nz/wp-json/wp/v2/members", "Organization"),
+    "OASPA_Org": ("https://oaspa.org/wp-json/wp/v2/members", "Organization"),
+    "ACUP_Org": ("https://www.acup.ca/wp-json/wp/v2/members", "Organization"),
+    "UNE_Org": ("https://www.une.es/wp-json/wp/v2/members", "Organization"),
+    "AArU_Org": ("http://www.aaru.edu.jo/wp-json/wp/v2/members", "Organization"),
+    "UPI_Org": ("https://www.universitypressitaliane.it/wp-json/wp/v2/members", "Organization"),
     "ABU_Org": ("https://www.abu.bo/wp-json/wp/v2/editoriales", "Organization"),
     "AFPU_Org": ("https://www.afpu.fr/wp-json/wp/v2/members", "Organization"),
     "AG_Univerlage_Org": ("https://ag-univerlage.de/wp-json/wp/v2/members", "Organization"),
