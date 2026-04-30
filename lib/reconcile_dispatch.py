@@ -88,6 +88,7 @@ from lib.strategies_garuda import process_garuda_query
 from lib.strategies_myjurnal import process_myjurnal_query
 from lib.strategies_cwgc import process_cwgc_query
 from lib.strategies_irins import process_irins_query
+from lib.strategies_cgiar_registry import process_cgiar_registry_query
 from lib.strategies_wikidata import process_wikidata_title_query
 from lib.strategies_wp_json import process_wp_json_query
 
@@ -183,6 +184,7 @@ DIRECT_HANDLERS = {
     "MyJurnal_Org": process_myjurnal_query,
     "CWGC_Person": process_cwgc_query,
     "IRINS_Org": process_irins_query,
+    "CGIAR_Registry_Org": process_cgiar_registry_query,
     "ARTIC_Person": lambda q, c: process_artic_query(q, c, "artists"),
     "ARTIC_Work": lambda q, c: process_artic_query(q, c, "artworks"),
     "ELEM_Org": process_elem_query,
@@ -262,6 +264,10 @@ SPARQL_PROPERTIES = {
     "RussianTV_Winner": ("P10062", "Winner", "ru"),
     "Barcelona_Heritage_Place": ("P11557", "Place", "ca"),
     "Gatehouse_Place": ("P4141", "Place", "en"),
+    "Georgia_Bio_Person": ("P4991", "Person", "en"),
+    "Georgia_Encyc_Person": ("P4903", "Person", "en"),
+    "Georgia_Monument_Place": ("P4166", "Place", "ka"),
+    "DSI_Person": ("P2349", "Person", "en"),
     "APE_Person": ("P1263", "Person", "en"),
     "Archnet_Org": ("P12728", "Organization", "en"),
     "BAnQ_Person": ("P3280", "Person", "fr"),

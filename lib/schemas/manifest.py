@@ -225,6 +225,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'BAnQ_Person',
     'BDCYL_Person',
     'Sinica_Person',
+    'Georgia_Bio_Person',
+    'Georgia_Encyc_Person',
+    'Georgia_Monument_Place',
+    'DSI_Person',
+    'CGIAR_Registry_Org',
     'VIAF_Personal']
 
 
@@ -312,6 +317,11 @@ TYPE_NAME_OVERRIDES = {
     "BAnQ_Person": "Person -- National Library Quebec",
     "BDCYL_Person": "Person -- Castilla y Leon Digital",
     "Sinica_Person": "Person -- Academia Sinica Taiwan",
+    "Georgia_Bio_Person": "Person -- Georgia Biographical Dict",
+    "Georgia_Encyc_Person": "Person -- New Georgia Encyclopedia",
+    "Georgia_Monument_Place": "Location -- Georgia Monuments",
+    "DSI_Person": "Person -- Scientific Illustrators (DSI)",
+    "CGIAR_Registry_Org": "Organization -- CGIAR Registry",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
