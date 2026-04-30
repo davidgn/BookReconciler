@@ -77,6 +77,7 @@ from lib.strategies_viaf import process_viaf_query, process_viaf_title_query
 from lib.strategies_batch49 import process_batch49_query
 from lib.strategies_batch53 import process_batch53_query
 from lib.strategies_batch56 import process_batch56_query
+from lib.strategies_batch61 import process_batch61_query
 from lib.strategies_artic import process_artic_query
 from lib.strategies_elem import process_elem_query
 from lib.strategies_bnb_brazil import process_bnb_query
@@ -190,6 +191,9 @@ DIRECT_HANDLERS = {
     "CUPA_Org": process_cupa_query,
     "NZ_Bio_Person": lambda q, c: process_batch56_query(q, c, "NZBio"),
     "US_Congress_Person": lambda q, c: process_batch56_query(q, c, "USCongress"),
+    "APA_Psych_Concept": lambda q, c: process_batch61_query(q, c, "APA"),
+    "Biology_Concept": lambda q, c: process_batch61_query(q, c, "Biology"),
+    "Icelandic_Concept": lambda q, c: process_batch61_query(q, c, "Icelandic"),
     "BALaT_Person": lambda q, c: process_batch53_query(q, c, "BALaT"),
     "Indy_Place": lambda q, c: process_batch53_query(q, c, "Indy"),
     "CEEOL_Org": process_ceeol_query,
@@ -282,6 +286,8 @@ SPARQL_PROPERTIES = {
     "RussianTV_Winner": ("P10062", "Winner", "ru"),
     "Barcelona_Heritage_Place": ("P11557", "Place", "ca"),
     "Gatehouse_Place": ("P4141", "Place", "en"),
+    "ARABTERM_Concept": ("P12900", "Concept", "ar"),
+    "Greek_Concept": ("P1263", "Concept", "el"),
     "CNKI_Institute_Org": ("P10693", "Organization", "zh"),
     "CTHS_Org": ("P1961", "Organization", "fr"),
     "Cistercian_Bio_Person": ("P8441", "Person", "de"),

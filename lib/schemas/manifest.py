@@ -260,6 +260,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Cistercian_Bio_Person',
     'DACS_Person',
     'DBA_Person',
+    'APA_Psych_Concept',
+    'ARABTERM_Concept',
+    'Biology_Concept',
+    'Icelandic_Concept',
+    'Greek_Concept',
     'VIAF_Personal']
 
 
@@ -382,6 +387,11 @@ TYPE_NAME_OVERRIDES = {
     "Cistercian_Bio_Person": "Person -- Cistercian Biography",
     "DACS_Person": "Person -- UK Artists (DACS)",
     "DBA_Person": "Person -- Danish Biographical Archive",
+    "APA_Psych_Concept": "Concept -- APA Psychology",
+    "ARABTERM_Concept": "Concept -- ARABTERM Technical",
+    "Biology_Concept": "Concept -- Oxford Biology",
+    "Icelandic_Concept": "Concept -- Contemporary Icelandic",
+    "Greek_Concept": "Concept -- Ancient Greek Lexicon",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
