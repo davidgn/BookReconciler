@@ -74,6 +74,7 @@ from lib.strategies_sparql_generic import process_sparql_generic_query
 from lib.strategies_tgn import process_tgn_query
 from lib.strategies_threesixtygiving import process_threesixtygiving_query
 from lib.strategies_viaf import process_viaf_query, process_viaf_title_query
+from lib.strategies_batch49 import process_batch49_query
 from lib.strategies_bnb_brazil import process_bnb_query
 from lib.strategies_brapci import process_brapci_query
 from lib.strategies_cnki import process_cnki_query
@@ -164,6 +165,9 @@ DIRECT_HANDLERS = {
     "GND_Person": process_gnd_query,
     "OpenAlex_Org": process_openalex_query,
     "HathiTrust": process_hathi_query,
+    "AJOL_Org_2": lambda q, c: process_batch49_query(q, c, "AJOL"),
+    "ASCL_Work": lambda q, c: process_batch49_query(q, c, "ASCL"),
+    "Garuda_Org_2": lambda q, c: process_batch49_query(q, c, "Garuda"),
     "BNB_Person": process_bnb_query,
     "Brapci_Person": process_brapci_query,
     "CNKI_Person": process_cnki_query,
@@ -237,6 +241,12 @@ SPARQL_PROPERTIES = {
     "RS_Past_Fellow_Person": ("P8612", "Person", "en"),
     "Ads_Winner": ("P9046", "Winner", "en"),
     "Akadem_Person_2": ("P12214", "Person", "en"),
+    "AICTE_Org": ("P4897", "Organization", "en"),
+    "AISHE_Org": ("P6392", "Organization", "en"),
+    "Leiden_Place": ("P5198", "Place", "en"),
+    "ASI_Place": ("P1371", "Place", "en"),
+    "CiNii_Org": ("P2409", "Organization", "en"),
+    "Indo_College_Org": ("P10139", "Organization", "id"),
     "AaRC_Winner": ("P7533", "Winner", "pt"),
     "RussianTV_Winner": ("P10062", "Winner", "ru"),
     "Barcelona_Heritage_Place": ("P11557", "Place", "ca"),
@@ -294,6 +304,12 @@ SPARQL_FALLBACK_TYPES = {
     "RussianDict_Person",
     "ChineseBio_Person",
     "QueerScientists_Person",
+    "AICTE_Org",
+    "AISHE_Org",
+    "Leiden_Place",
+    "ASI_Place",
+    "CiNii_Org",
+    "Indo_College_Org",
     "Akadem_Person_2",
 }
 
