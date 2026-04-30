@@ -211,6 +211,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'ASEE_Person',
     'Drammen_Place',
     'ELEM_Org',
+    'Athens_Academy_Person',
+    'Rome_Academy_Person',
+    'French_Academy_Science_Person',
+    'Korean_Academy_Science_Person',
+    'Liszt_Academy_Person',
     'VIAF_Personal']
 
 
@@ -284,6 +289,11 @@ TYPE_NAME_OVERRIDES = {
     "ASEE_Person": "Person -- Engineering Education (ASEE)",
     "Drammen_Place": "Location -- Drammen Encyclopedia",
     "ELEM_Org": "Organization -- Mexican Literature (ELEM)",
+    "Athens_Academy_Person": "Person -- Academy of Athens",
+    "Rome_Academy_Person": "Person -- American Academy in Rome",
+    "French_Academy_Science_Person": "Person -- French Academy of Sciences",
+    "Korean_Academy_Science_Person": "Person -- Korean Academy of Science",
+    "Liszt_Academy_Person": "Person -- Liszt Academy Lexikon",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
