@@ -170,6 +170,7 @@ DIRECT_HANDLERS = {
     "GND_Person": process_gnd_query,
     "OpenAlex_Org": process_openalex_query,
     "HathiTrust": process_hathi_query,
+    "Algerian_NL_Person": lambda q, c: process_batch49_query(q, c, "AlgeriaNL"),
     "Irish_Bio_Person": lambda q, c: process_batch49_query(q, c, "IrishBio"),
     "Swedish_Bio_Person": lambda q, c: process_batch49_query(q, c, "SwedishBio"),
     "AJOL_Org_2": lambda q, c: process_batch49_query(q, c, "AJOL"),
@@ -221,6 +222,7 @@ WP_JSON_ENDPOINTS = {
     "ISC_Org": ("https://council.science/wp-json/wp/v2/members", "Organization"),
     "EBU_Org": ("https://www.ebu.ch/wp-json/wp/v2/members", "Organization"),
     "EUNIC_Org": ("https://www.eunicglobal.eu/wp-json/wp/v2/members", "Organization"),
+    "AEUP_Org": ("https://www.aeup.eu/wp-json/wp/v2/members", "Organization"),
     "IPA_Org": ("https://www.internationalpublishers.org/wp-json/wp/v2/book-fairs", "Organization"),
     "CGIAR_Org": ("https://www.cgiar.org/wp-json/wp/v2/research-centers", "Organization"),
     "PASA_Org": ("https://publishers.org.za/wp-json/wp/v2/members", "Organization"),
@@ -266,6 +268,8 @@ SPARQL_PROPERTIES = {
     "ASI_Place": ("P1371", "Place", "en"),
     "CiNii_Org": ("P2409", "Organization", "en"),
     "Indo_College_Org": ("P10139", "Organization", "id"),
+    "PBN_Org": ("P3124", "Organization", "pl"),
+    "Bavarian_Monument_Auth_Place": ("P4244", "Place", "de"),
     "AaRC_Winner": ("P7533", "Winner", "pt"),
     "RussianTV_Winner": ("P10062", "Winner", "ru"),
     "Barcelona_Heritage_Place": ("P11557", "Place", "ca"),
@@ -349,6 +353,8 @@ SPARQL_FALLBACK_TYPES = {
     "ASI_Place",
     "CiNii_Org",
     "Indo_College_Org",
+    "PBN_Org",
+    "Bavarian_Monument_Auth_Place",
     "Akadem_Person_2",
 }
 
