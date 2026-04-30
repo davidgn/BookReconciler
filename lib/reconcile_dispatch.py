@@ -75,6 +75,7 @@ from lib.strategies_tgn import process_tgn_query
 from lib.strategies_threesixtygiving import process_threesixtygiving_query
 from lib.strategies_viaf import process_viaf_query, process_viaf_title_query
 from lib.strategies_batch49 import process_batch49_query
+from lib.strategies_batch53 import process_batch53_query
 from lib.strategies_artic import process_artic_query
 from lib.strategies_elem import process_elem_query
 from lib.strategies_bnb_brazil import process_bnb_query
@@ -175,6 +176,8 @@ DIRECT_HANDLERS = {
     "CNKI_Person": process_cnki_query,
     "KUPA_Org": process_kupa_query,
     "CUPA_Org": process_cupa_query,
+    "BALaT_Person": lambda q, c: process_batch53_query(q, c, "BALaT"),
+    "Indy_Place": lambda q, c: process_batch53_query(q, c, "Indy"),
     "CEEOL_Org": process_ceeol_query,
     "Garuda_Org": process_garuda_query,
     "MyJurnal_Org": process_myjurnal_query,
@@ -194,6 +197,8 @@ DIRECT_HANDLERS = {
 WP_JSON_ENDPOINTS = {
     "FIPB_Org": ("http://fipb.org.in/wp-json/wp/v2/members", "Organization"),
     "AUP_NZ_Org": ("https://www.publishers.org.nz/wp-json/wp/v2/members", "Organization"),
+    "ArtHistorians_Person": ("https://arthistorians.info/wp-json/wp/v2/pages", "Person"),
+    "GRC_Org": ("https://globalresearchcouncil.org/wp-json/wp/v2/members", "Organization"),
     "OASPA_Org": ("https://oaspa.org/wp-json/wp/v2/members", "Organization"),
     "ACUP_Org": ("https://www.acup.ca/wp-json/wp/v2/members", "Organization"),
     "UNE_Org": ("https://www.une.es/wp-json/wp/v2/members", "Organization"),
