@@ -76,6 +76,9 @@ from lib.strategies_threesixtygiving import process_threesixtygiving_query
 from lib.strategies_viaf import process_viaf_query, process_viaf_title_query
 from lib.strategies_kupa import process_kupa_query
 from lib.strategies_cupa import process_cupa_query
+from lib.strategies_ceeol import process_ceeol_query
+from lib.strategies_garuda import process_garuda_query
+from lib.strategies_myjurnal import process_myjurnal_query
 from lib.strategies_cwgc import process_cwgc_query
 from lib.strategies_wikidata import process_wikidata_title_query
 from lib.strategies_wp_json import process_wp_json_query
@@ -159,6 +162,9 @@ DIRECT_HANDLERS = {
     "HathiTrust": process_hathi_query,
     "KUPA_Org": process_kupa_query,
     "CUPA_Org": process_cupa_query,
+    "CEEOL_Org": process_ceeol_query,
+    "Garuda_Org": process_garuda_query,
+    "MyJurnal_Org": process_myjurnal_query,
     "CWGC_Person": process_cwgc_query,
     "DOAB_Org": process_doab_query,
     "CharityCommission_Org": process_charity_query,
@@ -176,6 +182,8 @@ WP_JSON_ENDPOINTS = {
     "UNE_Org": ("https://www.une.es/wp-json/wp/v2/members", "Organization"),
     "AArU_Org": ("http://www.aaru.edu.jo/wp-json/wp/v2/members", "Organization"),
     "UPI_Org": ("https://www.universitypressitaliane.it/wp-json/wp/v2/members", "Organization"),
+    "CLACSO_Org": ("https://www.clacso.org/wp-json/wp/v2/red-de-centros", "Organization"),
+    "ASSAf_Org": ("https://www.assaf.org.za/wp-json/wp/v2/members", "Organization"),
     "ABU_Org": ("https://www.abu.bo/wp-json/wp/v2/editoriales", "Organization"),
     "AFPU_Org": ("https://www.afpu.fr/wp-json/wp/v2/members", "Organization"),
     "AG_Univerlage_Org": ("https://ag-univerlage.de/wp-json/wp/v2/members", "Organization"),
