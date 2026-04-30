@@ -74,6 +74,9 @@ from lib.strategies_sparql_generic import process_sparql_generic_query
 from lib.strategies_tgn import process_tgn_query
 from lib.strategies_threesixtygiving import process_threesixtygiving_query
 from lib.strategies_viaf import process_viaf_query, process_viaf_title_query
+from lib.strategies_kupa import process_kupa_query
+from lib.strategies_cupa import process_cupa_query
+from lib.strategies_cwgc import process_cwgc_query
 from lib.strategies_wikidata import process_wikidata_title_query
 from lib.strategies_wp_json import process_wp_json_query
 
@@ -154,6 +157,9 @@ DIRECT_HANDLERS = {
     "GND_Person": process_gnd_query,
     "OpenAlex_Org": process_openalex_query,
     "HathiTrust": process_hathi_query,
+    "KUPA_Org": process_kupa_query,
+    "CUPA_Org": process_cupa_query,
+    "CWGC_Person": process_cwgc_query,
     "DOAB_Org": process_doab_query,
     "CharityCommission_Org": process_charity_query,
     "ProjectMUSE_Org": process_muse_query,
@@ -165,11 +171,18 @@ DIRECT_HANDLERS = {
 WP_JSON_ENDPOINTS = {
     "FIPB_Org": ("http://fipb.org.in/wp-json/wp/v2/members", "Organization"),
     "AUP_NZ_Org": ("https://www.publishers.org.nz/wp-json/wp/v2/members", "Organization"),
+    "ABU_Org": ("https://www.abu.bo/wp-json/wp/v2/editoriales", "Organization"),
+    "AFPU_Org": ("https://www.afpu.fr/wp-json/wp/v2/members", "Organization"),
+    "AG_Univerlage_Org": ("https://ag-univerlage.de/wp-json/wp/v2/members", "Organization"),
     "ACLS_Org": ("https://www.acls.org/wp-json/wp/v2/member-societies", "Organization"),
     "IFLA_Org": ("https://www.ifla.org/wp-json/wp/v2/members", "Organization"),
     "ISC_Org": ("https://council.science/wp-json/wp/v2/members", "Organization"),
     "EBU_Org": ("https://www.ebu.ch/wp-json/wp/v2/members", "Organization"),
     "EUNIC_Org": ("https://www.eunicglobal.eu/wp-json/wp/v2/members", "Organization"),
+    "IPA_Org": ("https://www.internationalpublishers.org/wp-json/wp/v2/book-fairs", "Organization"),
+    "CGIAR_Org": ("https://www.cgiar.org/wp-json/wp/v2/research-centers", "Organization"),
+    "PASA_Org": ("https://publishers.org.za/wp-json/wp/v2/members", "Organization"),
+    "UPAN_Org": ("https://www.upan.org.au/wp-json/wp/v2/members", "Organization"),
     "ALS_Org": ("https://allianceofliterarysocieties.wordpress.com/wp-json/wp/v2/members", "Organization"),
     "AAA_Org": ("https://www.agentsassoc.co.uk/wp-json/wp/v2/members", "Organization"),
     "AAA_UK_Org": ("https://www.agents.org.uk/wp-json/wp/v2/members", "Organization"),
