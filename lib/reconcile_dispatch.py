@@ -21,6 +21,11 @@ from lib.strategies_coden import process_coden_query
 from lib.strategies_crossref_funder import process_crossref_funder_query
 from lib.strategies_datacite import process_datacite_query
 from lib.strategies_doaj import process_doaj_query
+from lib.strategies_doab import process_doab_query
+from lib.strategies_charity_commission import process_charity_query
+from lib.strategies_projectmuse import process_muse_query
+from lib.strategies_jstor import process_jstor_query
+from lib.strategies_indonesia import process_indonesia_query
 from lib.strategies_erihplus import process_erihplus_query
 from lib.strategies_europepmc import process_epmc_query
 from lib.strategies_eutransparency import process_eutransparency_query
@@ -149,6 +154,11 @@ DIRECT_HANDLERS = {
     "GND_Person": process_gnd_query,
     "OpenAlex_Org": process_openalex_query,
     "HathiTrust": process_hathi_query,
+    "DOAB_Org": process_doab_query,
+    "CharityCommission_Org": process_charity_query,
+    "ProjectMUSE_Org": process_muse_query,
+    "JSTOR_Org": process_jstor_query,
+    "Indonesia_Place": process_indonesia_query,
 }
 
 

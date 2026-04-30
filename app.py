@@ -23,6 +23,11 @@ from lib.strategies_opencorporates import process_opencorporates_query
 from lib.strategies_lcnaf import process_lcnaf_query
 from lib.strategies_nta import process_nta_query
 from lib.strategies_openlibrary_authors import process_ol_authors_query
+from lib.strategies_doab import process_doab_query
+from lib.strategies_charity_commission import process_charity_query
+from lib.strategies_projectmuse import process_muse_query
+from lib.strategies_jstor import process_jstor_query
+from lib.strategies_indonesia import process_indonesia_query
 from lib.strategies_sirene import process_sirene_query
 from lib.strategies_doaj import process_doaj_query
 from lib.strategies_idref import process_idref_query
