@@ -255,6 +255,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Ulster_Bio_Person',
     'Swedish_Women_Bio_Person',
     'Poetry_America_Person',
+    'CNKI_Institute_Org',
+    'CTHS_Org',
+    'Cistercian_Bio_Person',
+    'DACS_Person',
+    'DBA_Person',
     'VIAF_Personal']
 
 
@@ -372,6 +377,11 @@ TYPE_NAME_OVERRIDES = {
     "Ulster_Bio_Person": "Person -- Dictionary of Ulster Bio",
     "Swedish_Women_Bio_Person": "Person -- Swedish Women Bio (SKBL)",
     "Poetry_America_Person": "Person -- Poetry Society of America",
+    "CNKI_Institute_Org": "Organization -- CNKI China Institutes",
+    "CTHS_Org": "Organization -- French Scholarly (CTHS)",
+    "Cistercian_Bio_Person": "Person -- Cistercian Biography",
+    "DACS_Person": "Person -- UK Artists (DACS)",
+    "DBA_Person": "Person -- Danish Biographical Archive",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
