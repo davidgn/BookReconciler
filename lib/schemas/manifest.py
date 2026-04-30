@@ -230,6 +230,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Georgia_Monument_Place',
     'DSI_Person',
     'CGIAR_Registry_Org',
+    'Irish_Bio_Person',
+    'Canadian_Bio_Person',
+    'Welsh_Bio_Person',
+    'Swedish_Bio_Person',
+    'ADAGP_Person',
     'VIAF_Personal']
 
 
@@ -322,6 +327,11 @@ TYPE_NAME_OVERRIDES = {
     "Georgia_Monument_Place": "Location -- Georgia Monuments",
     "DSI_Person": "Person -- Scientific Illustrators (DSI)",
     "CGIAR_Registry_Org": "Organization -- CGIAR Registry",
+    "Irish_Bio_Person": "Person -- Dictionary of Irish Bio",
+    "Canadian_Bio_Person": "Person -- Dictionary of Canadian Bio",
+    "Welsh_Bio_Person": "Person -- Dictionary of Welsh Bio",
+    "Swedish_Bio_Person": "Person -- Swedish National Bio",
+    "ADAGP_Person": "Person -- French Artists (ADAGP)",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
