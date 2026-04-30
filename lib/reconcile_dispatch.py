@@ -74,6 +74,9 @@ from lib.strategies_sparql_generic import process_sparql_generic_query
 from lib.strategies_tgn import process_tgn_query
 from lib.strategies_threesixtygiving import process_threesixtygiving_query
 from lib.strategies_viaf import process_viaf_query, process_viaf_title_query
+from lib.strategies_bnb_brazil import process_bnb_query
+from lib.strategies_brapci import process_brapci_query
+from lib.strategies_cnki import process_cnki_query
 from lib.strategies_kupa import process_kupa_query
 from lib.strategies_cupa import process_cupa_query
 from lib.strategies_ceeol import process_ceeol_query
@@ -160,6 +163,9 @@ DIRECT_HANDLERS = {
     "GND_Person": process_gnd_query,
     "OpenAlex_Org": process_openalex_query,
     "HathiTrust": process_hathi_query,
+    "BNB_Person": process_bnb_query,
+    "Brapci_Person": process_brapci_query,
+    "CNKI_Person": process_cnki_query,
     "KUPA_Org": process_kupa_query,
     "CUPA_Org": process_cupa_query,
     "CEEOL_Org": process_ceeol_query,
@@ -228,6 +234,7 @@ SPARQL_PROPERTIES = {
     "ACA_Person": ("P6635", "Person", "en"),
     "RS_Past_Fellow_Person": ("P8612", "Person", "en"),
     "Ads_Winner": ("P9046", "Winner", "en"),
+    "Akadem_Person_2": ("P12214", "Person", "en"),
     "ANZL_Writer": ("P5635", "Person", "en"),
     "Academy_Awards_Nominee": ("P6150", "Winner", "en"),
     "Akadem_Person": ("P12214", "Person", "en"),
@@ -281,6 +288,7 @@ SPARQL_FALLBACK_TYPES = {
     "RussianDict_Person",
     "ChineseBio_Person",
     "QueerScientists_Person",
+    "Akadem_Person_2",
 }
 
 
