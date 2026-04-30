@@ -206,6 +206,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'IRINS_Org',
     'Barcelona_Heritage_Place',
     'Gatehouse_Place',
+    'ARTIC_Person',
+    'ARTIC_Work',
+    'ASEE_Person',
+    'Drammen_Place',
+    'ELEM_Org',
     'VIAF_Personal']
 
 
@@ -274,6 +279,11 @@ TYPE_NAME_OVERRIDES = {
     "IRINS_Org": "Organization -- Indian Research (IRINS)",
     "Barcelona_Heritage_Place": "Location -- Barcelona Heritage",
     "Gatehouse_Place": "Location -- Gatehouse Gazetteer",
+    "ARTIC_Person": "Person -- Art Institute Chicago",
+    "ARTIC_Work": "Work -- Art Institute Chicago",
+    "ASEE_Person": "Person -- Engineering Education (ASEE)",
+    "Drammen_Place": "Location -- Drammen Encyclopedia",
+    "ELEM_Org": "Organization -- Mexican Literature (ELEM)",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 

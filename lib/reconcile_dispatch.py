@@ -75,6 +75,8 @@ from lib.strategies_tgn import process_tgn_query
 from lib.strategies_threesixtygiving import process_threesixtygiving_query
 from lib.strategies_viaf import process_viaf_query, process_viaf_title_query
 from lib.strategies_batch49 import process_batch49_query
+from lib.strategies_artic import process_artic_query
+from lib.strategies_elem import process_elem_query
 from lib.strategies_bnb_brazil import process_bnb_query
 from lib.strategies_brapci import process_brapci_query
 from lib.strategies_cnki import process_cnki_query
@@ -178,6 +180,9 @@ DIRECT_HANDLERS = {
     "MyJurnal_Org": process_myjurnal_query,
     "CWGC_Person": process_cwgc_query,
     "IRINS_Org": process_irins_query,
+    "ARTIC_Person": lambda q, c: process_artic_query(q, c, "artists"),
+    "ARTIC_Work": lambda q, c: process_artic_query(q, c, "artworks"),
+    "ELEM_Org": process_elem_query,
     "DOAB_Org": process_doab_query,
     "CharityCommission_Org": process_charity_query,
     "ProjectMUSE_Org": process_muse_query,
@@ -208,6 +213,7 @@ WP_JSON_ENDPOINTS = {
     "CGIAR_Org": ("https://www.cgiar.org/wp-json/wp/v2/research-centers", "Organization"),
     "PASA_Org": ("https://publishers.org.za/wp-json/wp/v2/members", "Organization"),
     "UPAN_Org": ("https://www.upan.org.au/wp-json/wp/v2/members", "Organization"),
+    "Drammen_Place": ("https://byleksikon.drmk.no/wp-json/wp/v2/posts", "Place"),
     "ALS_Org": ("https://allianceofliterarysocieties.wordpress.com/wp-json/wp/v2/members", "Organization"),
     "AAA_Org": ("https://www.agentsassoc.co.uk/wp-json/wp/v2/members", "Organization"),
     "AAA_UK_Org": ("https://www.agents.org.uk/wp-json/wp/v2/members", "Organization"),
@@ -251,6 +257,7 @@ SPARQL_PROPERTIES = {
     "RussianTV_Winner": ("P10062", "Winner", "ru"),
     "Barcelona_Heritage_Place": ("P11557", "Place", "ca"),
     "Gatehouse_Place": ("P4141", "Place", "en"),
+    "ASEE_Person": ("P9791", "Person", "en"),
     "ANZL_Writer": ("P5635", "Person", "en"),
     "Academy_Awards_Nominee": ("P6150", "Winner", "en"),
     "Akadem_Person": ("P12214", "Person", "en"),
