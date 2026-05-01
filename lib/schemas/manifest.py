@@ -348,6 +348,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Turin_University_Person',
     'Islamic_Arch_Work',
     'Oxford_Arch_Concept',
+    'RS_Bio_Memoirs_Person',
+    'British_Council_Person',
+    'CWA_Writer_Person',
+    'SciFi_Encyc_Person',
+    'RS_Fellow_Person',
     'VIAF_Personal']
 
 
@@ -558,6 +563,11 @@ TYPE_NAME_OVERRIDES = {
     "Turin_University_Person": "Person -- University of Turin",
     "Islamic_Arch_Work": "Work -- Islamic Art & Architecture",
     "Oxford_Arch_Concept": "Concept -- Oxford Dict Architecture",
+    "RS_Bio_Memoirs_Person": "Person -- Royal Society Memoirs",
+    "British_Council_Person": "Person -- British Council Writers",
+    "CWA_Writer_Person": "Person -- Crime Writers' Association",
+    "SciFi_Encyc_Person": "Person -- Science Fiction Encyclopedia",
+    "RS_Fellow_Person": "Person -- Royal Society Fellows",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
