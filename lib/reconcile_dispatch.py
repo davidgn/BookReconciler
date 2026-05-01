@@ -78,6 +78,7 @@ from lib.strategies_batch49 import process_batch49_query
 from lib.strategies_batch53 import process_batch53_query
 from lib.strategies_batch56 import process_batch56_query
 from lib.strategies_batch61 import process_batch61_query
+from lib.strategies_batch65 import process_batch65_query
 from lib.strategies_artic import process_artic_query
 from lib.strategies_elem import process_elem_query
 from lib.strategies_bnb_brazil import process_bnb_query
@@ -201,6 +202,10 @@ DIRECT_HANDLERS = {
     "APA_Psych_Concept": lambda q, c: process_batch61_query(q, c, "APA"),
     "Biology_Concept": lambda q, c: process_batch61_query(q, c, "Biology"),
     "Icelandic_Concept": lambda q, c: process_batch61_query(q, c, "Icelandic"),
+    "Poetry_Foundation_Person": lambda q, c: process_batch65_query(q, c, "PoetryFoundation"),
+    "Poetry_Archive_Person": lambda q, c: process_batch65_query(q, c, "PoetryArchive"),
+    "Scottish_Poetry_Person": lambda q, c: process_batch65_query(q, c, "ScottishPoetry"),
+    "Goodreads_Author_Id": lambda q, c: process_batch65_query(q, c, "Goodreads"),
     "BALaT_Person": lambda q, c: process_batch53_query(q, c, "BALaT"),
     "Indy_Place": lambda q, c: process_batch53_query(q, c, "Indy"),
     "CEEOL_Org": process_ceeol_query,
@@ -304,6 +309,8 @@ SPARQL_PROPERTIES = {
     "RussianTV_Winner": ("P10062", "Winner", "ru"),
     "Barcelona_Heritage_Place": ("P11557", "Place", "ca"),
     "Gatehouse_Place": ("P4141", "Place", "en"),
+    "Catalan_Writers_Person": ("P13086", "Person", "ca"),
+    "Israeli_Creators_Person": ("P12989", "Person", "he"),
     "BookBrainz_Person": ("P2607", "Person", "en"),
     "BookBrainz_Org": ("P8063", "Organization", "en"),
     "BookBrainz_Work": ("P7823", "Work", "en"),

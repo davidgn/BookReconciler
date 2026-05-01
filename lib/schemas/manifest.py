@@ -292,6 +292,12 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'ISFDB_Org',
     'ISFDB_Work',
     'Bookogs_Work',
+    'Catalan_Writers_Person',
+    'Israeli_Creators_Person',
+    'Poetry_Foundation_Person',
+    'Poetry_Archive_Person',
+    'Scottish_Poetry_Person',
+    'Goodreads_Author_Id',
     'VIAF_Personal']
 
 
@@ -446,6 +452,12 @@ TYPE_NAME_OVERRIDES = {
     "ISFDB_Org": "Organization -- ISFDB Spec Fic Publisher",
     "ISFDB_Work": "Work -- ISFDB Spec Fic Title",
     "Bookogs_Work": "Work -- Bookogs Inventory",
+    "Catalan_Writers_Person": "Person -- Catalan Writers (AELC)",
+    "Israeli_Creators_Person": "Person -- Israeli Creators (ACUM)",
+    "Poetry_Foundation_Person": "Person -- Poetry Foundation",
+    "Poetry_Archive_Person": "Person -- Poetry Archive",
+    "Scottish_Poetry_Person": "Person -- Scottish Poetry Library",
+    "Goodreads_Author_Id": "Person -- Goodreads Author",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
