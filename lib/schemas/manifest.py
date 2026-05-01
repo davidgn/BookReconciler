@@ -368,6 +368,12 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Poets_Writers_Person',
     'WGA_Writer_Person',
     'FNAWN_Org',
+    'GCD_Series_Work',
+    'CEATL_Org',
+    'FIT_Translators_Org',
+    'EIBF_Org',
+    'Word_Alliance_Org',
+    'Festivaletteratura_Person',
     'VIAF_Personal']
 
 
@@ -598,6 +604,12 @@ TYPE_NAME_OVERRIDES = {
     "Poets_Writers_Person": "Person -- Poets & Writers Author",
     "WGA_Writer_Person": "Person -- Writers Guild America",
     "FNAWN_Org": "Organization -- First Nations Australia Writers",
+    "GCD_Series_Work": "Work -- Grand Comics Series",
+    "CEATL_Org": "Organization -- European Literary Translators",
+    "FIT_Translators_Org": "Organization -- Intl Fed of Translators",
+    "EIBF_Org": "Organization -- Booksellers Federation",
+    "Word_Alliance_Org": "Organization -- Word Alliance Festivals",
+    "Festivaletteratura_Person": "Person -- Italian Festivaletteratura",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
