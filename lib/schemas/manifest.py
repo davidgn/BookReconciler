@@ -358,6 +358,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Ricochet_Person',
     'Pixiv_Work',
     'Bologna_Fair_Org',
+    'AniDB_Person',
+    'DriveThruComics_Org',
+    'LC_Childrens_Concept',
+    'MSU_Comic_Art_Work',
+    'Quadrinhopedia_Person',
     'VIAF_Personal']
 
 
@@ -578,6 +583,11 @@ TYPE_NAME_OVERRIDES = {
     "Ricochet_Person": "Person -- Ricochet Youth Lit Author",
     "Pixiv_Work": "Work -- Pixiv Comic",
     "Bologna_Fair_Org": "Organization -- Bologna Book Fair Exhibitor",
+    "AniDB_Person": "Person -- AniDB Anime Creators",
+    "DriveThruComics_Org": "Organization -- DriveThruComics Publisher",
+    "LC_Childrens_Concept": "Concept -- LC Children's Subject Headings",
+    "MSU_Comic_Art_Work": "Work -- MSU Comic Art Collection",
+    "Quadrinhopedia_Person": "Person -- Quadrinhopédia (Brazil)",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
