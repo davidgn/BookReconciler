@@ -363,6 +363,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'LC_Childrens_Concept',
     'MSU_Comic_Art_Work',
     'Quadrinhopedia_Person',
+    'Animator_Person',
+    'LTI_Korea_Person',
+    'Poets_Writers_Person',
+    'WGA_Writer_Person',
+    'FNAWN_Org',
     'VIAF_Personal']
 
 
@@ -588,6 +593,11 @@ TYPE_NAME_OVERRIDES = {
     "LC_Childrens_Concept": "Concept -- LC Children's Subject Headings",
     "MSU_Comic_Art_Work": "Work -- MSU Comic Art Collection",
     "Quadrinhopedia_Person": "Person -- Quadrinhopédia (Brazil)",
+    "Animator_Person": "Person -- Animator.ru Creators",
+    "LTI_Korea_Person": "Person -- LTI Korea Writer",
+    "Poets_Writers_Person": "Person -- Poets & Writers Author",
+    "WGA_Writer_Person": "Person -- Writers Guild America",
+    "FNAWN_Org": "Organization -- First Nations Australia Writers",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
