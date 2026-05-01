@@ -283,6 +283,15 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Biology_Concept',
     'Icelandic_Concept',
     'Greek_Concept',
+    'BookBrainz_Person',
+    'BookBrainz_Org',
+    'BookBrainz_Work',
+    'BookBub_Person',
+    'BookDepository_Org',
+    'ISFDB_Person',
+    'ISFDB_Org',
+    'ISFDB_Work',
+    'Bookogs_Work',
     'VIAF_Personal']
 
 
@@ -428,6 +437,15 @@ TYPE_NAME_OVERRIDES = {
     "Biology_Concept": "Concept -- Oxford Biology",
     "Icelandic_Concept": "Concept -- Contemporary Icelandic",
     "Greek_Concept": "Concept -- Ancient Greek Lexicon",
+    "BookBrainz_Person": "Person -- BookBrainz Author",
+    "BookBrainz_Org": "Organization -- BookBrainz Publisher",
+    "BookBrainz_Work": "Work -- BookBrainz Work",
+    "BookBub_Person": "Person -- BookBub Author",
+    "BookDepository_Org": "Organization -- Book Depository",
+    "ISFDB_Person": "Person -- ISFDB Spec Fic Author",
+    "ISFDB_Org": "Organization -- ISFDB Spec Fic Publisher",
+    "ISFDB_Work": "Work -- ISFDB Spec Fic Title",
+    "Bookogs_Work": "Work -- Bookogs Inventory",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
