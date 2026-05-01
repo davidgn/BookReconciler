@@ -388,6 +388,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Alliance_Indie_Org',
     'OLH_Org',
     'OpenEdition_Org',
+    'BLPL_Person',
+    'Bitraga_Person',
+    'Sardinian_Writers_Person',
+    'DBNL_Person',
+    'Anhui_Writers_Person',
     'VIAF_Personal']
 
 
@@ -638,6 +643,11 @@ TYPE_NAME_OVERRIDES = {
     "Alliance_Indie_Org": "Organization -- Alliance Independent Publishers",
     "OLH_Org": "Organization -- Open Library of Humanities",
     "OpenEdition_Org": "Organization -- OpenEdition Publishers",
+    "BLPL_Person": "Person -- Spanish Literature (BLPL)",
+    "Bitraga_Person": "Person -- Translation (Bitraga)",
+    "Sardinian_Writers_Person": "Person -- Sardinian Writers",
+    "DBNL_Person": "Person -- Dutch Literature (DBNL)",
+    "Anhui_Writers_Person": "Person -- Anhui Writers (China)",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
