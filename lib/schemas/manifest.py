@@ -384,6 +384,10 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'PubMed_Person',
     'Max_Planck_Org',
     'Fraunhofer_Org',
+    'PEN_Centres_Org',
+    'Alliance_Indie_Org',
+    'OLH_Org',
+    'OpenEdition_Org',
     'VIAF_Personal']
 
 
@@ -630,6 +634,10 @@ TYPE_NAME_OVERRIDES = {
     "PubMed_Person": "Person -- Life Science (PubMed)",
     "Max_Planck_Org": "Organization -- Max Planck Institutes",
     "Fraunhofer_Org": "Organization -- Fraunhofer Institutes",
+    "PEN_Centres_Org": "Organization -- PEN International Centres",
+    "Alliance_Indie_Org": "Organization -- Alliance Independent Publishers",
+    "OLH_Org": "Organization -- Open Library of Humanities",
+    "OpenEdition_Org": "Organization -- OpenEdition Publishers",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
