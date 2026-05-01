@@ -298,6 +298,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Poetry_Archive_Person',
     'Scottish_Poetry_Person',
     'Goodreads_Author_Id',
+    'CLMP_Org',
+    'IPG_Org',
+    'Swedish_Lit_Bank_Person',
+    'Hessian_Lit_Person',
+    'Armenian_Lit_Person',
     'VIAF_Personal']
 
 
@@ -458,6 +463,11 @@ TYPE_NAME_OVERRIDES = {
     "Poetry_Archive_Person": "Person -- Poetry Archive",
     "Scottish_Poetry_Person": "Person -- Scottish Poetry Library",
     "Goodreads_Author_Id": "Person -- Goodreads Author",
+    "CLMP_Org": "Organization -- US Indie Literary (CLMP)",
+    "IPG_Org": "Organization -- UK Indie Publishers (IPG)",
+    "Swedish_Lit_Bank_Person": "Person -- Swedish Literature Bank",
+    "Hessian_Lit_Person": "Person -- Hessian Literature Council",
+    "Armenian_Lit_Person": "Person -- Armenian Literature (Digilib)",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
