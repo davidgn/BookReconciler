@@ -308,6 +308,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Arab_Lit_Person',
     'Amazon_Author_Id',
     'Aozora_Lit_Person',
+    'Hungarian_Namespace_Person',
+    'Finnish_Gallery_Person',
+    'Azerbaijan_Encyc_Person',
+    'Georgia_Film_Person',
+    'Danish_Film_Person',
     'VIAF_Personal']
 
 
@@ -478,6 +483,11 @@ TYPE_NAME_OVERRIDES = {
     "Arab_Lit_Person": "Person -- Arab Literature (Alsharekh)",
     "Amazon_Author_Id": "Person -- Amazon Creator ID",
     "Aozora_Lit_Person": "Person -- Aozora Bunko (Japan)",
+    "Hungarian_Namespace_Person": "Person -- Hungarian National Namespace",
+    "Finnish_Gallery_Person": "Person -- Finnish National Gallery",
+    "Azerbaijan_Encyc_Person": "Person -- Azerbaijani National Encyc",
+    "Georgia_Film_Person": "Person -- Georgian National Filmography",
+    "Danish_Film_Person": "Person -- Danish National Filmography",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
