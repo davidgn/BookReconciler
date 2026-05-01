@@ -303,6 +303,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Swedish_Lit_Bank_Person',
     'Hessian_Lit_Person',
     'Armenian_Lit_Person',
+    'Kazakh_Lit_Person',
+    'Alabama_Lit_Person',
+    'Arab_Lit_Person',
+    'Amazon_Author_Id',
+    'Aozora_Lit_Person',
     'VIAF_Personal']
 
 
@@ -468,6 +473,11 @@ TYPE_NAME_OVERRIDES = {
     "Swedish_Lit_Bank_Person": "Person -- Swedish Literature Bank",
     "Hessian_Lit_Person": "Person -- Hessian Literature Council",
     "Armenian_Lit_Person": "Person -- Armenian Literature (Digilib)",
+    "Kazakh_Lit_Person": "Person -- Kazakh Literature (Adebiportal)",
+    "Alabama_Lit_Person": "Person -- Alabama Authors",
+    "Arab_Lit_Person": "Person -- Arab Literature (Alsharekh)",
+    "Amazon_Author_Id": "Person -- Amazon Creator ID",
+    "Aozora_Lit_Person": "Person -- Aozora Bunko (Japan)",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
