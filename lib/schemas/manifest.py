@@ -333,6 +333,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'UNESCO_Concept',
     'African_Film_Person',
     'African_Music_Person',
+    'BN_Brazil_Person',
+    'BNP_Portugal_Org',
+    'NLP_Poland_Org',
+    'NL_Greece_Person',
+    'GuideStar_Israel_Org',
     'VIAF_Personal']
 
 
@@ -528,6 +533,11 @@ TYPE_NAME_OVERRIDES = {
     "UNESCO_Concept": "Concept -- UNESCO Thesaurus",
     "African_Film_Person": "Person -- African Film Database",
     "African_Music_Person": "Person -- African Music Library",
+    "BN_Brazil_Person": "Person -- National Library of Brazil",
+    "BNP_Portugal_Org": "Organization -- National Library Portugal",
+    "NLP_Poland_Org": "Organization -- National Library Poland",
+    "NL_Greece_Person": "Person -- National Library of Greece",
+    "GuideStar_Israel_Org": "Organization -- Israeli GuideStar",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
