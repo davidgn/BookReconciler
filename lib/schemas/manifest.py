@@ -353,6 +353,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'CWA_Writer_Person',
     'SciFi_Encyc_Person',
     'RS_Fellow_Person',
+    'BDGest_Person',
+    'Lambiek_Person',
+    'Ricochet_Person',
+    'Pixiv_Work',
+    'Bologna_Fair_Org',
     'VIAF_Personal']
 
 
@@ -568,6 +573,11 @@ TYPE_NAME_OVERRIDES = {
     "CWA_Writer_Person": "Person -- Crime Writers' Association",
     "SciFi_Encyc_Person": "Person -- Science Fiction Encyclopedia",
     "RS_Fellow_Person": "Person -- Royal Society Fellows",
+    "BDGest_Person": "Person -- BD Gest Author",
+    "Lambiek_Person": "Person -- Lambiek Comiclopedia",
+    "Ricochet_Person": "Person -- Ricochet Youth Lit Author",
+    "Pixiv_Work": "Work -- Pixiv Comic",
+    "Bologna_Fair_Org": "Organization -- Bologna Book Fair Exhibitor",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
