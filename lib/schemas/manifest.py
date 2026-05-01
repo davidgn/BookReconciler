@@ -374,6 +374,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'EIBF_Org',
     'Word_Alliance_Org',
     'Festivaletteratura_Person',
+    'African_Minds_Org',
+    'Estonian_Research_Person',
+    'Singapore_Research_Org',
+    'IxTheo_Org',
+    'MyCite_Org',
     'VIAF_Personal']
 
 
@@ -610,6 +615,11 @@ TYPE_NAME_OVERRIDES = {
     "EIBF_Org": "Organization -- Booksellers Federation",
     "Word_Alliance_Org": "Organization -- Word Alliance Festivals",
     "Festivaletteratura_Person": "Person -- Italian Festivaletteratura",
+    "African_Minds_Org": "Organization -- African Minds (Scholarly)",
+    "Estonian_Research_Person": "Person -- Estonian Research Portal",
+    "Singapore_Research_Org": "Organization -- Singapore Research Registry",
+    "IxTheo_Org": "Organization -- Index Theologicus (IxTheo)",
+    "MyCite_Org": "Organization -- MyCite Malaysia (Scholarly)",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
