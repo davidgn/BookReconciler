@@ -328,6 +328,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'BG_Academic_Person',
     'CAS_Chemical_Concept',
     'Romania_NGO_Org',
+    'SFADB_Person',
+    'UNITER_Person',
+    'UNESCO_Concept',
+    'African_Film_Person',
+    'African_Music_Person',
     'VIAF_Personal']
 
 
@@ -518,6 +523,11 @@ TYPE_NAME_OVERRIDES = {
     "BG_Academic_Person": "Person -- Bulgaria Academic Staff",
     "CAS_Chemical_Concept": "Concept -- CAS Registry Number",
     "Romania_NGO_Org": "Organization -- Romanian NGO Registry",
+    "SFADB_Person": "Person -- Sci-Fi Awards Database",
+    "UNITER_Person": "Person -- Romanian Theatre (UNITER)",
+    "UNESCO_Concept": "Concept -- UNESCO Thesaurus",
+    "African_Film_Person": "Person -- African Film Database",
+    "African_Music_Person": "Person -- African Music Library",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
