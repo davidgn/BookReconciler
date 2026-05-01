@@ -379,6 +379,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Singapore_Research_Org',
     'IxTheo_Org',
     'MyCite_Org',
+    'zbMATH_Person',
+    'DBLP_Person',
+    'PubMed_Person',
+    'Max_Planck_Org',
+    'Fraunhofer_Org',
     'VIAF_Personal']
 
 
@@ -620,6 +625,11 @@ TYPE_NAME_OVERRIDES = {
     "Singapore_Research_Org": "Organization -- Singapore Research Registry",
     "IxTheo_Org": "Organization -- Index Theologicus (IxTheo)",
     "MyCite_Org": "Organization -- MyCite Malaysia (Scholarly)",
+    "zbMATH_Person": "Person -- Mathematics (zbMATH)",
+    "DBLP_Person": "Person -- Comp Science (DBLP)",
+    "PubMed_Person": "Person -- Life Science (PubMed)",
+    "Max_Planck_Org": "Organization -- Max Planck Institutes",
+    "Fraunhofer_Org": "Organization -- Fraunhofer Institutes",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
