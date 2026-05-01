@@ -343,6 +343,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'NAE_Member_Person',
     'Medicine_France_Person',
     'Swedish_Letters_Person',
+    'Saxon_Academy_Person',
+    'Lombardia_Arch_Person',
+    'Turin_University_Person',
+    'Islamic_Arch_Work',
+    'Oxford_Arch_Concept',
     'VIAF_Personal']
 
 
@@ -548,6 +553,11 @@ TYPE_NAME_OVERRIDES = {
     "NAE_Member_Person": "Person -- National Academy Engineering",
     "Medicine_France_Person": "Person -- French Academy Medicine",
     "Swedish_Letters_Person": "Person -- Royal Swedish Academy Letters",
+    "Saxon_Academy_Person": "Person -- Saxon Academy of Sciences",
+    "Lombardia_Arch_Person": "Person -- Lombardy Architecture",
+    "Turin_University_Person": "Person -- University of Turin",
+    "Islamic_Arch_Work": "Work -- Islamic Art & Architecture",
+    "Oxford_Arch_Concept": "Concept -- Oxford Dict Architecture",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
