@@ -313,6 +313,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Azerbaijan_Encyc_Person',
     'Georgia_Film_Person',
     'Danish_Film_Person',
+    'Folklore_Thesaurus_Concept',
+    'Swiss_Authors_Winner',
+    'Freelance_Editorial_Winner',
+    'Foreign_Missions_Person',
+    'Software_Preservation_Org',
     'VIAF_Personal']
 
 
@@ -488,6 +493,11 @@ TYPE_NAME_OVERRIDES = {
     "Azerbaijan_Encyc_Person": "Person -- Azerbaijani National Encyc",
     "Georgia_Film_Person": "Person -- Georgian National Filmography",
     "Danish_Film_Person": "Person -- Danish National Filmography",
+    "Folklore_Thesaurus_Concept": "Concept -- American Folklore Thesaurus",
+    "Swiss_Authors_Winner": "Winner -- Swiss Authors (former)",
+    "Freelance_Editorial_Winner": "Winner -- Freelance Editorial Assoc",
+    "Foreign_Missions_Person": "Person -- Paris Foreign Missions",
+    "Software_Preservation_Org": "Organization -- Software Preservation Society",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
