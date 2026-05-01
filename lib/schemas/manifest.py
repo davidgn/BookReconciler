@@ -323,6 +323,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Flanders_Arts_Person',
     'Ankara_Institute_Person',
     'Dharma_Drum_Person',
+    'AIATSIS_Subject_Concept',
+    'British_Museum_Concept',
+    'BG_Academic_Person',
+    'CAS_Chemical_Concept',
+    'Romania_NGO_Org',
     'VIAF_Personal']
 
 
@@ -508,6 +513,11 @@ TYPE_NAME_OVERRIDES = {
     "Flanders_Arts_Person": "Person -- Flanders Arts Institute",
     "Ankara_Institute_Person": "Person -- British Inst Ankara",
     "Dharma_Drum_Person": "Person -- Dharma Drum Institute",
+    "AIATSIS_Subject_Concept": "Concept -- AIATSIS Subject Thesaurus",
+    "British_Museum_Concept": "Concept -- British Museum Thesaurus",
+    "BG_Academic_Person": "Person -- Bulgaria Academic Staff",
+    "CAS_Chemical_Concept": "Concept -- CAS Registry Number",
+    "Romania_NGO_Org": "Organization -- Romanian NGO Registry",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
