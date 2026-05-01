@@ -338,6 +338,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'NLP_Poland_Org',
     'NL_Greece_Person',
     'GuideStar_Israel_Org',
+    'Swedish_Academy_Person',
+    'NAS_Member_Person',
+    'NAE_Member_Person',
+    'Medicine_France_Person',
+    'Swedish_Letters_Person',
     'VIAF_Personal']
 
 
@@ -538,6 +543,11 @@ TYPE_NAME_OVERRIDES = {
     "NLP_Poland_Org": "Organization -- National Library Poland",
     "NL_Greece_Person": "Person -- National Library of Greece",
     "GuideStar_Israel_Org": "Organization -- Israeli GuideStar",
+    "Swedish_Academy_Person": "Person -- Swedish Academy Member",
+    "NAS_Member_Person": "Person -- National Academy Sciences",
+    "NAE_Member_Person": "Person -- National Academy Engineering",
+    "Medicine_France_Person": "Person -- French Academy Medicine",
+    "Swedish_Letters_Person": "Person -- Royal Swedish Academy Letters",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
