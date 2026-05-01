@@ -318,6 +318,11 @@ DEFAULT_TYPE_IDS = ['ROR_Org',
     'Freelance_Editorial_Winner',
     'Foreign_Missions_Person',
     'Software_Preservation_Org',
+    'Sami_Publishers_Org',
+    'Ukraine_History_Org',
+    'Flanders_Arts_Person',
+    'Ankara_Institute_Person',
+    'Dharma_Drum_Person',
     'VIAF_Personal']
 
 
@@ -498,6 +503,11 @@ TYPE_NAME_OVERRIDES = {
     "Freelance_Editorial_Winner": "Winner -- Freelance Editorial Assoc",
     "Foreign_Missions_Person": "Person -- Paris Foreign Missions",
     "Software_Preservation_Org": "Organization -- Software Preservation Society",
+    "Sami_Publishers_Org": "Organization -- Sami Publishers Assoc",
+    "Ukraine_History_Org": "Organization -- Ukraine History Inst",
+    "Flanders_Arts_Person": "Person -- Flanders Arts Institute",
+    "Ankara_Institute_Person": "Person -- British Inst Ankara",
+    "Dharma_Drum_Person": "Person -- Dharma Drum Institute",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
