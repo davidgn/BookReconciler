@@ -769,6 +769,11 @@ TYPE_NAME_OVERRIDES = {
     "IBPA_Org": "Organization -- Independent Book Pubs (IBPA)",
     "AALA_Org_2": "Organization -- Literary Agents (AALA)",
     "Society_Authors_Org_3": "Organization -- Society of Authors (Direct)",
+    "Georgia_Literacy_Person": "Person -- Georgian Literacy Society",
+    "Bat_Sheva_Person": "Person -- Bat Sheva Archive",
+    "SHARE_Catalogue_Work": "Work -- SHARE Catalogue",
+    "Taiwan_Literature_Work": "Work -- Taiwan Periodical Lit",
+    "Botanical_Lit_Work": "Work -- Amer Botanical Literature",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
