@@ -764,6 +764,11 @@ TYPE_NAME_OVERRIDES = {
     "Finnish_Scholarly_Org": "Organization -- Finnish Scholarly Pub",
     "Kyoto_Research_Org": "Organization -- Kyoto Research Promotion",
     "Turkey_Academic_Org": "Organization -- Turkish Higher Ed (YOK)",
+    "Italian_Women_Person": "Person -- Italian Women Writers",
+    "Kinematoscope_Person": "Person -- Kinematoscope Authors",
+    "IBPA_Org": "Organization -- Independent Book Pubs (IBPA)",
+    "AALA_Org_2": "Organization -- Literary Agents (AALA)",
+    "Society_Authors_Org_3": "Organization -- Society of Authors (Direct)",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
