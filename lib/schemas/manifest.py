@@ -704,6 +704,11 @@ TYPE_NAME_OVERRIDES = {
     "Swiss_Authors_Org": "Organization -- Swiss Authors Assoc",
     "Iceland_NL_Person": "Person -- National Library Iceland",
     "Slovenia_NL_Org": "Organization -- National Library Slovenia",
+    "Albin_Michel_Person": "Person -- Albin Michel Author",
+    "Babelio_Work": "Work -- Babelio Database",
+    "BiblioNet_Org": "Organization -- Greek BiblioNet",
+    "Polish_Science_Org": "Organization -- Biblioteka Nauki (PL)",
+    "BGG_Org": "Organization -- BoardGameGeek Publisher",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
