@@ -709,6 +709,11 @@ TYPE_NAME_OVERRIDES = {
     "BiblioNet_Org": "Organization -- Greek BiblioNet",
     "Polish_Science_Org": "Organization -- Biblioteka Nauki (PL)",
     "BGG_Org": "Organization -- BoardGameGeek Publisher",
+    "Goodreads_Work": "Work -- Goodreads Selection",
+    "WorldCat_Work": "Work -- WorldCat Entities",
+    "NBF_Book": "Work -- National Book Award List",
+    "Hindawi_Org": "Organization -- Hindawi Open Access",
+    "Basque_Foundation_Org": "Organization -- Sancho el Sabio (Basque)",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
