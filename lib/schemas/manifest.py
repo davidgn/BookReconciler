@@ -694,6 +694,11 @@ TYPE_NAME_OVERRIDES = {
     "Lorraine_Writers_Person": "Person -- Lorraine Writers",
     "Swedish_Lit_Bank_Place_2": "Location -- Swedish Literature Bank",
     "Vegetti_Work": "Work -- Vegetti Fantastic Literature",
+    "NBF_Person": "Person -- National Book Foundation",
+    "SciELO_Org": "Organization -- SciELO Books",
+    "Frankfurt_Fair_Org": "Organization -- Frankfurt Book Fair",
+    "London_Fair_Org": "Organization -- London Book Fair",
+    "Sharjah_Fair_Org": "Organization -- Sharjah Book Fair",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
