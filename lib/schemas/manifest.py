@@ -679,6 +679,11 @@ TYPE_NAME_OVERRIDES = {
     "Sardinian_Writers_Person": "Person -- Sardinian Writers",
     "DBNL_Person": "Person -- Dutch Literature (DBNL)",
     "Anhui_Writers_Person": "Person -- Anhui Writers (China)",
+    "AUPresses_Org": "Organization -- Assoc of Univ Presses",
+    "Aboriginal_Studies_Org": "Organization -- Aboriginal Studies Press",
+    "Math_Press_Org": "Organization -- Ramakrishna Math Presses",
+    "SVS_Press_Org": "Organization -- St Vladimir Seminary Press",
+    "Latin_Poets_Person": "Person -- Italian Latin Poets",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
