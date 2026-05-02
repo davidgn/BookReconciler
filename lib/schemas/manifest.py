@@ -684,6 +684,11 @@ TYPE_NAME_OVERRIDES = {
     "Math_Press_Org": "Organization -- Ramakrishna Math Presses",
     "SVS_Press_Org": "Organization -- St Vladimir Seminary Press",
     "Latin_Poets_Person": "Person -- Italian Latin Poets",
+    "EDIT16_Person": "Person -- 16th Cent Italian Books",
+    "IBDoF_Person": "Person -- Internet Book Fiction DB",
+    "Canada_Women_Writers_Person": "Person -- Canada Early Women Writers",
+    "Photo_Books_Work": "Work -- Photography Books DB",
+    "Digital_Latin_Person": "Person -- Digital Latin Library",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
