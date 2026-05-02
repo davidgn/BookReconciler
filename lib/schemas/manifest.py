@@ -719,6 +719,11 @@ TYPE_NAME_OVERRIDES = {
     "ISC_Org": "Organization -- International Science Council",
     "Bologna_Fair_Org_2": "Organization -- Bologna Book Fair (WP)",
     "Society_Authors_Org_2": "Organization -- Society of Authors (WP)",
+    "Canada_Council_Org": "Organization -- Canada Council Pubs",
+    "Tournai_Org": "Organization -- Seminaire de Tournai",
+    "CardCow_Org": "Organization -- CardCow Publisher",
+    "VejinBooks_Person": "Person -- VejinBooks Kurdish",
+    "Illinois_Book_Person": "Person -- Illinois Center for Book",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
