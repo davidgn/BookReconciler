@@ -759,6 +759,11 @@ TYPE_NAME_OVERRIDES = {
     "SriLanka_NL_Person": "Person -- National Library Sri Lanka",
     "Tunisia_NL_Person": "Person -- National Library Tunisia",
     "Lebanon_NL_Person": "Person -- National Library Lebanon",
+    "Czech_History_Person": "Person -- Czech History Encyclopedia",
+    "Amsterdam_Academic_Person": "Person -- Amsterdam Album Academicum",
+    "Finnish_Scholarly_Org": "Organization -- Finnish Scholarly Pub",
+    "Kyoto_Research_Org": "Organization -- Kyoto Research Promotion",
+    "Turkey_Academic_Org": "Organization -- Turkish Higher Ed (YOK)",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
