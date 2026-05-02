@@ -689,6 +689,11 @@ TYPE_NAME_OVERRIDES = {
     "Canada_Women_Writers_Person": "Person -- Canada Early Women Writers",
     "Photo_Books_Work": "Work -- Photography Books DB",
     "Digital_Latin_Person": "Person -- Digital Latin Library",
+    "Read_NZ_Person": "Person -- Read NZ Te Pou Muramura",
+    "Quais_du_Polar_Person": "Person -- Quais du polar",
+    "Lorraine_Writers_Person": "Person -- Lorraine Writers",
+    "Swedish_Lit_Bank_Place_2": "Location -- Swedish Literature Bank",
+    "Vegetti_Work": "Work -- Vegetti Fantastic Literature",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
