@@ -729,6 +729,11 @@ TYPE_NAME_OVERRIDES = {
     "Athenaeum_Person": "Person -- Dutch Literary Archive",
     "BNM_Mexico_Person": "Person -- National Library Mexico",
     "BiblioNet_Work_2": "Work -- Greek BiblioNet Title",
+    "Chile_NL_Person": "Person -- National Library Chile",
+    "Peru_NL_Person": "Person -- National Library Peru",
+    "Argentina_NL_Person": "Person -- National Library Argentina",
+    "Scotland_NL_Person": "Person -- National Library Scotland",
+    "Wales_NL_Person": "Person -- National Library Wales",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
