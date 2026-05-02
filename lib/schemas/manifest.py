@@ -714,6 +714,11 @@ TYPE_NAME_OVERRIDES = {
     "NBF_Book": "Work -- National Book Award List",
     "Hindawi_Org": "Organization -- Hindawi Open Access",
     "Basque_Foundation_Org": "Organization -- Sancho el Sabio (Basque)",
+    "Alexander_Turnbull_Person": "Person -- Alexander Turnbull Library",
+    "Aozora_Work": "Work -- Aozora Bunko Books",
+    "ISC_Org": "Organization -- International Science Council",
+    "Bologna_Fair_Org_2": "Organization -- Bologna Book Fair (WP)",
+    "Society_Authors_Org_2": "Organization -- Society of Authors (WP)",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
