@@ -774,6 +774,11 @@ TYPE_NAME_OVERRIDES = {
     "SHARE_Catalogue_Work": "Work -- SHARE Catalogue",
     "Taiwan_Literature_Work": "Work -- Taiwan Periodical Lit",
     "Botanical_Lit_Work": "Work -- Amer Botanical Literature",
+    "JaLC_Org": "Organization -- Japan Link Center",
+    "OpenCitations_Meta_Work": "Work -- OpenCitations Meta",
+    "Academy_Awards_Nominee_Direct": "Winner -- Academy Awards Nominee",
+    "Sloan_Foundation_Org": "Organization -- Alfred P. Sloan Foundation",
+    "BAnQ_Quebec_Work": "Work -- National Library Quebec (Notices)",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
