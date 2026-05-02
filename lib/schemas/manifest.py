@@ -699,6 +699,11 @@ TYPE_NAME_OVERRIDES = {
     "Frankfurt_Fair_Org": "Organization -- Frankfurt Book Fair",
     "London_Fair_Org": "Organization -- London Book Fair",
     "Sharjah_Fair_Org": "Organization -- Sharjah Book Fair",
+    "Society_Authors_Org": "Organization -- Society of Authors (UK)",
+    "ILSA_Org": "Organization -- Indigenous Lit Studies",
+    "Swiss_Authors_Org": "Organization -- Swiss Authors Assoc",
+    "Iceland_NL_Person": "Person -- National Library Iceland",
+    "Slovenia_NL_Org": "Organization -- National Library Slovenia",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
