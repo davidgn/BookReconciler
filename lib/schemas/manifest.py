@@ -744,6 +744,11 @@ TYPE_NAME_OVERRIDES = {
     "Ireland_NL_Person": "Person -- National Library Ireland",
     "Jamaica_NL_Person": "Person -- National Library Jamaica",
     "Latvia_NL_Person": "Person -- National Library Latvia",
+    "Lithuania_NL_Person": "Person -- National Library Lithuania",
+    "Luxembourg_NL_Person": "Person -- National Library Luxembourg",
+    "Morocco_NL_Person": "Person -- National Library Morocco",
+    "Norway_Bibsys_Person": "Person -- Norway Bibsys Authority",
+    "Philippines_NL_Person": "Person -- National Library Philippines",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
