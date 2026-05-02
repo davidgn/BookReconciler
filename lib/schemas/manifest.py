@@ -724,6 +724,11 @@ TYPE_NAME_OVERRIDES = {
     "CardCow_Org": "Organization -- CardCow Publisher",
     "VejinBooks_Person": "Person -- VejinBooks Kurdish",
     "Illinois_Book_Person": "Person -- Illinois Center for Book",
+    "ARPI_Person": "Person -- Portuguese Scholarly (ARPI)",
+    "Aracne_Person": "Person -- Aracne Editrice Author",
+    "Athenaeum_Person": "Person -- Dutch Literary Archive",
+    "BNM_Mexico_Person": "Person -- National Library Mexico",
+    "BiblioNet_Work_2": "Work -- Greek BiblioNet Title",
     "VIAF_Personal": "Name -- VIAF Personal",
 }
 
