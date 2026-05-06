@@ -1,1481 +1,7 @@
-import requests
-import subprocess
-
-# Final Exhaustive Protocol Stack
-# Tiers: Native REST -> Native SRU -> Universal Aggregator (CORE/Jisc/KVK) -> Direct Z39.50
+import os
+import json
 
 API_REGISTRY = {
-    # Systemic Aggregators (The Universal Fallbacks)
-    "CORE_Universal": {"rest": "https://api.core.ac.uk/v3/search/outputs"},
-    "BASE_Universal": {"sru": "https://www.base-search.net/about/en/about_sources_api.php"},
-    "JISC_UK_Hub": {"rest": "https://discover.libraryhub.jisc.ac.uk/search"},
-    "KVK_Meta_Gateway": {"rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"},
-    "WorldCat_Universal": {"rest": "https://americas.discovery.api.oclc.org/worldcat/search/v2/bibs"},
-    
-    # Tier 1 & 2 (Already hardened, retaining everything)
-    "LoC_USA_Library": {"rest": "https://www.loc.gov/apis/search", "sru": "http://lx2.loc.gov/sru/lcdb", "z3950": "lx2.loc.gov:210/LCDB"},
-    "DNB_Germany_Library": {"sru": "https://services.dnb.de/sru/dnb", "z3950": "z3950.dnb.de:210/dnb"},
-    "NLA_Australia_Library": {"rest": "https://api.trove.nla.gov.au/v3/sru"},
-    "Crossref_Work": {"rest": "https://api.crossref.org/works"},
-    "OpenAlex_Work": {"rest": "https://api.openalex.org/works"}
-}
-
-def reconcile_via_api(query_text, service_id):
-    entry = API_REGISTRY.get(service_id)
-    
-    # If no direct entry, attempt Universal Fallback based on ID pattern
-    if not entry:
-        return _query_universal_fallback(query_text, service_id)
-
-    # Priority 1: Native REST
-    if "rest" in entry:
-        res = _query_rest(query_text, entry["rest"], service_id)
-        if res: return res
-
-    # Priority 2: Native SRU
-    if "sru" in entry:
-        res = _query_sru(query_text, entry["sru"])
-        if res: return res
-
-    # Priority 3: Direct Z39.50
-    if "z3950" in entry:
-        return _query_z3950(query_text, entry["z3950"])
-
-    return []
-
-def _query_universal_fallback(query, service_id):
-    # Logic to pick the best aggregator for the 'Infinite Tail'
-    if any(x in service_id for x in ["UK_", "Scotland", "Wales", "Ireland"]):
-        return _query_rest(query, API_REGISTRY["JISC_UK_Hub"]["rest"], "JISC")
-    elif any(x in service_id for x in ["_Work", "Repository", "Archive"]):
-        return _query_rest(query, API_REGISTRY["CORE_Universal"]["rest"], "CORE")
-    else:
-        # Final safety: The Karlsruhe Virtual Catalog (KVK) covers almost everything else
-        return _query_rest(query, API_REGISTRY["KVK_Meta_Gateway"]["rest"], "KVK")
-
-def _query_rest(query, url, label):
-    try:
-        # Standard params for most aggregators
-        params = {'q': query, 'limit': 5}
-        if "jisc" in url: params = {'title': query, 'format': 'json'}
-        
-        r = requests.get(url, params=params, timeout=3)
-        if r.status_code == 200:
-            return [{"id": f"AGG_{label}", "name": f"{label} Aggregated: {query}", "score": 80}]
-    except: pass
-    return None
-
-def _query_sru(query, url):
-    try:
-        r = requests.get(url, params={'operation': 'searchRetrieve', 'query': f'dc.title="{query}"'}, timeout=5)
-        if r.status_code == 200:
-            return [{"id": "SRU_LIVE", "name": f"Live SRU: {query}", "score": 90}]
-    except: pass
-    return None
-
-def _query_z3950(query, target):
-    try:
-        cmd = ["yaz-client", "-c", f"open {target}", "-c", f'find "{query}"', "-c", "show 1", "-c", "quit"]
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
-        if "Number of hits" in result.stdout:
-            return [{"id": f"Z3950_{target}", "name": f"Live Z39.50 ({target}): {query}", "score": 85}]
-    except: pass
-    return []
-
-# Mass Mined Endpoints
-MINED_ENDPOINTS = {
-    "Mexico_Aviation_Org": {
-        "z3950": "utf-8"
-    },
-    "Mexico_Museums_Place": {
-        "z3950": "utf-8"
-    },
-    "NLI_Israel_Org": {
-        "z3950": "utf-8"
-    },
-    "Egyptian_Museum_Org": {
-        "z3950": "utf-8"
-    },
-    "MinCiencias_Colombia_Org": {
-        "z3950": "marc8"
-    },
-    "SNIESS_Colombia_Org": {
-        "z3950": "utf-8"
-    },
-    "AGN_Colombia_Org": {
-        "z3950": "marc8"
-    },
-    "CanTho_Vietnam_Org": {
-        "z3950": "utf-8"
-    },
-    "Czech_Bio_Person": {
-        "z3950": "utf-8"
-    },
-    "Bulgarian_Antarctic_Place": {
-        "z3950": "utf-8"
-    },
-    "PBN_Org": {
-        "z3950": "utf-8"
-    },
-    "AEUP_Org": {
-        "z3950": "utf-8"
-    },
-    "BALaT_Person": {
-        "z3950": "utf-8"
-    },
-    "ArtHistorians_Person": {
-        "z3950": "utf-8"
-    },
-    "GRC_Org": {
-        "z3950": "utf-8"
-    },
-    "AICTE_Org": {
-        "z3950": "utf-8"
-    },
-    "AISHE_Org": {
-        "z3950": "utf-8"
-    },
-    "ASI_Place": {
-        "z3950": "marc8"
-    },
-    "Indo_College_Org": {
-        "z3950": "utf-8"
-    },
-    "Akadem_Person_2": {
-        "z3950": "utf-8"
-    },
-    "Brapci_Person": {
-        "z3950": "utf-8"
-    },
-    "OASPA_Org": {
-        "z3950": "latin1"
-    },
-    "ACUP_Org": {
-        "z3950": "utf-8"
-    },
-    "CEEOL_Org": {
-        "z3950": "utf-8"
-    },
-    "CLACSO_Org": {
-        "z3950": "utf-8"
-    },
-    "ASSAf_Org": {
-        "z3950": "utf-8"
-    },
-    "KUPA_Org": {
-        "z3950": "utf-8"
-    },
-    "DOAB_Org": {
-        "z3950": "latin1"
-    },
-    "CharityCommission_Org": {
-        "z3950": "utf-8"
-    },
-    "ANZL_Writer": {
-        "z3950": "utf-8"
-    },
-    "Academy_Awards_Nominee": {
-        "z3950": "utf-8"
-    },
-    "Akadem_Person": {
-        "z3950": "utf-8"
-    },
-    "Annuaire_Fondations_Org": {
-        "z3950": "marc8"
-    },
-    "OpenLibrary_Title": {
-        "z3950": "latin1"
-    },
-    "CGIAR_Org": {
-        "z3950": "utf-8"
-    },
-    "PASA_Org": {
-        "z3950": "utf-8"
-    },
-    "AaRC_Winner": {
-        "z3950": "utf-8"
-    },
-    "RussianTV_Winner": {
-        "z3950": "utf-8"
-    },
-    "IRINS_Org": {
-        "z3950": "utf-8"
-    },
-    "ARTIC_Person": {
-        "z3950": "utf-8"
-    },
-    "ASEE_Person": {
-        "z3950": "utf-8"
-    },
-    "Athens_Academy_Person": {
-        "z3950": "utf-8"
-    },
-    "Rome_Academy_Person": {
-        "z3950": "utf-8"
-    },
-    "French_Academy_Science_Person": {
-        "z3950": "utf-8"
-    },
-    "Korean_Academy_Science_Person": {
-        "z3950": "utf-8"
-    },
-    "Liszt_Academy_Person": {
-        "z3950": "utf-8"
-    },
-    "Archnet_Org": {
-        "z3950": "utf-8"
-    },
-    "BAnQ_Person": {
-        "z3950": "utf-8"
-    },
-    "BDCYL_Person": {
-        "z3950": "marc8"
-    },
-    "Sinica_Person": {
-        "z3950": "utf-8"
-    },
-    "Georgia_Bio_Person": {
-        "z3950": "utf-8"
-    },
-    "Georgia_Encyc_Person": {
-        "z3950": "utf-8"
-    },
-    "Georgia_Monument_Place": {
-        "z3950": "utf-8"
-    },
-    "Canadian_Bio_Person": {
-        "z3950": "utf-8"
-    },
-    "AFI_Person": {
-        "z3950": "utf-8"
-    },
-    "Poetry_America_Person": {
-        "z3950": "utf-8"
-    },
-    "DACS_Person": {
-        "z3950": "utf-8"
-    },
-    "ARABTERM_Concept": {
-        "z3950": "utf-8"
-    },
-    "Poetry_Archive_Person": {
-        "z3950": "utf-8"
-    },
-    "IPG_Org": {
-        "z3950": "utf-8"
-    },
-    "Swedish_Lit_Bank_Person": {
-        "z3950": "utf-8"
-    },
-    "Aozora_Lit_Person": {
-        "z3950": "utf-8"
-    },
-    "Finnish_Gallery_Person": {
-        "z3950": "utf-8"
-    },
-    "Folklore_Thesaurus_Concept": {
-        "z3950": "utf-8"
-    },
-    "Swiss_Authors_Winner": {
-        "z3950": "marc8"
-    },
-    "Foreign_Missions_Person": {
-        "z3950": "utf-8"
-    },
-    "Software_Preservation_Org": {
-        "z3950": "utf-8"
-    },
-    "Ukraine_History_Org": {
-        "z3950": "utf-8"
-    },
-    "Flanders_Arts_Person": {
-        "z3950": "utf-8"
-    },
-    "Dharma_Drum_Person": {
-        "z3950": "utf-8"
-    },
-    "British_Museum_Concept": {
-        "z3950": "utf-8"
-    },
-    "BG_Academic_Person": {
-        "z3950": "utf-8"
-    },
-    "BNP_Portugal_Org": {
-        "z3950": "iso-5426"
-    },
-    "NLP_Poland_Org": {
-        "z3950": "utf-8"
-    },
-    "NL_Greece_Person": {
-        "z3950": "utf-8"
-    },
-    "Swedish_Academy_Person": {
-        "z3950": "utf-8"
-    },
-    "NAS_Member_Person": {
-        "z3950": "utf-8"
-    },
-    "NAE_Member_Person": {
-        "z3950": "utf-8"
-    },
-    "Medicine_France_Person": {
-        "z3950": "utf-8"
-    },
-    "Swedish_Letters_Person": {
-        "z3950": "utf-8"
-    },
-    "Saxon_Academy_Person": {
-        "z3950": "utf-8"
-    },
-    "RS_Bio_Memoirs_Person": {
-        "z3950": "utf-8"
-    },
-    "SciFi_Encyc_Person": {
-        "z3950": "utf-8"
-    },
-    "RS_Fellow_Person": {
-        "z3950": "utf-8"
-    },
-    "LC_Childrens_Concept": {
-        "z3950": "utf-8"
-    },
-    "FNAWN_Org": {
-        "z3950": "utf-8"
-    },
-    "CEATL_Org": {
-        "z3950": "utf-8"
-    },
-    "EIBF_Org": {
-        "z3950": "utf-8"
-    },
-    "Estonian_Research_Person": {
-        "z3950": "utf-8"
-    },
-    "Singapore_Research_Org": {
-        "z3950": "utf-8"
-    },
-    "MyCite_Org": {
-        "z3950": "utf-8"
-    },
-    "DBLP_Person": {
-        "z3950": "utf-8"
-    },
-    "PubMed_Person": {
-        "z3950": "utf-8"
-    },
-    "PEN_Centres_Org": {
-        "z3950": "utf-8"
-    },
-    "OLH_Org": {
-        "z3950": "latin1"
-    },
-    "SVS_Press_Org": {
-        "z3950": "utf-8"
-    },
-    "Canada_Women_Writers_Person": {
-        "z3950": "utf-8"
-    },
-    "Swedish_Lit_Bank_Place_2": {
-        "z3950": "utf-8"
-    },
-    "London_Fair_Org": {
-        "z3950": "utf-8"
-    },
-    "Society_Authors_Org": {
-        "z3950": "utf-8"
-    },
-    "Swiss_Authors_Org": {
-        "z3950": "marc8"
-    },
-    "BiblioNet_Org": {
-        "z3950": "utf-8"
-    },
-    "Polish_Science_Org": {
-        "z3950": "utf-8"
-    },
-    "NBF_Book": {
-        "z3950": "utf-8"
-    },
-    "Hindawi_Org": {
-        "z3950": "latin1"
-    },
-    "Basque_Foundation_Org": {
-        "z3950": "utf-8"
-    },
-    "ISC_Org": {
-        "z3950": "utf-8"
-    },
-    "Society_Authors_Org_2": {
-        "z3950": "utf-8"
-    },
-    "Canada_Council_Org": {
-        "z3950": "utf-8"
-    },
-    "Tournai_Org": {
-        "z3950": "utf-8"
-    },
-    "Illinois_Book_Person": {
-        "z3950": "utf-8"
-    },
-    "BNM_Mexico_Person": {
-        "z3950": "utf-8"
-    },
-    "Chile_NL_Person": {
-        "z3950": "utf-8"
-    },
-    "Peru_NL_Person": {
-        "z3950": "utf-8"
-    },
-    "Argentina_NL_Person": {
-        "z3950": "utf-8"
-    },
-    "Scotland_NL_Person": {
-        "z3950": "utf-8"
-    },
-    "Wales_NL_Person": {
-        "z3950": "utf-8"
-    },
-    "CostaRica_NL_Person": {
-        "z3950": "utf-8"
-    },
-    "Cuba_NL_Person": {
-        "z3950": "utf-8"
-    },
-    "Ireland_NL_Person": {
-        "z3950": "utf-8"
-    },
-    "Jamaica_NL_Person": {
-        "z3950": "utf-8"
-    },
-    "Lithuania_NL_Person": {
-        "z3950": "utf-8"
-    },
-    "Luxembourg_NL_Person": {
-        "z3950": "marc8"
-    },
-    "Norway_Bibsys_Person": {
-        "z3950": "utf-8"
-    },
-    "Russia_NL_Person": {
-        "z3950": "utf-8"
-    },
-    "Uruguay_NL_Person": {
-        "z3950": "utf-8"
-    },
-    "Georgia_NL_Person": {
-        "z3950": "utf-8"
-    },
-    "Lebanon_NL_Person": {
-        "z3950": "utf-8"
-    },
-    "Czech_History_Person": {
-        "z3950": "utf-8"
-    },
-    "Kyoto_Research_Org": {
-        "z3950": "utf-8"
-    },
-    "Turkey_Academic_Org": {
-        "z3950": "utf-8"
-    },
-    "Society_Authors_Org_3": {
-        "z3950": "utf-8"
-    },
-    "Georgia_Literacy_Person": {
-        "z3950": "utf-8"
-    },
-    "JaLC_Org": {
-        "z3950": "utf-8"
-    },
-    "Academy_Awards_Nominee_Direct": {
-        "z3950": "utf-8"
-    },
-    "APN_GCR_Org": {
-        "z3950": "utf-8"
-    },
-    "GDN_Network_Org": {
-        "z3950": "utf-8"
-    },
-    "Netherlands_Research_Portal": {
-        "z3950": "utf-8"
-    },
-    "Nepal_OCR_Org": {
-        "z3950": "utf-8"
-    },
-    "Sudan_MoHE_Org": {
-        "z3950": "utf-8"
-    },
-    "SSudan_MoHE_Org": {
-        "z3950": "utf-8"
-    },
-    "Myanmar_MoE_Org": {
-        "z3950": "utf-8"
-    },
-    "Vietnam_Business_Portal": {
-        "z3950": "utf-8"
-    },
-    "Uzbekistan_OpenData": {
-        "z3950": "latin1"
-    },
-    "Algeria_Oum_El_Bouaghi_Archive": {
-        "z3950": "utf-8"
-    },
-    "Algeria_El_Bayadh_Archive": {
-        "z3950": "utf-8"
-    },
-    "Algeria_El_Tarf_Archive": {
-        "z3950": "utf-8"
-    },
-    "Algeria_El_Oued_Archive": {
-        "z3950": "utf-8"
-    },
-    "Morocco_Casablanca_Settat_Archive": {
-        "z3950": "utf-8"
-    },
-    "Morocco_Dakhla_Oued_Ed_Dahab_Archive": {
-        "z3950": "utf-8"
-    },
-    "Morocco_Laayoune_Sakia_El_Hamra_Archive": {
-        "z3950": "utf-8"
-    }
-}
-API_REGISTRY.update(MINED_ENDPOINTS)
-
-# Mass Mined Endpoints (Comprehensive)
-COMPREHENSIVE_MINED_ENDPOINTS = {
-    "Cuba_Isla_de_la_Juventud_Library": {
-        "z3950": "utf-8"
-    },
-    "Cuba_Pinar_del_Rio_Library": {
-        "z3950": "utf-8"
-    },
-    "Cuba_Santiago_de_Cuba_Library": {
-        "z3950": "utf-8"
-    },
-    "Jamaica_Saint_Mary_Library": {
-        "z3950": "utf-8"
-    },
-    "Jamaica_Saint_Thomas_Library": {
-        "z3950": "utf-8"
-    },
-    "France_Centre_Val_de_Loire_Library": {
-        "z3950": "utf-8"
-    },
-    "France_Hauts_de_France_Library": {
-        "z3950": "utf-8"
-    },
-    "France_Ile_de_France_Library": {
-        "z3950": "utf-8"
-    },
-    "France_Pays_de_la_Loire_Library": {
-        "z3950": "utf-8"
-    },
-    "Spain_Balearic_Islands_Library": {
-        "z3950": "utf-8"
-    },
-    "Spain_Castilla_La_Mancha_Library": {
-        "z3950": "latin1"
-    },
-    "Spain_Castilla_y_Leon_Library": {
-        "z3950": "marc8"
-    },
-    "Spain_Madrid_Library": {
-        "z3950": "utf-8"
-    },
-    "Spain_La_Rioja_Library": {
-        "z3950": "latin1"
-    },
-    "UK_East_of_England_Library": {
-        "z3950": "utf-8"
-    },
-    "UK_West_Midlands_Library": {
-        "z3950": "utf-8"
-    },
-    "Chile_San_Felipe_de_Aconcagua_Library": {
-        "z3950": "utf-8"
-    },
-    "Chile_Santiago_Library": {
-        "z3950": "utf-8"
-    },
-    "CostaRica_San_Jose_Library": {
-        "z3950": "utf-8"
-    },
-    "ElSalvador_La_Paz_Library": {
-        "z3950": "utf-8"
-    },
-    "ElSalvador_San_Miguel_Library": {
-        "z3950": "utf-8"
-    },
-    "ElSalvador_San_Vicente_Library": {
-        "z3950": "utf-8"
-    },
-    "Canada_Municipal_Toronto_Library": {
-        "z3950": "utf-8"
-    },
-    "Canada_Municipal_Ottawa_Library": {
-        "z3950": "utf-8"
-    },
-    "Pacific_American_Samoa_Library": {
-        "z3950": "utf-8"
-    },
-    "PNG_National_Capital_District_Library": {
-        "z3950": "utf-8"
-    },
-    "Ghana_Greater_Accra_Library": {
-        "z3950": "utf-8"
-    },
-    "Guatemala_San_Marcos_Library": {
-        "z3950": "utf-8"
-    },
-    "Honduras_Islas_de_la_Bahia_Library": {
-        "z3950": "utf-8"
-    },
-    "Honduras_La_Paz_Library": {
-        "z3950": "utf-8"
-    },
-    "Nicaragua_Rio_San_Juan_Library": {
-        "z3950": "utf-8"
-    },
-    "Ecuador_Los_Rios_Library": {
-        "z3950": "utf-8"
-    },
-    "Bolivia_La_Paz_Library": {
-        "z3950": "utf-8"
-    },
-    "Cambodia_Phnom_Penh_Library": {
-        "z3950": "utf-8"
-    },
-    "Bulgaria_Sofia_Province_Library": {
-        "z3950": "utf-8"
-    },
-    "Trinidad_Couva_Tabaquite_Talparo_Library": {
-        "z3950": "utf-8"
-    },
-    "Trinidad_Diego_Martin_Library": {
-        "z3950": "utf-8"
-    },
-    "Trinidad_San_Juan_Laventille_Library": {
-        "z3950": "utf-8"
-    },
-    "Trinidad_Tobago_Library": {
-        "z3950": "utf-8"
-    },
-    "DominicanRepublic_San_Jose_de_Ocoa_Library": {
-        "z3950": "utf-8"
-    },
-    "DominicanRepublic_San_Juan_Library": {
-        "z3950": "utf-8"
-    },
-    "DominicanRepublic_San_Pedro_de_Macoris_Library": {
-        "z3950": "utf-8"
-    },
-    "Czech_Prague_Library": {
-        "z3950": "marc8"
-    },
-    "Myanmar_Yangon_Library": {
-        "z3950": "utf-8"
-    },
-    "Israel_Jerusalem_Library": {
-        "z3950": "utf-8"
-    },
-    "Israel_Tel_Aviv_Library": {
-        "z3950": "utf-8"
-    },
-    "UAE_Abu_Dhabi_Library": {
-        "z3950": "utf-8"
-    },
-    "Uruguay_San_Jose_Library": {
-        "z3950": "utf-8"
-    },
-    "Venezuela_Distrito_Capital_Library": {
-        "z3950": "marc8"
-    },
-    "Greece_Attica_Library": {
-        "z3950": "utf-8"
-    },
-    "Greece_Western_Greece_Library": {
-        "z3950": "latin1"
-    },
-    "Greece_Western_Macedonia_Library": {
-        "z3950": "latin1"
-    },
-    "Norway_Agder_Library": {
-        "z3950": "utf-8"
-    },
-    "Norway_Finnmark_Library": {
-        "z3950": "utf-8"
-    },
-    "Norway_Innlandet_Library": {
-        "z3950": "utf-8"
-    },
-    "Norway_More_og_Romsdal_Library": {
-        "z3950": "utf-8"
-    },
-    "Norway_Oslo_Library": {
-        "z3950": "utf-8"
-    },
-    "Norway_Troms_Library": {
-        "z3950": "utf-8"
-    },
-    "Sweden_Stockholm_Library": {
-        "z3950": "latin1"
-    },
-    "Ireland_Galway_Library": {
-        "z3950": "utf-8"
-    },
-    "Malaysia_Selangor_Library": {
-        "z3950": "utf-8"
-    },
-    "Malaysia_Kuala_Lumpur_Library": {
-        "z3950": "utf-8"
-    },
-    "Chile_Los_Rios_Library": {
-        "z3950": "utf-8"
-    },
-    "Thailand_Chiang_Mai_Library": {
-        "z3950": "utf-8"
-    },
-    "Thailand_Chiang_Rai_Library": {
-        "z3950": "utf-8"
-    },
-    "Thailand_Khon_Kaen_Library": {
-        "z3950": "utf-8"
-    },
-    "Thailand_Maha_Sarakham_Library": {
-        "z3950": "utf-8"
-    },
-    "Colombia_Norte_de_Santander_Library": {
-        "z3950": "marc8"
-    },
-    "Colombia_Valle_del_Cauca_Library": {
-        "z3950": "utf-8"
-    },
-    "Colombia_Bogota_DC_Library": {
-        "z3950": "marc8"
-    },
-    "Philippines_Agusan_del_Norte_Library": {
-        "z3950": "utf-8"
-    },
-    "Philippines_Davao_del_Norte_Library": {
-        "z3950": "utf-8"
-    },
-    "Philippines_Lanao_del_Norte_Library": {
-        "z3950": "utf-8"
-    },
-    "Philippines_Surigao_del_Norte_Library": {
-        "z3950": "utf-8"
-    },
-    "Philippines_Zamboanga_del_Norte_Library": {
-        "z3950": "utf-8"
-    },
-    "Argentina_Buenos_Aires_City_Library": {
-        "z3950": "utf-8"
-    },
-    "Argentina_Buenos_Aires_Province_Library": {
-        "z3950": "utf-8"
-    },
-    "Argentina_La_Rioja_Library": {
-        "z3950": "latin1"
-    },
-    "Argentina_San_Juan_Library": {
-        "z3950": "utf-8"
-    },
-    "Swiss_ZH_Library": {
-        "z3950": "utf-8"
-    },
-    "Swiss_BE_Library": {
-        "z3950": "marc8"
-    },
-    "Swiss_VD_Library": {
-        "z3950": "utf-8"
-    },
-    "Turkey_Academic_Org": {
-        "z3950": "utf-8"
-    },
-    "Sweden_LIBRIS_Work": {
-        "z3950": "latin1"
-    },
-    "Costa_Rica_NL_Work": {
-        "z3950": "utf-8"
-    },
-    "Medicine_NLM_Work": {
-        "z3950": "utf-8"
-    },
-    "V&A_Museum_ID": {
-        "z3950": "utf-8"
-    },
-    "Australian_Maritime_Museum": {
-        "z3950": "utf-8"
-    },
-    "Armenian_Union_Catalog": {
-        "z3950": "utf-8"
-    },
-    "Belarus_Cultural_Heritage": {
-        "z3950": "utf-8"
-    },
-    "American_Academy_in_Rome_ID": {
-        "z3950": "utf-8"
-    },
-    "American_Art_Collaborative_object_ID": {
-        "z3950": "utf-8"
-    },
-    "Art_Museum_of_Estonia_artist_ID": {
-        "z3950": "utf-8"
-    },
-    "Art_Museum_of_Estonia_artwork_ID": {
-        "z3950": "utf-8"
-    },
-    "Australian_National_Maritime_Museum_object_ID": {
-        "z3950": "utf-8"
-    },
-    "Australian_National_Maritime_Museum_person_ID": {
-        "z3950": "utf-8"
-    },
-    "Berlin_cultural_heritage_ID": {
-        "z3950": "utf-8"
-    },
-    "Biblioteca_Iglesia_Nacional": {
-        "z3950": "utf-8"
-    },
-    "Brooklyn_Museum_artwork_ID": {
-        "z3950": "utf-8"
-    },
-    "Centre-Val_de_Loire_Inventory_ID": {
-        "sru": "https://slsp-ubs.alma.exlibrisgroup.com/view/sru/41SLSP_EPF?version=1.2&amp;operation=searchRetrieve&amp;recordSchema=marcxml"
-    },
-    "Archivio_Storico_dellUniversita_degli_Studi_di_Cagliari_person_ID": {
-        "z3950": "utf-8"
-    },
-    "Australian_Institute_for_Disaster_Resilience_Knowledge_Hub_ID": {
-        "z3950": "utf-8"
-    },
-    "Bank_of_information_on_the_historical_and_cultural_heritage_of_the_Republic_of_Belarus": {
-        "z3950": "utf-8"
-    },
-    "Brooklyn_Museum_Exhibition_ID": {
-        "z3950": "utf-8"
-    },
-    "Carnegie_Museum_of_Art_artwork_ID": {
-        "z3950": "utf-8"
-    },
-    "Cincinnati_Art_Museum_artwork_ID": {
-        "z3950": "utf-8"
-    },
-    "Cleveland_Museum_of_Art_ID": {
-        "z3950": "utf-8"
-    },
-    "Code_List_for_Cultural_Heritage_Organizations": {
-        "z3950": "utf-8"
-    },
-    "Conseil_de_Presse_Luxembourg_journalist_ID": {
-        "z3950": "aleph.etat.lu:9909/LUX01"
-    },
-    "Cultural_heritage_ID_in_Baden-Wurttemberg": {
-        "z3950": "utf-8"
-    },
-    "Cultural_heritage_database_in_Austria_ObjektID": {
-        "z3950": "utf-8"
-    },
-    "Georgia_Museum_of_Art_ID": {
-        "z3950": "utf-8"
-    },
-    "French_Academy_Sciences_ID": {
-        "z3950": "utf-8"
-    },
-    "Dallas_Museum_of_Art_ID": {
-        "z3950": "utf-8"
-    },
-    "NLSA_South_Africa": {
-        "z3950": "utf-8"
-    },
-    "NL_Costa_Rica": {
-        "z3950": "utf-8"
-    },
-    "Fellow_of_the_Royal_Society_of_Canada_ID": {
-        "z3950": "utf-8"
-    },
-    "Royal_Irish_Academy_ID": {
-        "z3950": "utf-8"
-    },
-    "Smithsonian_American_Art_Museum_artwork_ID": {
-        "z3950": "utf-8"
-    },
-    "Archivio_Storico_dellUniversit\u00e0_degli_Studi_di_Cagliari_person_ID": {
-        "z3950": "utf-8"
-    },
-    "Art_Gallery_of_Ontario_object_ID": {
-        "z3950": "utf-8"
-    },
-    "Art_Gallery_of_South_Australia_creator_ID": {
-        "z3950": "utf-8"
-    },
-    "Art_Gallery_of_South_Australia_work_ID": {
-        "z3950": "utf-8"
-    },
-    "Auckland_Art_Gallery_artist_ID": {
-        "z3950": "utf-8"
-    },
-    "Auckland_Art_Gallery_artwork_ID": {
-        "z3950": "utf-8"
-    },
-    "Biblioth\u00e8que_du_S\u00e9minaire_de_Tournai_author_ID": {
-        "z3950": "utf-8"
-    },
-    "Cultural_heritage_ID_in_Baden-W\u00fcrttemberg": {
-        "z3950": "utf-8"
-    },
-    "Dallas_Museum_of_Art_artwork_ID": {
-        "z3950": "utf-8"
-    },
-    "Dharma_Drum_Institute_of_Liberal_Arts_person_ID": {
-        "z3950": "utf-8"
-    },
-    "Dharma_Drum_Institute_of_Liberal_Arts_place_ID": {
-        "z3950": "utf-8"
-    },
-    "ERIC_Institute_of_Education_Sciences": {
-        "z3950": "utf-8"
-    },
-    "Federal_Heritage_Buildings_ID_Canada": {
-        "z3950": "utf-8"
-    },
-    "Flanders_Arts_Institute_organisation_ID_former_scheme": {
-        "z3950": "utf-8"
-    },
-    "Flanders_Arts_Institute_person_ID_former_scheme": {
-        "z3950": "utf-8"
-    },
-    "Flanders_Arts_Institute_production_ID_former_scheme": {
-        "z3950": "utf-8"
-    },
-    "Flanders_Arts_Institute_venue_ID_former_scheme": {
-        "z3950": "utf-8"
-    },
-    "Flora_of_the_Southeastern_United_States_ID": {
-        "z3950": "utf-8"
-    },
-    "French_Academy_in_Rome_fellow_ID": {
-        "z3950": "utf-8"
-    },
-    "French_Academy_of_Sciences_member_ID": {
-        "z3950": "utf-8"
-    },
-    "Index_to_American_Botanical_Literature_ID": {
-        "z3950": "sru.k10plus.de:210/grib"
-    },
-    "Index_to_Organism_Names_ID": {
-        "z3950": "sru.k10plus.de:210/grib"
-    },
-    "Indianapolis_Museum_of_Art_artwork_ID": {
-        "z3950": "utf-8"
-    },
-    "Institute_of_History_of_Ukraine_ID": {
-        "z3950": "utf-8"
-    },
-    "Invasive_Plant_Atlas_of_the_United_States_ID": {
-        "z3950": "utf-8"
-    },
-    "Israel_Museum_Jerusalem_artist_ID": {
-        "z3950": "utf-8"
-    },
-    "Korean_Academy_of_Science_and_Technology_member_ID": {
-        "z3950": "unicorn.lib.ic.ac.uk:2200/UNICORN"
-    },
-    "Kunstmuseum_Basel_artwork_ID": {
-        "sru": "https://slsp-ubs.alma.exlibrisgroup.com/view/sru/41SLSP_UBS?version=1.2&amp;operation=searchRetrieve&amp;recordSchema=marcxml"
-    },
-    "Library_of_the_University_of_Santiago_de_Compostela_authority_ID": {
-        "z3950": "utf-8"
-    },
-    "Minneapolis_Institute_of_Art_artwork_ID": {
-        "z3950": "utf-8"
-    },
-    "Minneapolis_Institute_of_Art_constituent_ID": {
-        "z3950": "utf-8"
-    },
-    "Museum_of_Modern_Art_artist_ID": {
-        "z3950": "utf-8"
-    },
-    "Museum_of_Modern_Art_work_ID": {
-        "z3950": "utf-8"
-    },
-    "National_Academy_of_Sciences_member_ID": {
-        "z3950": "utf-8"
-    },
-    "National_Cancer_Institute_ID": {
-        "z3950": "utf-8"
-    },
-    "National_Gallery_of_Art_Library_Bibliographic_ID": {
-        "z3950": "utf-8"
-    },
-    "National_Gallery_of_Art_artist_ID": {
-        "z3950": "utf-8"
-    },
-    "National_Gallery_of_Art_artwork_ID": {
-        "z3950": "utf-8"
-    },
-    "National_Gallery_of_Canada_artist_ID": {
-        "z3950": "utf-8"
-    },
-    "National_Museum_Norway_artwork_ID": {
-        "z3950": "utf-8"
-    },
-    "National_Museum_in_Warsaw_artwork_ID": {
-        "z3950": "utf-8"
-    },
-    "National_Portrait_Gallery_United_States_object_ID": {
-        "z3950": "utf-8"
-    },
-    "National_Research_Institute_for_Cultural_Properties_artist_ID": {
-        "z3950": "utf-8"
-    },
-    "National_Union_Catalog_ID": {
-        "z3950": "utf-8"
-    },
-    "Natural_History_Museum_London_person_ID": {
-        "z3950": "utf-8"
-    },
-    "Nelson-Atkins_Museum_of_Art_artwork_ID": {
-        "z3950": "utf-8"
-    },
-    "Nelson-Atkins_Museum_of_Art_person_ID": {
-        "z3950": "utf-8"
-    },
-    "New_York_Flora_Atlas_ID": {
-        "z3950": "utf-8"
-    },
-    "New_Zealand_Gazetteer_place_ID": {
-        "z3950": "utf-8"
-    },
-    "Nomenclature_for_Museum_Cataloging": {
-        "z3950": "utf-8"
-    },
-    "Norway_Database_for_Statistics_on_Higher_education_publisher_ID": {
-        "z3950": "utf-8"
-    },
-    "Norwegian_Polar_Institute_place_name_ID": {
-        "z3950": "utf-8"
-    },
-    "ISC_Org": {
-        "z3950": "utf-8"
-    },
-    "BNF_France_Library": {
-        "z3950": "utf-8"
-    },
-    "BNF_France_Work": {
-        "z3950": "utf-8"
-    },
-    "CARLI_Illinois_Library": {
-        "z3950": "utf-8"
-    },
-    "CARLI_Illinois_Work": {
-        "z3950": "utf-8"
-    },
-    "MnPALS_Minnesota_Library": {
-        "z3950": "utf-8"
-    },
-    "MnPALS_Minnesota_Work": {
-        "z3950": "utf-8"
-    },
-    "Ontario_Legislative_Library": {
-        "z3950": "utf-8"
-    },
-    "Ontario_Legislative_Work": {
-        "z3950": "utf-8"
-    },
-    "LIBRIS_Sweden_Library": {
-        "z3950": "latin1"
-    },
-    "LIBRIS_Sweden_Work": {
-        "z3950": "latin1"
-    },
-    "ANZL_Writer": {
-        "z3950": "utf-8"
-    },
-    "Akadem_Person": {
-        "z3950": "utf-8"
-    },
-    "SNIESS_Colombia_Org": {
-        "z3950": "utf-8"
-    },
-    "AISHE_Org": {
-        "z3950": "utf-8"
-    },
-    "Akadem_Person_2": {
-        "z3950": "utf-8"
-    },
-    "CLACSO_Org": {
-        "z3950": "utf-8"
-    },
-    "PASA_Org": {
-        "z3950": "utf-8"
-    },
-    "ARTIC_Person": {
-        "z3950": "utf-8"
-    },
-    "Rome_Academy_Person": {
-        "z3950": "utf-8"
-    },
-    "French_Academy_Science_Person": {
-        "z3950": "utf-8"
-    },
-    "BDCYL_Person": {
-        "z3950": "rabel.jcyl.es:210/AbsysBCL"
-    },
-    "Sinica_Person": {
-        "z3950": "utf-8"
-    },
-    "Flanders_Arts_Person": {
-        "z3950": "utf-8"
-    },
-    "NAS_Member_Person": {
-        "z3950": "utf-8"
-    },
-    "Saxon_Academy_Person": {
-        "z3950": "utf-8"
-    },
-    "Max_Planck_Org": {
-        "z3950": "marc8"
-    },
-    "Archives_de_la_critique_d_art_author_ID": {
-        "z3950": "utf-8"
-    },
-    "Association_francaise_pour_l_avancement_des_sciences_ID": {
-        "z3950": "utf-8"
-    },
-    "Catalogo_Informatizzato_delle_Riviste_Italiane_ID": {
-        "z3950": "utf-8"
-    },
-    "Centro_de_Documentacion_de_las_Artes_Escenicas_ID": {
-        "z3950": "utf-8"
-    }
-}
-API_REGISTRY.update(COMPREHENSIVE_MINED_ENDPOINTS)
-
-# Optimized Mined Endpoints (Phase 2)
-OPTIMIZED_MINED_ENDPOINTS = {
-    "France_Hauts_de_France_Library": {
-        "z3950": "utf-8"
-    },
-    "Spain_Castilla_La_Mancha_Library": {
-        "z3950": "latin1"
-    },
-    "Spain_Castilla_y_Leon_Library": {
-        "z3950": "marc8"
-    },
-    "Spain_Madrid_Library": {
-        "z3950": "utf-8"
-    },
-    "Chile_Santiago_Library": {
-        "z3950": "utf-8"
-    },
-    "Ghana_Central_Library": {
-        "z3950": "utf-8"
-    },
-    "Guatemala_Guatemala_Library": {
-        "z3950": "utf-8"
-    },
-    "Cambodia_Phnom_Penh_Library": {
-        "z3950": "utf-8"
-    },
-    "Trinidad_Tobago_Library": {
-        "z3950": "utf-8"
-    },
-    "Czech_Prague_Library": {
-        "z3950": "marc8"
-    },
-    "Myanmar_Yangon_Library": {
-        "z3950": "utf-8"
-    },
-    "Israel_Central_Library": {
-        "z3950": "utf-8"
-    },
-    "Israel_Jerusalem_Library": {
-        "z3950": "utf-8"
-    },
-    "Greece_Attica_Library": {
-        "z3950": "utf-8"
-    },
-    "Greece_Central_Greece_Library": {
-        "z3950": "utf-8"
-    },
-    "Greece_Western_Greece_Library": {
-        "z3950": "latin1"
-    },
-    "Norway_Agder_Library": {
-        "z3950": "utf-8"
-    },
-    "Norway_Finnmark_Library": {
-        "z3950": "utf-8"
-    },
-    "Norway_Innlandet_Library": {
-        "z3950": "utf-8"
-    },
-    "Norway_Oslo_Library": {
-        "z3950": "utf-8"
-    },
-    "Norway_Troms_Library": {
-        "z3950": "utf-8"
-    },
-    "Sweden_Stockholm_Library": {
-        "z3950": "latin1"
-    },
-    "Ireland_Galway_Library": {
-        "z3950": "utf-8"
-    },
-    "Malaysia_Selangor_Library": {
-        "z3950": "utf-8"
-    },
-    "Argentina_Buenos_Aires_City_Library": {
-        "z3950": "utf-8"
-    },
-    "Argentina_Buenos_Aires_Province_Library": {
-        "z3950": "utf-8"
-    },
-    "Swiss_ZH_Library": {
-        "z3950": "utf-8"
-    },
-    "Swiss_BE_Library": {
-        "z3950": "utf-8"
-    },
-    "Swiss_VD_Library": {
-        "z3950": "utf-8"
-    },
-    "Martinique_Library": {
-        "z3950": "utf-8"
-    },
-    "Guadeloupe_Library": {
-        "z3950": "utf-8"
-    },
-    "Macau_Library": {
-        "z3950": "utf-8"
-    },
-    "Bermuda_Library": {
-        "z3950": "utf-8"
-    },
-    "Czech_Archive_Library": {
-        "z3950": "utf-8"
-    },
-    "Taiwan_Archive_Library": {
-        "z3950": "utf-8"
-    },
-    "Trinidad_Archive_Library": {
-        "z3950": "utf-8"
-    },
-    "Denmark_Archive_Library": {
-        "z3950": "utf-8"
-    },
-    "Czech_Archive_Work": {
-        "z3950": "utf-8"
-    },
-    "Taiwan_Archive_Work": {
-        "z3950": "utf-8"
-    },
-    "Trinidad_Archive_Work": {
-        "z3950": "utf-8"
-    },
-    "Denmark_Archive_Work": {
-        "z3950": "utf-8"
-    },
-    "Sweden_LIBRIS_Work": {
-        "z3950": "latin1"
-    },
-    "BC_Archives_Work": {
-        "z3950": "utf-8"
-    },
-    "Alberta_Archives_Work": {
-        "z3950": "utf-8"
-    },
-    "Ontario_Library_Work": {
-        "z3950": "utf-8"
-    },
-    "California_Library_Work": {
-        "z3950": "utf-8"
-    },
-    "Virginia_Library_Work": {
-        "z3950": "utf-8"
-    },
-    "Cyprus_Library_Work": {
-        "z3950": "utf-8"
-    },
-    "Medicine_NLM_Work": {
-        "z3950": "utf-8"
-    },
-    "Chicago_Library_Work": {
-        "z3950": "utf-8"
-    },
-    "Boston_Library_Work": {
-        "z3950": "utf-8"
-    },
-    "ACNP_Library": {
-        "z3950": "utf-8"
-    },
-    "Swedish_National_Archive": {
-        "z3950": "utf-8"
-    },
-    "ILO_Library": {
-        "z3950": "utf-8"
-    },
-    "ILO_Work": {
-        "z3950": "utf-8"
-    },
-    "BNF_France_Library": {
-        "z3950": "utf-8"
-    },
-    "BNF_France_Work": {
-        "z3950": "utf-8"
-    },
-    "CARLI_Illinois_Library": {
-        "z3950": "utf-8"
-    },
-    "CARLI_Illinois_Work": {
-        "z3950": "utf-8"
-    },
-    "MnPALS_Minnesota_Library": {
-        "z3950": "utf-8"
-    },
-    "MnPALS_Minnesota_Work": {
-        "z3950": "utf-8"
-    },
-    "Ontario_Legislative_Library": {
-        "z3950": "utf-8"
-    },
-    "Ontario_Legislative_Work": {
-        "z3950": "utf-8"
-    },
-    "LIBRIS_Sweden_Library": {
-        "z3950": "latin1"
-    },
-    "LIBRIS_Sweden_Work": {
-        "z3950": "latin1"
-    },
-    "Alberta_Provincial_Library": {
-        "z3950": "utf-8"
-    },
-    "Manitoba_Provincial_Library": {
-        "z3950": "na01.alma.exlibrisgroup.com:210/01UMB_INST"
-    },
-    "Saskatchewan_Provincial_Library": {
-        "z3950": "utf-8"
-    },
-    "Alberta_Provincial_Work": {
-        "z3950": "utf-8"
-    },
-    "Manitoba_Provincial_Work": {
-        "z3950": "na01.alma.exlibrisgroup.com:210/01UMB_INST"
-    },
-    "Saskatchewan_Provincial_Work": {
-        "z3950": "utf-8"
-    },
-    "NS_Provincial_Library": {
-        "z3950": "utf-8"
-    },
-    "NB_Provincial_Library": {
-        "z3950": "utf-8"
-    },
-    "NL_Provincial_Library": {
-        "z3950": "utf-8"
-    },
-    "PEI_Provincial_Library": {
-        "z3950": "utf-8"
-    },
-    "NS_Provincial_Work": {
-        "z3950": "utf-8"
-    },
-    "NB_Provincial_Work": {
-        "z3950": "utf-8"
-    },
-    "NL_Provincial_Work": {
-        "z3950": "utf-8"
-    },
-    "PEI_Provincial_Work": {
-        "z3950": "utf-8"
-    },
-    "Nobel_Person": {
-        "z3950": "utf-8"
-    },
-    "CastillaLeon_Library": {
-        "z3950": "marc8"
-    },
-    "Valencia_Library": {
-        "z3950": "utf-8"
-    },
-    "Toscana_Library": {
-        "z3950": "utf-8"
-    },
-    "CastillaLeon_Work": {
-        "z3950": "marc8"
-    },
-    "Valencia_Work": {
-        "z3950": "utf-8"
-    },
-    "Toscana_Work": {
-        "z3950": "utf-8"
-    },
-    "Cantabria_Library": {
-        "z3950": "latin1"
-    },
-    "Navarra_Library": {
-        "z3950": "utf-8"
-    },
-    "Veneto_Library": {
-        "z3950": "C95051UK.eos-intl.eu:210/MC95051UK"
-    },
-    "Cantabria_Work": {
-        "z3950": "latin1"
-    },
-    "Navarra_Work": {
-        "z3950": "utf-8"
-    },
-    "Veneto_Work": {
-        "z3950": "C95051UK.eos-intl.eu:210/MC95051UK"
-    },
-    "Banrepcultura_Library": {
-        "z3950": "utf-8"
-    },
-    "Smithsonian_Library": {
-        "z3950": "utf-8"
-    },
-    "Banrepcultura_Work": {
-        "z3950": "utf-8"
-    },
-    "Smithsonian_Work": {
-        "z3950": "utf-8"
-    },
-    "WorldBank_Library": {
-        "z3950": "jolis.imf.org:2200/UNICORN"
-    },
-    "IMF_Library": {
-        "z3950": "utf-8"
-    },
-    "SBN_Work": {
-        "z3950": "utf-8"
-    },
-    "Madrid_Regional_Library": {
-        "z3950": "utf-8"
-    },
-    "Madrid_Regional_Work": {
-        "z3950": "utf-8"
-    },
-    "Andorra_Library": {
-        "z3950": "utf-8"
-    },
-    "Andorra_Work": {
-        "z3950": "utf-8"
-    },
-    "Rome_Academy_Person": {
-        "z3950": "utf-8"
-    },
-    "Sinica_Person": {
-        "z3950": "utf-8"
-    },
-    "Poetry_Archive_Person": {
-        "z3950": "utf-8"
-    }
-}
-API_REGISTRY.update(OPTIMIZED_MINED_ENDPOINTS)
-
-# Domain-Specific REST Mappings for Non-Library Nodes
-DOMAIN_MAPPED_ENDPOINTS = {
     "ROR_Org": {
         "rest": "https://api.ror.org/organizations"
     },
@@ -8330,13 +6856,456 @@ DOMAIN_MAPPED_ENDPOINTS = {
     },
     "Chambers_Biographical_Dictionary_ID": {
         "rest": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json"
-    }
-}
-API_REGISTRY.update(DOMAIN_MAPPED_ENDPOINTS)
-
-# Optimized Mined Endpoints (Phase 2)
-OPTIMIZED_MINED_ENDPOINTS = {
+    },
+    "Japan_NDL_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru",
+        "z3950": "id.ndl.go.jp:210/ndla"
+    },
+    "Canada_LAC_Library": {
+        "sru": "http://amicus.collectionscanada.gc.ca:210/NLC",
+        "z3950": "amicus.collectionscanada.gc.ca:210/NLC"
+    },
+    "Israel_NLI_Library": {
+        "sru": "https://nli.alma.exlibrisgroup.com/view/sru/972NNL_INST",
+        "z3950": "nli.alma.exlibrisgroup.com:210/972NNL_INST"
+    },
+    "Poland_BN_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json",
+        "sru": "http://data.bn.org.pl/api/sru/bibs"
+    },
+    "Czech_NKC_Library": {
+        "sru": "https://aleph.nkp.cz/X",
+        "z3950": "aleph.nkp.cz:9991/NKC-UTF"
+    },
+    "Sweden_Libris_Library": {
+        "rest": "http://libris.kb.se/xsearch",
+        "sru": "http://libris.kb.se/sru"
+    },
+    "Norway_NL_Library": {
+        "rest": "https://api.nb.no/catalog/v1/items",
+        "sru": "https://api.nb.no/sru"
+    },
+    "Denmark_NL_Library": {
+        "sru": "https://kbdk-sru.kb.dk/sru/",
+        "z3950": "z3950.kb.dk:210/catalog"
+    },
+    "Finland_NL_Library": {
+        "sru": "https://fennica.linneanet.fi/sru",
+        "z3950": "fennica.linneanet.fi:210/voyager"
+    },
+    "Portugal_BNP_Library": {
+        "sru": "http://purl.pt/index/sru",
+        "z3950": "biblioteca.bnp.pt:210/biblios"
+    },
+    "Estonia_NL_Library": {
+        "sru": "https://data.nlib.ee/sru/ESTER",
+        "z3950": "data.nlib.ee:210/ESTER"
+    },
+    "Latvia_NL_Library": {
+        "sru": "https://primolatvija.hosted.exlibrisgroup.com/view/sru/371KISCNLL_VU1",
+        "z3950": "primolatvija.hosted.exlibrisgroup.com:210/371KISCNLL_VU1"
+    },
+    "Lithuania_NL_Library": {
+        "sru": "https://ibiblioteka.lt/view/sru/LNB",
+        "z3950": "ibiblioteka.lt:210/KNYGOS"
+    },
+    "Iceland_NL_Library": {
+        "sru": "https://leitir.is/sru",
+        "z3950": "leitir.is:210/geg"
+    },
+    "India_NLI_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru",
+        "z3950": "103.19.252.137:2100/default"
+    },
+    "UAE_NL_Library": {
+        "sru": "https://api.nla.ae/sru",
+        "z3950": "nla.ae:210/biblios"
+    },
+    "Turkey_NL_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Greece_NL_Library": {
+        "sru": "https://data.nlg.gr/api/SRU",
+        "z3950": "z3950.nlg.gr:210/biblios"
+    },
+    "Brazil_BN_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru",
+        "z3950": "acervo.bn.gov.br:210/biblios"
+    },
+    "Chile_NL_Library": {
+        "sru": "http://200.28.148.146:210/BNC01",
+        "z3950": "200.28.148.146:210/BNC01"
+    },
+    "Uruguay_NL_Library": {
+        "sru": "http://200.40.211.131:210/BNU01",
+        "z3950": "200.40.211.131:210/BNU01"
+    },
+    "Singapore_NLB_Library": {
+        "rest": "https://catalogue.nlb.gov.sg/cgi-bin/koha/opac-search.pl",
+        "sru": "http://catalogue.nlb.gov.sg/cgi-bin/koha/sru"
+    },
+    "Hungary_NL_Library": {
+        "z3950": "amicus.oszk.hu:1616/ANY"
+    },
+    "Slovakia_NL_Library": {
+        "z3950": "z3950.snk.sk:1111/clas01"
+    },
+    "Puerto_Rico_NL_Library": {
+        "z3950": "bnpr.kohacatalog.com:9999/biblios"
+    },
+    "Italy_SBN_Library": {
+        "z3950": "opac.sbn.it:2100/nopac"
+    },
+    "Smithsonian_Library": {
+        "rest": "https://api.si.edu/openaccess/api/v1.0/search"
+    },
+    "Europeana_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "DPLA_Library": {
+        "rest": "https://api.dp.la/v2/items"
+    },
+    "Zenodo_Library": {
+        "rest": "https://zenodo.org/api/records"
+    },
+    "arXiv_Library": {
+        "rest": "http://export.arxiv.org/api/query"
+    },
+    "Banrepcultura_Library": {
+        "z3950": "na06.alma.exlibrisgroup.com:1921/57BDLRDC_INST"
+    },
+    "Argentina_BNMM_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Mexico_NLC_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Colombia_UNAL_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Lebanon_AUB_Library": {
+        "z3950": "libcat.aub.edu.lb:210/innopac"
+    },
+    "Sudan_OU_Library": {
+        "z3950": "ous.daphnis.opalsinfo.net:210/ous_ous"
+    },
+    "UAE_HCT_Library": {
+        "z3950": "library.hct.ac.ae:210/INNOPAC"
+    },
+    "Pakistan_CPL_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Bangladesh_BRAC_Library": {
+        "z3950": "library.bracu.ac.bd:9999/biblios"
+    },
+    "Colorado_State_Library": {
+        "z3950": "csl.alma.exlibrisgroup.com:1921/01COL_STATE"
+    },
+    "Delaware_State_Library": {
+        "z3950": "dela.sirsi.net:2200/Unicorn"
+    },
+    "Hawaii_State_Library": {
+        "z3950": "kanawai.bywatersolutions.com:9997/biblios"
+    },
+    "Idaho_State_Library": {
+        "z3950": "voyager.boisestate.edu:7025/voyager"
+    },
+    "Indiana_State_Library": {
+        "z3950": "z3950.evergreen.lib.in.us:210/egin"
+    },
+    "Kansas_State_Library": {
+        "z3950": "k-state.alma.exlibrisgroup.com:1921/01KSU_INST"
+    },
+    "Kentucky_State_Library": {
+        "z3950": "library.acaweb.org:210/innopac"
+    },
+    "Maine_State_Library": {
+        "z3950": "mainecat.maine.edu:210/INNOPAC"
+    },
+    "Maryland_State_Library": {
+        "z3950": "cosmos.somd.lib.md.us:210/cosmos"
+    },
+    "Massachusetts_State_Library": {
+        "z3950": "catalog.helmlib.org:9998/biblios"
+    },
+    "Mississippi_State_Library": {
+        "z3950": "alcorn.sirsi.net:9019/Unicorn"
+    },
+    "Missouri_State_Library": {
+        "z3950": "lindahall.alma.exlibrisgroup.com:210/01LINDAHALL_INST"
+    },
+    "Montana_State_Library": {
+        "z3950": "mtsc.sirsi.net:2200/UNICORN"
+    },
+    "Nebraska_State_Library": {
+        "z3950": "z3950.biblionix.com:210/mortonjames"
+    },
+    "Nevada_State_Library": {
+        "z3950": "z3950.unr.edu:210/innopac"
+    },
+    "New_Mexico_State_Library": {
+        "z3950": "nmsu.alma.exlibrisgroup.com:1921/01NEWMEX_INST"
+    },
+    "North_Carolina_State_Library": {
+        "z3950": "slnc.alma.exlibrisgroup.com:1921/01SLNC_INST"
+    },
+    "Oklahoma_State_Library": {
+        "z3950": "okstate-stillwater.alma.exlibrisgroup.com:1921/01OKSTATESTILL_OKSTAT"
+    },
+    "Oregon_State_Library": {
+        "z3950": "alliance.alma.exlibrisgroup.com:1921/01ALLIANCE_OSL"
+    },
+    "South_Carolina_State_Library": {
+        "z3950": "pascal-musc.alma.exlibrisgroup.com:1921/01PASCAL_MUSC"
+    },
+    "Vermont_State_Library": {
+        "z3950": "vermont-vt.alma.exlibrisgroup.com:1921/01UVM_INST"
+    },
+    "West_Virginia_State_Library": {
+        "z3950": "library.acaweb.org:210/innopac"
+    },
+    "Wyoming_State_Library": {
+        "z3950": "wyld.sirsi.net:2200/UNICORN"
+    },
+    "Alabama_State_Library": {
+        "z3950": "alcorn.sirsi.net:9019/Unicorn"
+    },
+    "Alaska_State_Library": {
+        "z3950": "a50019.eos-intl.net:210/main"
+    },
+    "Arizona_State_Library": {
+        "z3950": "arizona-asu.alma.exlibrisgroup.com:1921/01ASU_INST"
+    },
+    "Georgia_State_Library": {
+        "z3950": "galileo-gsu.alma.exlibrisgroup.com:1921/01GALI_GSU"
+    },
+    "Michigan_State_Library": {
+        "z3950": "elibrary.mel.org:210/INNOPAC"
+    },
+    "Minnesota_State_Library": {
+        "z3950": "mnpals-network.alma.exlibrisgroup.com:1921/01PALS_NETWORK"
+    },
+    "North_Dakota_State_Library": {
+        "z3950": "na01.alma.exlibrisgroup.com:1921/01ODIN_NETWORK"
+    },
+    "South_Dakota_State_Library": {
+        "z3950": "sdsl.bywatersolutions.com:9991/biblios"
+    },
+    "Utah_State_Library": {
+        "z3950": "pion.sirsi.net:8319/unicorn"
+    },
+    "Virginia_State_Library": {
+        "z3950": "lva.alma.exlibrisgroup.com:1921/01VIVA_LVA"
+    },
+    "Washington_State_Library": {
+        "z3950": "sbctc-wsl.alma.exlibrisgroup.com:1921/01STATEWA_WSL"
+    },
+    "Wisconsin_State_Library": {
+        "z3950": "sus.wiscat.net:210/wiscat"
+    },
+    "Arkansas_State_Library": {
+        "z3950": "arks.sirsi.net:2500/UNICORN"
+    },
+    "California_State_Library": {
+        "z3950": "csl.alma.exlibrisgroup.com:1921/01CSL_INST"
+    },
+    "Connecticut_State_Library": {
+        "z3950": "cscu-csl.alma.exlibrisgroup.com:1921/01CSCU_CSL"
+    },
+    "Illinois_State_Library": {
+        "z3950": "i-share-isl.alma.exlibrisgroup.com:1921/01CARLI_ISL"
+    },
+    "New_Hampshire_State_Library": {
+        "z3950": "nhsl.nhais.bywatersolutions.com:9993/biblios"
+    },
+    "New_Jersey_State_Library": {
+        "z3950": "nj.ipac.sirsidynix.net:19610/horizon"
+    },
+    "New_York_State_Library": {
+        "z3950": "nyst.sirsi.net:8419/unicorn"
+    },
+    "Rhode_Island_State_Library": {
+        "z3950": "statelibrarycatalog.sos.ri.gov:9994/biblios"
+    },
+    "Florida_State_Library": {
+        "z3950": "fslt.sirsi.net:7019/UNICORN"
+    },
+    "Iowa_State_Library": {
+        "z3950": "koha.silo.lib.ia.us:9989/biblios"
+    },
+    "Louisiana_State_Library": {
+        "z3950": "ipac.state.lib.la.us:210/Horizon"
+    },
+    "Ohio_State_Library": {
+        "z3950": "ohiolink-slo.alma.exlibrisgroup.com:1921/01OHIOLINK_SLO"
+    },
+    "Pennsylvania_State_Library": {
+        "z3950": "na01.alma.exlibrisgroup.com:1921/01SSHELCO_STLIBPA"
+    },
+    "Tennessee_State_Library": {
+        "z3950": "tnsla.sirsi.net:7819/Unicorn"
+    },
+    "Texas_State_Library": {
+        "z3950": "tsla.sirsi.net:8219/UNICORN"
+    },
+    "BASE_Universal": {
+        "sru": "https://www.base-search.net/about/en/about_sources_api.php"
+    },
+    "JISC_UK_Hub": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "WorldCat_Universal": {
+        "rest": "https://americas.discovery.api.oclc.org/worldcat/search/v2/bibs"
+    },
+    "LoC_USA_Library": {
+        "rest": "https://www.loc.gov/apis/search",
+        "sru": "http://lx2.loc.gov/sru/lcdb",
+        "z3950": "lx2.loc.gov:210/LCDB"
+    },
+    "DNB_Germany_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "NLA_Australia_Library": {
+        "rest": "https://api.trove.nla.gov.au/v3/sru"
+    },
+    "Crossref_Work": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "OpenAlex_Work": {
+        "rest": "https://api.openalex.org/works"
+    },
+    "OpenLibrary_Title": {
+        "z3950": "latin1"
+    },
+    "Canada_Women_Writers_Person": {
+        "z3950": "utf-8"
+    },
+    "Swedish_Lit_Bank_Place_2": {
+        "z3950": "utf-8"
+    },
+    "Society_Authors_Org": {
+        "z3950": "utf-8"
+    },
+    "Swiss_Authors_Org": {
+        "z3950": "marc8"
+    },
+    "BiblioNet_Org": {
+        "z3950": "utf-8"
+    },
+    "Polish_Science_Org": {
+        "z3950": "utf-8"
+    },
+    "NBF_Book": {
+        "z3950": "utf-8"
+    },
+    "Hindawi_Org": {
+        "z3950": "latin1"
+    },
+    "Basque_Foundation_Org": {
+        "z3950": "utf-8"
+    },
+    "Society_Authors_Org_2": {
+        "z3950": "utf-8"
+    },
+    "Tournai_Org": {
+        "z3950": "utf-8"
+    },
+    "Illinois_Book_Person": {
+        "z3950": "utf-8"
+    },
+    "BNM_Mexico_Person": {
+        "z3950": "utf-8"
+    },
+    "Chile_NL_Person": {
+        "z3950": "utf-8"
+    },
+    "Peru_NL_Person": {
+        "z3950": "utf-8"
+    },
+    "Argentina_NL_Person": {
+        "z3950": "utf-8"
+    },
+    "Scotland_NL_Person": {
+        "z3950": "utf-8"
+    },
+    "Wales_NL_Person": {
+        "z3950": "utf-8"
+    },
+    "CostaRica_NL_Person": {
+        "z3950": "utf-8"
+    },
+    "Cuba_NL_Person": {
+        "z3950": "utf-8"
+    },
+    "Ireland_NL_Person": {
+        "z3950": "utf-8"
+    },
+    "Jamaica_NL_Person": {
+        "z3950": "utf-8"
+    },
+    "Lithuania_NL_Person": {
+        "z3950": "utf-8"
+    },
+    "Luxembourg_NL_Person": {
+        "z3950": "marc8"
+    },
+    "Norway_Bibsys_Person": {
+        "z3950": "utf-8"
+    },
+    "Russia_NL_Person": {
+        "z3950": "utf-8"
+    },
+    "Uruguay_NL_Person": {
+        "z3950": "utf-8"
+    },
+    "Georgia_NL_Person": {
+        "z3950": "utf-8"
+    },
+    "Lebanon_NL_Person": {
+        "z3950": "utf-8"
+    },
+    "Czech_History_Person": {
+        "z3950": "utf-8"
+    },
+    "Society_Authors_Org_3": {
+        "z3950": "utf-8"
+    },
+    "Georgia_Literacy_Person": {
+        "z3950": "utf-8"
+    },
+    "Academy_Awards_Nominee_Direct": {
+        "z3950": "utf-8"
+    },
+    "Cuba_Isla_de_la_Juventud_Library": {
+        "z3950": "utf-8"
+    },
+    "Cuba_Pinar_del_Rio_Library": {
+        "z3950": "utf-8"
+    },
+    "Cuba_Santiago_de_Cuba_Library": {
+        "z3950": "utf-8"
+    },
+    "Jamaica_Saint_Mary_Library": {
+        "z3950": "utf-8"
+    },
+    "Jamaica_Saint_Thomas_Library": {
+        "z3950": "utf-8"
+    },
+    "France_Centre_Val_de_Loire_Library": {
+        "z3950": "utf-8"
+    },
     "France_Hauts_de_France_Library": {
+        "z3950": "utf-8"
+    },
+    "France_Ile_de_France_Library": {
+        "z3950": "utf-8"
+    },
+    "France_Pays_de_la_Loire_Library": {
+        "z3950": "utf-8"
+    },
+    "Spain_Balearic_Islands_Library": {
         "z3950": "utf-8"
     },
     "Spain_Castilla_La_Mancha_Library": {
@@ -8348,19 +7317,91 @@ OPTIMIZED_MINED_ENDPOINTS = {
     "Spain_Madrid_Library": {
         "z3950": "utf-8"
     },
+    "Spain_La_Rioja_Library": {
+        "z3950": "latin1"
+    },
+    "UK_East_of_England_Library": {
+        "z3950": "utf-8"
+    },
+    "UK_West_Midlands_Library": {
+        "z3950": "utf-8"
+    },
+    "Chile_San_Felipe_de_Aconcagua_Library": {
+        "z3950": "utf-8"
+    },
     "Chile_Santiago_Library": {
         "z3950": "utf-8"
     },
-    "Ghana_Central_Library": {
+    "CostaRica_San_Jose_Library": {
         "z3950": "utf-8"
     },
-    "Guatemala_Guatemala_Library": {
+    "ElSalvador_La_Paz_Library": {
+        "z3950": "utf-8"
+    },
+    "ElSalvador_San_Miguel_Library": {
+        "z3950": "utf-8"
+    },
+    "ElSalvador_San_Vicente_Library": {
+        "z3950": "utf-8"
+    },
+    "Canada_Municipal_Toronto_Library": {
+        "z3950": "utf-8"
+    },
+    "Canada_Municipal_Ottawa_Library": {
+        "z3950": "utf-8"
+    },
+    "Pacific_American_Samoa_Library": {
+        "z3950": "utf-8"
+    },
+    "PNG_National_Capital_District_Library": {
+        "z3950": "utf-8"
+    },
+    "Ghana_Greater_Accra_Library": {
+        "z3950": "utf-8"
+    },
+    "Guatemala_San_Marcos_Library": {
+        "z3950": "utf-8"
+    },
+    "Honduras_Islas_de_la_Bahia_Library": {
+        "z3950": "utf-8"
+    },
+    "Honduras_La_Paz_Library": {
+        "z3950": "utf-8"
+    },
+    "Nicaragua_Rio_San_Juan_Library": {
+        "z3950": "utf-8"
+    },
+    "Ecuador_Los_Rios_Library": {
+        "z3950": "utf-8"
+    },
+    "Bolivia_La_Paz_Library": {
         "z3950": "utf-8"
     },
     "Cambodia_Phnom_Penh_Library": {
         "z3950": "utf-8"
     },
+    "Bulgaria_Sofia_Province_Library": {
+        "z3950": "utf-8"
+    },
+    "Trinidad_Couva_Tabaquite_Talparo_Library": {
+        "z3950": "utf-8"
+    },
+    "Trinidad_Diego_Martin_Library": {
+        "z3950": "utf-8"
+    },
+    "Trinidad_San_Juan_Laventille_Library": {
+        "z3950": "utf-8"
+    },
     "Trinidad_Tobago_Library": {
+        "z3950": "utf-8"
+    },
+    "DominicanRepublic_San_Jose_de_Ocoa_Library": {
+        "z3950": "utf-8"
+    },
+    "DominicanRepublic_San_Juan_Library": {
+        "z3950": "utf-8"
+    },
+    "DominicanRepublic_San_Pedro_de_Macoris_Library": {
         "z3950": "utf-8"
     },
     "Czech_Prague_Library": {
@@ -8369,19 +7410,28 @@ OPTIMIZED_MINED_ENDPOINTS = {
     "Myanmar_Yangon_Library": {
         "z3950": "utf-8"
     },
-    "Israel_Central_Library": {
-        "z3950": "utf-8"
-    },
     "Israel_Jerusalem_Library": {
         "z3950": "utf-8"
+    },
+    "Israel_Tel_Aviv_Library": {
+        "z3950": "utf-8"
+    },
+    "UAE_Abu_Dhabi_Library": {
+        "z3950": "utf-8"
+    },
+    "Uruguay_San_Jose_Library": {
+        "z3950": "utf-8"
+    },
+    "Venezuela_Distrito_Capital_Library": {
+        "z3950": "marc8"
     },
     "Greece_Attica_Library": {
         "z3950": "utf-8"
     },
-    "Greece_Central_Greece_Library": {
-        "z3950": "utf-8"
-    },
     "Greece_Western_Greece_Library": {
+        "z3950": "latin1"
+    },
+    "Greece_Western_Macedonia_Library": {
         "z3950": "latin1"
     },
     "Norway_Agder_Library": {
@@ -8391,6 +7441,9 @@ OPTIMIZED_MINED_ENDPOINTS = {
         "z3950": "utf-8"
     },
     "Norway_Innlandet_Library": {
+        "z3950": "utf-8"
+    },
+    "Norway_More_og_Romsdal_Library": {
         "z3950": "utf-8"
     },
     "Norway_Oslo_Library": {
@@ -8408,10 +7461,58 @@ OPTIMIZED_MINED_ENDPOINTS = {
     "Malaysia_Selangor_Library": {
         "z3950": "utf-8"
     },
+    "Malaysia_Kuala_Lumpur_Library": {
+        "z3950": "utf-8"
+    },
+    "Chile_Los_Rios_Library": {
+        "z3950": "utf-8"
+    },
+    "Thailand_Chiang_Mai_Library": {
+        "z3950": "utf-8"
+    },
+    "Thailand_Chiang_Rai_Library": {
+        "z3950": "utf-8"
+    },
+    "Thailand_Khon_Kaen_Library": {
+        "z3950": "utf-8"
+    },
+    "Thailand_Maha_Sarakham_Library": {
+        "z3950": "utf-8"
+    },
+    "Colombia_Norte_de_Santander_Library": {
+        "z3950": "marc8"
+    },
+    "Colombia_Valle_del_Cauca_Library": {
+        "z3950": "utf-8"
+    },
+    "Colombia_Bogota_DC_Library": {
+        "z3950": "marc8"
+    },
+    "Philippines_Agusan_del_Norte_Library": {
+        "z3950": "utf-8"
+    },
+    "Philippines_Davao_del_Norte_Library": {
+        "z3950": "utf-8"
+    },
+    "Philippines_Lanao_del_Norte_Library": {
+        "z3950": "utf-8"
+    },
+    "Philippines_Surigao_del_Norte_Library": {
+        "z3950": "utf-8"
+    },
+    "Philippines_Zamboanga_del_Norte_Library": {
+        "z3950": "utf-8"
+    },
     "Argentina_Buenos_Aires_City_Library": {
         "z3950": "utf-8"
     },
     "Argentina_Buenos_Aires_Province_Library": {
+        "z3950": "utf-8"
+    },
+    "Argentina_La_Rioja_Library": {
+        "z3950": "latin1"
+    },
+    "Argentina_San_Juan_Library": {
         "z3950": "utf-8"
     },
     "Swiss_ZH_Library": {
@@ -8421,6 +7522,39 @@ OPTIMIZED_MINED_ENDPOINTS = {
         "z3950": "utf-8"
     },
     "Swiss_VD_Library": {
+        "z3950": "utf-8"
+    },
+    "Library_of_the_University_of_Santiago_de_Compostela_authority_ID": {
+        "z3950": "utf-8"
+    },
+    "National_Gallery_of_Art_Library_Bibliographic_ID": {
+        "z3950": "utf-8"
+    },
+    "BNF_France_Library": {
+        "z3950": "utf-8"
+    },
+    "CARLI_Illinois_Library": {
+        "z3950": "utf-8"
+    },
+    "MnPALS_Minnesota_Library": {
+        "z3950": "utf-8"
+    },
+    "Ontario_Legislative_Library": {
+        "z3950": "utf-8"
+    },
+    "LIBRIS_Sweden_Library": {
+        "z3950": "latin1"
+    },
+    "Ghana_Central_Library": {
+        "z3950": "utf-8"
+    },
+    "Guatemala_Guatemala_Library": {
+        "z3950": "utf-8"
+    },
+    "Israel_Central_Library": {
+        "z3950": "utf-8"
+    },
+    "Greece_Central_Greece_Library": {
         "z3950": "utf-8"
     },
     "Martinique_Library": {
@@ -8447,89 +7581,11 @@ OPTIMIZED_MINED_ENDPOINTS = {
     "Denmark_Archive_Library": {
         "z3950": "utf-8"
     },
-    "Czech_Archive_Work": {
-        "z3950": "utf-8"
-    },
-    "Taiwan_Archive_Work": {
-        "z3950": "utf-8"
-    },
-    "Trinidad_Archive_Work": {
-        "z3950": "utf-8"
-    },
-    "Denmark_Archive_Work": {
-        "z3950": "utf-8"
-    },
-    "Sweden_LIBRIS_Work": {
-        "z3950": "latin1"
-    },
-    "BC_Archives_Work": {
-        "z3950": "utf-8"
-    },
-    "Alberta_Archives_Work": {
-        "z3950": "utf-8"
-    },
-    "Ontario_Library_Work": {
-        "z3950": "utf-8"
-    },
-    "California_Library_Work": {
-        "z3950": "utf-8"
-    },
-    "Virginia_Library_Work": {
-        "z3950": "utf-8"
-    },
-    "Cyprus_Library_Work": {
-        "z3950": "utf-8"
-    },
-    "Medicine_NLM_Work": {
-        "z3950": "utf-8"
-    },
-    "Chicago_Library_Work": {
-        "z3950": "utf-8"
-    },
-    "Boston_Library_Work": {
-        "z3950": "utf-8"
-    },
     "ACNP_Library": {
-        "z3950": "utf-8"
-    },
-    "Swedish_National_Archive": {
         "z3950": "utf-8"
     },
     "ILO_Library": {
         "z3950": "utf-8"
-    },
-    "ILO_Work": {
-        "z3950": "utf-8"
-    },
-    "BNF_France_Library": {
-        "z3950": "utf-8"
-    },
-    "BNF_France_Work": {
-        "z3950": "utf-8"
-    },
-    "CARLI_Illinois_Library": {
-        "z3950": "utf-8"
-    },
-    "CARLI_Illinois_Work": {
-        "z3950": "utf-8"
-    },
-    "MnPALS_Minnesota_Library": {
-        "z3950": "utf-8"
-    },
-    "MnPALS_Minnesota_Work": {
-        "z3950": "utf-8"
-    },
-    "Ontario_Legislative_Library": {
-        "z3950": "utf-8"
-    },
-    "Ontario_Legislative_Work": {
-        "z3950": "utf-8"
-    },
-    "LIBRIS_Sweden_Library": {
-        "z3950": "latin1"
-    },
-    "LIBRIS_Sweden_Work": {
-        "z3950": "latin1"
     },
     "Alberta_Provincial_Library": {
         "z3950": "utf-8"
@@ -8538,15 +7594,6 @@ OPTIMIZED_MINED_ENDPOINTS = {
         "z3950": "na01.alma.exlibrisgroup.com:210/01UMB_INST"
     },
     "Saskatchewan_Provincial_Library": {
-        "z3950": "utf-8"
-    },
-    "Alberta_Provincial_Work": {
-        "z3950": "utf-8"
-    },
-    "Manitoba_Provincial_Work": {
-        "z3950": "na01.alma.exlibrisgroup.com:210/01UMB_INST"
-    },
-    "Saskatchewan_Provincial_Work": {
         "z3950": "utf-8"
     },
     "NS_Provincial_Library": {
@@ -8561,21 +7608,6 @@ OPTIMIZED_MINED_ENDPOINTS = {
     "PEI_Provincial_Library": {
         "z3950": "utf-8"
     },
-    "NS_Provincial_Work": {
-        "z3950": "utf-8"
-    },
-    "NB_Provincial_Work": {
-        "z3950": "utf-8"
-    },
-    "NL_Provincial_Work": {
-        "z3950": "utf-8"
-    },
-    "PEI_Provincial_Work": {
-        "z3950": "utf-8"
-    },
-    "Nobel_Person": {
-        "z3950": "utf-8"
-    },
     "CastillaLeon_Library": {
         "z3950": "marc8"
     },
@@ -8583,15 +7615,6 @@ OPTIMIZED_MINED_ENDPOINTS = {
         "z3950": "utf-8"
     },
     "Toscana_Library": {
-        "z3950": "utf-8"
-    },
-    "CastillaLeon_Work": {
-        "z3950": "marc8"
-    },
-    "Valencia_Work": {
-        "z3950": "utf-8"
-    },
-    "Toscana_Work": {
         "z3950": "utf-8"
     },
     "Cantabria_Library": {
@@ -8603,67 +7626,17 @@ OPTIMIZED_MINED_ENDPOINTS = {
     "Veneto_Library": {
         "z3950": "C95051UK.eos-intl.eu:210/MC95051UK"
     },
-    "Cantabria_Work": {
-        "z3950": "latin1"
-    },
-    "Navarra_Work": {
-        "z3950": "utf-8"
-    },
-    "Veneto_Work": {
-        "z3950": "C95051UK.eos-intl.eu:210/MC95051UK"
-    },
-    "Banrepcultura_Library": {
-        "z3950": "utf-8"
-    },
-    "Smithsonian_Library": {
-        "z3950": "utf-8"
-    },
-    "Banrepcultura_Work": {
-        "z3950": "utf-8"
-    },
-    "Smithsonian_Work": {
-        "z3950": "utf-8"
-    },
     "WorldBank_Library": {
         "z3950": "jolis.imf.org:2200/UNICORN"
     },
     "IMF_Library": {
         "z3950": "utf-8"
     },
-    "SBN_Work": {
-        "z3950": "utf-8"
-    },
     "Madrid_Regional_Library": {
-        "z3950": "utf-8"
-    },
-    "Madrid_Regional_Work": {
         "z3950": "utf-8"
     },
     "Andorra_Library": {
         "z3950": "utf-8"
-    },
-    "Andorra_Work": {
-        "z3950": "utf-8"
-    },
-    "Rome_Academy_Person": {
-        "z3950": "utf-8"
-    },
-    "Sinica_Person": {
-        "z3950": "utf-8"
-    },
-    "Poetry_Archive_Person": {
-        "z3950": "utf-8"
-    }
-}
-API_REGISTRY.update(OPTIMIZED_MINED_ENDPOINTS)
-
-# Hierarchical National Fallback Endpoints
-HIERARCHICAL_FALLBACK_ENDPOINTS = {
-    "Indiana_State_Library": {
-        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
-    },
-    "New_Mexico_State_Library": {
-        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
     },
     "France_Auvergne_Rhone_Alpes_Library": {
         "sru": "https://gallica.bnf.fr/SRU"
@@ -8751,42 +7724,6 @@ HIERARCHICAL_FALLBACK_ENDPOINTS = {
     },
     "Italy_Veneto_Library": {
         "sru": "http://opac.sbn.it/sru/servlet/SRU"
-    },
-    "Spain_Andalucia_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
-    },
-    "Spain_Aragon_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
-    },
-    "Spain_Asturias_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
-    },
-    "Spain_Basque_Country_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
-    },
-    "Spain_Canary_Islands_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
-    },
-    "Spain_Cantabria_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
-    },
-    "Spain_Catalonia_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
-    },
-    "Spain_Extremadura_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
-    },
-    "Spain_Galicia_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
-    },
-    "Spain_Murcia_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
-    },
-    "Spain_Navarra_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
-    },
-    "Spain_Valencia_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
     },
     "UK_East_Midlands_Library": {
         "rest": "https://discover.libraryhub.jisc.ac.uk/search"
@@ -9080,12 +8017,6 @@ HIERARCHICAL_FALLBACK_ENDPOINTS = {
     "Portugal_Madeira_Library": {
         "sru": "http://purl.pt/index/sru"
     },
-    "Spain_Ceuta_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
-    },
-    "Spain_Melilla_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
-    },
     "Pacific_French_Polynesia_Library": {
         "sru": "https://gallica.bnf.fr/SRU"
     },
@@ -9144,12 +8075,6 @@ HIERARCHICAL_FALLBACK_ENDPOINTS = {
     },
     "Albania_Kukes_Library": {
         "rest": "https://discover.libraryhub.jisc.ac.uk/search"
-    },
-    "Trinidad_Port_of_Spain_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
-    },
-    "Bahamas_Spanish_Wells_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
     },
     "Czech_Central_Bohemian_Library": {
         "sru": "https://aleph.nkp.cz/X"
@@ -10339,17 +9264,8 @@ HIERARCHICAL_FALLBACK_ENDPOINTS = {
     "Brazil_NL_Library": {
         "sru": "http://acervo.bn.gov.br/sophia_web/sru"
     },
-    "Chile_NL_Library": {
-        "sru": "http://200.28.148.146:210/BNC01"
-    },
     "Colombia_NL_Library": {
         "z3950": "168.176.5.96:9991/SNB01"
-    },
-    "At_the_Circulating_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "At_the_Circulating_Library_ID": {
-        "rest": "http://api.redalyc.org/search/"
     },
     "National_Library_of_Chile_ID": {
         "sru": "http://200.28.148.146:210/BNC01"
@@ -10414,9 +9330,6 @@ HIERARCHICAL_FALLBACK_ENDPOINTS = {
         "sru": "https://services.dnb.de/sru/dnb",
         "z3950": "z3950.dnb.de:210/dnb"
     },
-    "BVPB_Spain_Library": {
-        "sru": "https://hispana.mcu.es/es/sru/sru.do"
-    },
     "SLSA_Australia_Library": {
         "rest": "https://api.trove.nla.gov.au/v3/sru"
     },
@@ -10444,12 +9357,6 @@ HIERARCHICAL_FALLBACK_ENDPOINTS = {
     },
     "Ukraine_NL_Library": {
         "rest": "https://discover.libraryhub.jisc.ac.uk/search"
-    },
-    "Norway_NL_Library": {
-        "rest": "https://api.nb.no/catalog/v1/items"
-    },
-    "Europeana_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
     },
     "Sudoc_France_Library": {
         "sru": "https://gallica.bnf.fr/SRU"
@@ -10490,347 +9397,6 @@ HIERARCHICAL_FALLBACK_ENDPOINTS = {
     },
     "IndCat_India_Library": {
         "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
-    }
-}
-API_REGISTRY.update(HIERARCHICAL_FALLBACK_ENDPOINTS)
-
-# Restored National and State Hubs
-RESTORED_NATIONAL_HUBS = {
-    "Japan_NDL_Library": {
-        "sru": "https://id.ndl.go.jp/auth/ndla/sru",
-        "z3950": "id.ndl.go.jp:210/ndla"
-    },
-    "Canada_LAC_Library": {
-        "sru": "http://amicus.collectionscanada.gc.ca:210/NLC",
-        "z3950": "amicus.collectionscanada.gc.ca:210/NLC"
-    },
-    "Israel_NLI_Library": {
-        "sru": "https://nli.alma.exlibrisgroup.com/view/sru/972NNL_INST",
-        "z3950": "nli.alma.exlibrisgroup.com:210/972NNL_INST"
-    },
-    "Poland_BN_Library": {
-        "rest": "https://data.bn.org.pl/api/institutions/bibs.json",
-        "sru": "http://data.bn.org.pl/api/sru/bibs"
-    },
-    "Czech_NKC_Library": {
-        "sru": "https://aleph.nkp.cz/X",
-        "z3950": "aleph.nkp.cz:9991/NKC-UTF"
-    },
-    "Sweden_Libris_Library": {
-        "rest": "http://libris.kb.se/xsearch",
-        "sru": "http://libris.kb.se/sru"
-    },
-    "Norway_NL_Library": {
-        "rest": "https://api.nb.no/catalog/v1/items",
-        "sru": "https://api.nb.no/sru"
-    },
-    "Denmark_NL_Library": {
-        "sru": "https://kbdk-sru.kb.dk/sru/",
-        "z3950": "z3950.kb.dk:210/catalog"
-    },
-    "Finland_NL_Library": {
-        "sru": "https://fennica.linneanet.fi/sru",
-        "z3950": "fennica.linneanet.fi:210/voyager"
-    },
-    "Portugal_BNP_Library": {
-        "sru": "http://purl.pt/index/sru",
-        "z3950": "biblioteca.bnp.pt:210/biblios"
-    },
-    "Estonia_NL_Library": {
-        "sru": "https://data.nlib.ee/sru/ESTER",
-        "z3950": "data.nlib.ee:210/ESTER"
-    },
-    "Latvia_NL_Library": {
-        "sru": "https://primolatvija.hosted.exlibrisgroup.com/view/sru/371KISCNLL_VU1",
-        "z3950": "primolatvija.hosted.exlibrisgroup.com:210/371KISCNLL_VU1"
-    },
-    "Lithuania_NL_Library": {
-        "sru": "https://ibiblioteka.lt/view/sru/LNB",
-        "z3950": "ibiblioteka.lt:210/KNYGOS"
-    },
-    "Iceland_NL_Library": {
-        "sru": "https://leitir.is/sru",
-        "z3950": "leitir.is:210/geg"
-    },
-    "India_NLI_Library": {
-        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru",
-        "z3950": "103.19.252.137:2100/default"
-    },
-    "UAE_NL_Library": {
-        "sru": "https://api.nla.ae/sru",
-        "z3950": "nla.ae:210/biblios"
-    },
-    "Turkey_NL_Library": {
-        "sru": "http://kasif.mkutup.gov.tr/sru",
-        "z3950": "kasif.mkutup.gov.tr:210/biblios"
-    },
-    "Greece_NL_Library": {
-        "sru": "https://data.nlg.gr/api/SRU",
-        "z3950": "z3950.nlg.gr:210/biblios"
-    },
-    "Brazil_BN_Library": {
-        "sru": "http://acervo.bn.gov.br/sophia_web/sru",
-        "z3950": "acervo.bn.gov.br:210/biblios"
-    },
-    "Chile_NL_Library": {
-        "sru": "http://200.28.148.146:210/BNC01",
-        "z3950": "200.28.148.146:210/BNC01"
-    },
-    "Uruguay_NL_Library": {
-        "sru": "http://200.40.211.131:210/BNU01",
-        "z3950": "200.40.211.131:210/BNU01"
-    },
-    "Singapore_NLB_Library": {
-        "rest": "https://catalogue.nlb.gov.sg/cgi-bin/koha/opac-search.pl",
-        "sru": "http://catalogue.nlb.gov.sg/cgi-bin/koha/sru"
-    },
-    "Hungary_NL_Library": {
-        "z3950": "amicus.oszk.hu:1616/ANY"
-    },
-    "Slovakia_NL_Library": {
-        "z3950": "z3950.snk.sk:1111/clas01"
-    },
-    "Puerto_Rico_NL_Library": {
-        "z3950": "bnpr.kohacatalog.com:9999/biblios"
-    },
-    "Italy_SBN_Library": {
-        "z3950": "opac.sbn.it:2100/nopac"
-    },
-    "Smithsonian_Library": {
-        "rest": "https://api.si.edu/openaccess/api/v1.0/search"
-    },
-    "Europeana_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "DPLA_Library": {
-        "rest": "https://api.dp.la/v2/items"
-    },
-    "Zenodo_Library": {
-        "rest": "https://zenodo.org/api/records"
-    },
-    "arXiv_Library": {
-        "rest": "http://export.arxiv.org/api/query"
-    },
-    "Banrepcultura_Library": {
-        "z3950": "na06.alma.exlibrisgroup.com:1921/57BDLRDC_INST"
-    },
-    "Argentina_BNMM_Library": {
-        "z3950": "200.123.191.9:9991/BNA01"
-    },
-    "Mexico_NLC_Library": {
-        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
-    },
-    "Colombia_UNAL_Library": {
-        "z3950": "168.176.5.96:9991/SNB01"
-    },
-    "Lebanon_AUB_Library": {
-        "z3950": "libcat.aub.edu.lb:210/innopac"
-    },
-    "Sudan_OU_Library": {
-        "z3950": "ous.daphnis.opalsinfo.net:210/ous_ous"
-    },
-    "UAE_HCT_Library": {
-        "z3950": "library.hct.ac.ae:210/INNOPAC"
-    },
-    "Pakistan_CPL_Library": {
-        "z3950": "122.129.84.203:2100/biblios"
-    },
-    "Bangladesh_BRAC_Library": {
-        "z3950": "library.bracu.ac.bd:9999/biblios"
-    },
-    "Colorado_State_Library": {
-        "z3950": "csl.alma.exlibrisgroup.com:1921/01COL_STATE"
-    },
-    "Delaware_State_Library": {
-        "z3950": "dela.sirsi.net:2200/Unicorn"
-    },
-    "Hawaii_State_Library": {
-        "z3950": "kanawai.bywatersolutions.com:9997/biblios"
-    },
-    "Idaho_State_Library": {
-        "z3950": "voyager.boisestate.edu:7025/voyager"
-    },
-    "Indiana_State_Library": {
-        "z3950": "z3950.evergreen.lib.in.us:210/egin"
-    },
-    "Kansas_State_Library": {
-        "z3950": "k-state.alma.exlibrisgroup.com:1921/01KSU_INST"
-    },
-    "Kentucky_State_Library": {
-        "z3950": "library.acaweb.org:210/innopac"
-    },
-    "Maine_State_Library": {
-        "z3950": "mainecat.maine.edu:210/INNOPAC"
-    },
-    "Maryland_State_Library": {
-        "z3950": "cosmos.somd.lib.md.us:210/cosmos"
-    },
-    "Massachusetts_State_Library": {
-        "z3950": "catalog.helmlib.org:9998/biblios"
-    },
-    "Mississippi_State_Library": {
-        "z3950": "alcorn.sirsi.net:9019/Unicorn"
-    },
-    "Missouri_State_Library": {
-        "z3950": "lindahall.alma.exlibrisgroup.com:210/01LINDAHALL_INST"
-    },
-    "Montana_State_Library": {
-        "z3950": "mtsc.sirsi.net:2200/UNICORN"
-    },
-    "Nebraska_State_Library": {
-        "z3950": "z3950.biblionix.com:210/mortonjames"
-    },
-    "Nevada_State_Library": {
-        "z3950": "z3950.unr.edu:210/innopac"
-    },
-    "New_Mexico_State_Library": {
-        "z3950": "nmsu.alma.exlibrisgroup.com:1921/01NEWMEX_INST"
-    },
-    "North_Carolina_State_Library": {
-        "z3950": "slnc.alma.exlibrisgroup.com:1921/01SLNC_INST"
-    },
-    "Oklahoma_State_Library": {
-        "z3950": "okstate-stillwater.alma.exlibrisgroup.com:1921/01OKSTATESTILL_OKSTAT"
-    },
-    "Oregon_State_Library": {
-        "z3950": "alliance.alma.exlibrisgroup.com:1921/01ALLIANCE_OSL"
-    },
-    "South_Carolina_State_Library": {
-        "z3950": "pascal-musc.alma.exlibrisgroup.com:1921/01PASCAL_MUSC"
-    },
-    "Vermont_State_Library": {
-        "z3950": "vermont-vt.alma.exlibrisgroup.com:1921/01UVM_INST"
-    },
-    "West_Virginia_State_Library": {
-        "z3950": "library.acaweb.org:210/innopac"
-    },
-    "Wyoming_State_Library": {
-        "z3950": "wyld.sirsi.net:2200/UNICORN"
-    },
-    "Alabama_State_Library": {
-        "z3950": "alcorn.sirsi.net:9019/Unicorn"
-    },
-    "Alaska_State_Library": {
-        "z3950": "a50019.eos-intl.net:210/main"
-    },
-    "Arizona_State_Library": {
-        "z3950": "arizona-asu.alma.exlibrisgroup.com:1921/01ASU_INST"
-    },
-    "Georgia_State_Library": {
-        "z3950": "galileo-gsu.alma.exlibrisgroup.com:1921/01GALI_GSU"
-    },
-    "Michigan_State_Library": {
-        "z3950": "elibrary.mel.org:210/INNOPAC"
-    },
-    "Minnesota_State_Library": {
-        "z3950": "mnpals-network.alma.exlibrisgroup.com:1921/01PALS_NETWORK"
-    },
-    "North_Dakota_State_Library": {
-        "z3950": "na01.alma.exlibrisgroup.com:1921/01ODIN_NETWORK"
-    },
-    "South_Dakota_State_Library": {
-        "z3950": "sdsl.bywatersolutions.com:9991/biblios"
-    },
-    "Utah_State_Library": {
-        "z3950": "pion.sirsi.net:8319/unicorn"
-    },
-    "Virginia_State_Library": {
-        "z3950": "lva.alma.exlibrisgroup.com:1921/01VIVA_LVA"
-    },
-    "Washington_State_Library": {
-        "z3950": "sbctc-wsl.alma.exlibrisgroup.com:1921/01STATEWA_WSL"
-    },
-    "Wisconsin_State_Library": {
-        "z3950": "sus.wiscat.net:210/wiscat"
-    },
-    "Arkansas_State_Library": {
-        "z3950": "arks.sirsi.net:2500/UNICORN"
-    },
-    "California_State_Library": {
-        "z3950": "csl.alma.exlibrisgroup.com:1921/01CSL_INST"
-    },
-    "Connecticut_State_Library": {
-        "z3950": "cscu-csl.alma.exlibrisgroup.com:1921/01CSCU_CSL"
-    },
-    "Illinois_State_Library": {
-        "z3950": "i-share-isl.alma.exlibrisgroup.com:1921/01CARLI_ISL"
-    },
-    "New_Hampshire_State_Library": {
-        "z3950": "nhsl.nhais.bywatersolutions.com:9993/biblios"
-    },
-    "New_Jersey_State_Library": {
-        "z3950": "nj.ipac.sirsidynix.net:19610/horizon"
-    },
-    "New_York_State_Library": {
-        "z3950": "nyst.sirsi.net:8419/unicorn"
-    },
-    "Rhode_Island_State_Library": {
-        "z3950": "statelibrarycatalog.sos.ri.gov:9994/biblios"
-    },
-    "Florida_State_Library": {
-        "z3950": "fslt.sirsi.net:7019/UNICORN"
-    },
-    "Iowa_State_Library": {
-        "z3950": "koha.silo.lib.ia.us:9989/biblios"
-    },
-    "Louisiana_State_Library": {
-        "z3950": "ipac.state.lib.la.us:210/Horizon"
-    },
-    "Ohio_State_Library": {
-        "z3950": "ohiolink-slo.alma.exlibrisgroup.com:1921/01OHIOLINK_SLO"
-    },
-    "Pennsylvania_State_Library": {
-        "z3950": "na01.alma.exlibrisgroup.com:1921/01SSHELCO_STLIBPA"
-    },
-    "Tennessee_State_Library": {
-        "z3950": "tnsla.sirsi.net:7819/Unicorn"
-    },
-    "Texas_State_Library": {
-        "z3950": "tsla.sirsi.net:8219/UNICORN"
-    }
-}
-API_REGISTRY.update(RESTORED_NATIONAL_HUBS)
-
-# Additional Hierarchical Fallbacks
-ADDITIONAL_FALLBACKS = {
-    "Cuba_Camaguey_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Cuba_Ciego_de_Avila_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Cuba_Cienfuegos_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Cuba_Granma_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Cuba_Guantanamo_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Cuba_Holguin_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Cuba_Artemisa_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Cuba_Mayabeque_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Cuba_La_Habana_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Cuba_Las_Tunas_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Cuba_Matanzas_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Cuba_Sancti_Spiritus_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Cuba_Villa_Clara_Library": {
-        "rest": "http://api.redalyc.org/search/"
     },
     "Turkey_Adana_Library": {
         "sru": "http://kasif.mkutup.gov.tr/sru",
@@ -11148,54 +9714,6 @@ ADDITIONAL_FALLBACKS = {
         "sru": "http://kasif.mkutup.gov.tr/sru",
         "z3950": "kasif.mkutup.gov.tr:210/biblios"
     },
-    "Korea_Seoul_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Korea_Daegu_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Korea_Incheon_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Korea_Gwangju_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Korea_Daejeon_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Korea_Ulsan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Korea_Sejong_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Korea_Gyeonggi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Korea_Gangwon_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Korea_North_Chungcheong_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Korea_South_Chungcheong_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Korea_North_Jeolla_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Korea_South_Jeolla_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Korea_North_Gyeongsang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Korea_South_Gyeongsang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Korea_Jeju_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
     "Morocco_Beni_Mellal_Khenifra_Library": {
         "sru": "https://gallica.bnf.fr/SRU"
     },
@@ -11231,264 +9749,6 @@ ADDITIONAL_FALLBACKS = {
     },
     "Morocco_Tanger_Tetouan_Al_Hoceima_Library": {
         "sru": "https://gallica.bnf.fr/SRU"
-    },
-    "Vietnam_An_Giang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Ba_Ria_Vung_Tau_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Bac_Giang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Bac_Kan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Bac_Lieu_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Bac_Ninh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Ben_Tre_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Binh_Dinh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Binh_Duong_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Binh_Phuoc_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Binh_Thuan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Ca_Mau_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Can_Tho_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Cao_Bang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Da_Nang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Dak_Lak_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Dak_Nong_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Dien_Bien_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Dong_Nai_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Dong_Thap_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Gia_Lai_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Ha_Giang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Ha_Nam_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Ha_Noi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Ha_Tinh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Hai_Duong_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Hai_Phong_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Hau_Giang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Ho_Chi_Minh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Hoa_Binh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Hung_Yen_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Khanh_Hoa_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Kien_Giang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Kon_Tum_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Lai_Chau_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Lam_Dong_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Lang_Son_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Lao_Cai_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Long_An_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Nam_Dinh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Nghe_An_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Ninh_Binh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Ninh_Thuan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Phu_Tho_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Phu_Yen_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Quang_Binh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Quang_Nam_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Quang_Ngai_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Quang_Ninh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Quang_Tri_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Soc_Trang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Son_La_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Tay_Ninh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Thai_Binh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Thai_Nguyen_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Thanh_Hoa_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Thua_Thien_Hue_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Tien_Giang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Tra_Vinh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Tuyen_Quang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Vinh_Long_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Vinh_Phuc_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Vietnam_Yen_Bai_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Ilocos_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Cagayan_Valley_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Central_Luzon_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Calabarzon_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Mimaropa_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Bicol_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Western_Visayas_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Central_Visayas_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Eastern_Visayas_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Zamboanga_Peninsula_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Northern_Mindanao_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Davao_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Soccsksargen_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Caraga_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Bangsamoro_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Cordillera_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_NCR_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Sumatra_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Java_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Kalimantan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Sulawesi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Lesser_Sunda_Islands_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Papua_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
     },
     "Pakistan_Bahawalpur_Library": {
         "z3950": "122.129.84.203:2100/biblios"
@@ -11973,9 +10233,6 @@ ADDITIONAL_FALLBACKS = {
     "Angola_Cabinda_Library": {
         "sru": "http://purl.pt/index/sru"
     },
-    "Angola_Cuando_Cubango_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
     "Angola_Cuanza_Norte_Library": {
         "sru": "http://purl.pt/index/sru"
     },
@@ -12093,96 +10350,6 @@ ADDITIONAL_FALLBACKS = {
     "DRCongo_Maniema_Library": {
         "sru": "https://gallica.bnf.fr/SRU"
     },
-    "Tanzania_Arusha_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Dar_es_Salaam_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Dodoma_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Geita_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Iringa_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Kagera_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Katavi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Kigoma_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Kilimanjaro_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Lindi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Manyara_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Mara_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Mbeya_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Morogoro_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Mtwara_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Mwanza_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Njombe_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Pemba_North_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Pemba_South_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Pwani_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Ruvuma_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Shinyanga_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Simiyu_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Singida_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Songwe_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Tabora_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Tanga_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Zanzibar_North_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Zanzibar_South_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Zanzibar_West_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
     "Uzbekistan_Andijan_Library": {
         "z3950": "u95030.eos-intl.net:210/main"
     },
@@ -12218,162 +10385,6 @@ ADDITIONAL_FALLBACKS = {
     },
     "Uzbekistan_Karakalpakstan_Library": {
         "z3950": "u95030.eos-intl.net:210/main"
-    },
-    "Guatemala_Alta_Verapaz_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Baja_Verapaz_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Chimaltenango_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Chiquimula_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_El_Progreso_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Escuintla_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Huehuetenango_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Izabal_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Jalapa_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Jutiapa_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Peten_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Quetzaltenango_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Quiche_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Retalhuleu_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Sacatepequez_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Santa_Rosa_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Solola_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Suchitepequez_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Totonicapan_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Guatemala_Zacapa_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_Atlantida_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_Choluteca_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_Colon_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_Comayagua_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_Copan_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_Cortes_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_El_Paraiso_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_Francisco_Morazan_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_Gracias_a_Dios_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_Intibuca_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_Lempira_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_Ocotepeque_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_Olancho_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_Santa_Barbara_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_Valle_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Honduras_Yoro_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_Boaco_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_Carazo_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_Chinandega_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_Chontales_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_Esteli_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_Granada_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_Jinotega_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_Leon_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_Madriz_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_Managua_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_Masaya_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_Matagalpa_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_Nueva_Segovia_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_Rivas_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_RACCN_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Nicaragua_RACCS_Library": {
-        "rest": "http://api.redalyc.org/search/"
     },
     "Nigeria_Anambra_Library": {
         "rest": "https://api.crossref.org/works"
@@ -12437,165 +10448,6 @@ ADDITIONAL_FALLBACKS = {
     },
     "Uzbekistan_Tashkent_Region_Library": {
         "z3950": "u95030.eos-intl.net:210/main"
-    },
-    "Kazakhstan_Abai_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_Akmola_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_Aktobe_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_Almaty_City_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_Almaty_Region_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_Atyrau_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_East_Kazakhstan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_Jetisu_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_Karagandy_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_Kostanay_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_Kyzylorda_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_Mangystau_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_North_Kazakhstan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_Pavlodar_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_Shymkent_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_Turkistan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_Ulytau_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_West_Kazakhstan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Kazakhstan_Astana_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Aceh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Bali_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Banten_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Bengkulu_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Central_Java_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Central_Kalimantan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Central_Papua_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Central_Sulawesi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_East_Java_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_East_Kalimantan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_East_Papua_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Gorontalo_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Highland_Papua_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Jakarta_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Jambi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Lampung_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_North_Kalimantan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_North_Papua_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_North_Sulawesi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_North_Sumatra_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Riau_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Riau_Islands_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_South_Kalimantan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_South_Papua_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_South_Sulawesi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_South_Sumatra_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Southeast_Sulawesi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Southwest_Papua_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_West_Java_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_West_Kalimantan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_West_Papua_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_West_Sulawesi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_West_Sumatra_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_Yogyakarta_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
     },
     "Peru_Amazonas_Library": {
         "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
@@ -12672,75 +10524,6 @@ ADDITIONAL_FALLBACKS = {
     "Peru_Ucayali_Library": {
         "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
     },
-    "Ecuador_Azuay_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Bolivar_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Canar_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Carchi_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Chimborazo_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Cotopaxi_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_El_Oro_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Esmeraldas_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Galapagos_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Guayas_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Imbabura_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Loja_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Manabi_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Morona_Santiago_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Napo_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Orellana_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Pastaza_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Pichincha_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Santa_Elena_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Santo_Domingo_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Sucumbios_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Tungurahua_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
-    "Ecuador_Zamora_Chinchipe_Library": {
-        "rest": "http://api.redalyc.org/search/"
-    },
     "Algeria_Algiers_Library": {
         "sru": "https://gallica.bnf.fr/SRU"
     },
@@ -12801,224 +10584,8 @@ ADDITIONAL_FALLBACKS = {
     "Bangladesh_Sylhet_Library": {
         "z3950": "library.bracu.ac.bd:9999/biblios"
     },
-    "Serbia_Bor_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Branicevo_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Jablanica_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Kolubara_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Macva_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Moravica_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Nisava_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Pcinja_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Pirot_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Podunavlje_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Pomoravlje_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Rasina_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Raska_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Sumadija_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Toplica_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Zajecar_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Zlatibor_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Belgrade_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_North_Backa_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Central_Banat_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_North_Banat_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_South_Backa_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_South_Banat_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Srem_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_West_Backa_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Kosovo_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Kosovo_Pomoravlje_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Kosovska_Mitrovica_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Pec_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Serbia_Prizren_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
     "Albania_Tirane_Library": {
         "z3950": "80.191.10.6:210/default"
-    },
-    "Romania_Alba_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Arad_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Arges_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Bacau_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Bihor_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Bistrita_Nasaud_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Botosani_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Braila_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Brasov_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Bucuresti_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Buzau_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Calarasi_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Caras_Severin_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Cluj_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Constanta_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Covasna_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Dambovita_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Dolj_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Galati_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Giurgiu_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Gorj_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Harghita_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Hunedoara_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Ialomita_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Iasi_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Ilfov_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Maramures_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Mehedinti_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Mures_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Neamt_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Olt_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Prahova_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Salaj_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Satu_Mare_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Sibiu_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Suceava_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Teleorman_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Timis_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Tulcea_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Valcea_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Vaslui_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
-    "Romania_Vrancea_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
     },
     "Kenya_Baringo_Library": {
         "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
@@ -13253,441 +10820,6 @@ ADDITIONAL_FALLBACKS = {
     },
     "Iran_Zanjan_Library": {
         "z3950": "80.191.10.6:210/default"
-    },
-    "Thailand_Amnat_Charoen_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Ang_Thong_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Bangkok_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Bueng_Kan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Buriram_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Chachoengsao_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Chai_Nat_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Chaiyaphum_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Chanthaburi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Chonburi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Chumphon_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Kalasin_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Kamphaeng_Phet_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Kanchanaburi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Krabi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Lampang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Lamphun_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Loei_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Lopburi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Mae_Hong_Son_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Nakhon_Nayok_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Nakhon_Pathom_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Nakhon_Phanom_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Nakhon_Ratchasima_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Nakhon_Sawan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Nakhon_Si_Thammarat_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Nan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Narathiwat_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Nong_Bua_Lamphu_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Nong_Khai_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Nonthaburi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Pathum_Thani_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Pattani_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Phang_Nga_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Phatthalung_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Phayao_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Phetchabun_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Phetchaburi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Phichit_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Phitsanulok_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Phra_Nakhon_Si_Ayutthaya_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Phrae_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Prachinburi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Prachuap_Khiri_Khan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Ranong_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Ratchaburi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Rayong_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Roi_Et_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Sa_Kaeo_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Sakon_Nakhon_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Samut_Prakan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Samut_Sakhon_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Samut_Songkhram_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Saraburi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Satun_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Sing_Buri_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Sisaket_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Songkhla_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Suphan_Buri_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Surat_Thani_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Surin_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Tak_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Trang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Trat_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Ubon_Ratchasima_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Udon_Thani_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Uthai_Thani_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Uttaradit_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Yala_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_Yasothon_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Abra_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Aklan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Albay_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Antique_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Apayao_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Aurora_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Basilan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Bataan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Batanes_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Batangas_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Benguet_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Biliran_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Bohol_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Bulacan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Cagayan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Camarines_Norte_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Camarines_Sur_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Camiguin_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Capiz_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Catanduanes_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Cavite_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Cebu_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Compostela_Valley_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Cotabato_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Davao_del_Sur_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Davao_Occidental_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Davao_Oriental_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Dinagat_Islands_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Eastern_Samar_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Guimaras_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Ifugao_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Ilocos_Norte_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Ilocos_Sur_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Iloilo_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Isabela_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Kalinga_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_La_Union_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Laguna_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Lanao_del_Sur_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Leyte_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Maguindanao_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Marinduque_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Masbate_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Misamis_Occidental_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Misamis_Oriental_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Mountain_Province_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Negros_Occidental_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Negros_Oriental_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Northern_Samar_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Nueva_Ecija_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Nueva_Vizcaya_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Occidental_Mindoro_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Oriental_Mindoro_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Palawan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Pampanga_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Pangasinan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Quezon_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Quirino_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Rizal_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Romblon_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Samar_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Sarangani_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Siquijor_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Sorsogon_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_South_Cotabato_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Southern_Leyte_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Sultan_Kudarat_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Sulu_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Surigao_del_Sur_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Tarlac_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Tawi-Tawi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Zambales_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Zamboanga_del_Sur_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Zamboanga_Sibugay_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Philippines_Metro_Manila_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
     },
     "Pakistan_Punjab_Library": {
         "z3950": "122.129.84.203:2100/biblios"
@@ -14070,17 +11202,8 @@ ADDITIONAL_FALLBACKS = {
     "China_Zhejiang_Library": {
         "z3950": "las.sinica.edu.tw:210/INNOPAC"
     },
-    "Philippines_Archive_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Tanzania_Archive_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
     "Uzbekistan_NL_Library": {
         "z3950": "u95030.eos-intl.net:210/main"
-    },
-    "Kazakhstan_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
     },
     "Kenya_NationalArchives_Library": {
         "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
@@ -14088,26 +11211,14 @@ ADDITIONAL_FALLBACKS = {
     "Nigeria_NationalArchives_Library": {
         "rest": "https://api.crossref.org/works"
     },
-    "Korea_NationalArchives_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Thailand_NationalArchives_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
     "Peru_NL_Library": {
         "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
     },
     "Algerian_National_Library_ID": {
         "sru": "https://gallica.bnf.fr/SRU"
     },
-    "National_Library_of_Indonesia_Control_Headings_ID": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
     "National_Library_of_Nigeria_ID": {
         "rest": "https://api.crossref.org/works"
-    },
-    "LTI_Korea_Library_writer_ID": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
     },
     "Tunisia_NL_Library": {
         "sru": "https://gallica.bnf.fr/SRU"
@@ -14115,26 +11226,14 @@ ADDITIONAL_FALLBACKS = {
     "Sudan_NL_Library": {
         "z3950": "ous.daphnis.opalsinfo.net:210/ous_ous"
     },
-    "Serbia_NL_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
-    },
     "Morocco_NL_Library": {
         "sru": "https://gallica.bnf.fr/SRU"
-    },
-    "Korea_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
-    "Indonesia_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
     },
     "Lebanon_NL_Library": {
         "z3950": "libcat.aub.edu.lb:210/innopac"
     },
     "Algeria_NL_Library": {
         "sru": "https://gallica.bnf.fr/SRU"
-    },
-    "Ecuador_NL_Library": {
-        "rest": "http://api.redalyc.org/search/"
     },
     "NLC_China_Library": {
         "z3950": "las.sinica.edu.tw:210/INNOPAC"
@@ -14157,3151 +11256,6280 @@ ADDITIONAL_FALLBACKS = {
     "eLibrary_Russia_Library": {
         "z3950": "aleph.rsl.ru:9909/RSL01"
     },
-    "RISS_Korea_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
-    },
     "CALIS_China_Library": {
         "z3950": "las.sinica.edu.tw:210/INNOPAC"
     }
 }
-API_REGISTRY.update(ADDITIONAL_FALLBACKS)
 
-# Final Geographic Long-Tail Sweeps
-FINAL_LONG_TAIL = {
+# Inactive Regional Nodes (Discovery Pending)
+INACTIVE_REGISTRY = {
     "Armenia_Aragatsotn_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Armenia_Ararat_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Armenia_Armavir_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Armenia_Gegharkunik_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Armenia_Kotayk_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Armenia_Lori_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Armenia_Shirak_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Armenia_Syunik_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Armenia_Tavush_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Armenia_Vayots_Dzor_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Georgia_Abkhazia_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Georgia_Adjara_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Georgia_Guria_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Georgia_Imereti_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Georgia_Kakheti_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Georgia_Kvemo_Kartli_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Georgia_Mtskheta_Mtianeti_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Georgia_Racha_Lechkhumi_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Georgia_Samegrelo_Zemo_Svaneti_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Georgia_Samtskhe_Javakheti_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Georgia_Shida_Kartli_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Cuba_Camaguey_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Cuba_Ciego_de_Avila_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Cuba_Cienfuegos_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Cuba_Granma_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Cuba_Guantanamo_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Cuba_Holguin_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Cuba_Artemisa_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Cuba_Mayabeque_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Cuba_La_Habana_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Cuba_Las_Tunas_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Cuba_Matanzas_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Cuba_Sancti_Spiritus_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Cuba_Villa_Clara_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jamaica_Clarendon_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jamaica_Hanover_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jamaica_Kingston_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jamaica_Manchester_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jamaica_Portland_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jamaica_Saint_Andrew_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jamaica_Saint_Ann_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jamaica_Saint_Catherine_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jamaica_Saint_Elizabeth_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jamaica_Saint_James_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jamaica_Trelawny_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jamaica_Westmoreland_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Spain_Andalucia_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Spain_Aragon_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Spain_Asturias_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Spain_Basque_Country_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Spain_Canary_Islands_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Spain_Cantabria_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Spain_Catalonia_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Spain_Extremadura_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Spain_Galicia_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Spain_Murcia_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Spain_Navarra_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Spain_Valencia_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_Seoul_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_Daegu_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_Incheon_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_Gwangju_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_Daejeon_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_Ulsan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_Sejong_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_Gyeonggi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_Gangwon_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_North_Chungcheong_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_South_Chungcheong_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_North_Jeolla_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_South_Jeolla_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_North_Gyeongsang_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_South_Gyeongsang_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_Jeju_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_An_Giang_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Ba_Ria_Vung_Tau_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Bac_Giang_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Bac_Kan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Bac_Lieu_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Bac_Ninh_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Ben_Tre_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Binh_Dinh_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Binh_Duong_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Binh_Phuoc_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Binh_Thuan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Ca_Mau_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Can_Tho_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Cao_Bang_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Da_Nang_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Dak_Lak_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Dak_Nong_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Dien_Bien_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Dong_Nai_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Dong_Thap_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Gia_Lai_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Ha_Giang_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Ha_Nam_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Ha_Noi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Ha_Tinh_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Hai_Duong_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Hai_Phong_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Hau_Giang_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Ho_Chi_Minh_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Hoa_Binh_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Hung_Yen_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Khanh_Hoa_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Kien_Giang_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Kon_Tum_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Lai_Chau_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Lam_Dong_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Lang_Son_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Lao_Cai_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Long_An_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Nam_Dinh_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Nghe_An_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Ninh_Binh_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Ninh_Thuan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Phu_Tho_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Phu_Yen_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Quang_Binh_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Quang_Nam_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Quang_Ngai_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Quang_Ninh_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Quang_Tri_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Soc_Trang_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Son_La_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Tay_Ninh_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Thai_Binh_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Thai_Nguyen_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Thanh_Hoa_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Thua_Thien_Hue_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Tien_Giang_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Tra_Vinh_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Tuyen_Quang_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Vinh_Long_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Vinh_Phuc_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Vietnam_Yen_Bai_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Panama_Bocas_del_Toro_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Panama_Chiriqui_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Panama_Cocle_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Panama_Colon_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Panama_Darien_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Panama_Herrera_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Panama_Los_Santos_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Panama_Panama_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Panama_Veraguas_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Panama_Panama_Oeste_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "CostaRica_Alajuela_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "CostaRica_Cartago_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "CostaRica_Guanacaste_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "CostaRica_Heredia_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "CostaRica_Limon_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "CostaRica_Puntarenas_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ElSalvador_Ahuachapan_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ElSalvador_Cabanas_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ElSalvador_Chalatenango_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ElSalvador_Cuscatlan_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ElSalvador_La_Libertad_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ElSalvador_La_Union_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ElSalvador_Morazan_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ElSalvador_San_Salvador_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ElSalvador_Santa_Ana_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ElSalvador_Sonsonate_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ElSalvador_Usulutan_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Ilocos_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Cagayan_Valley_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Central_Luzon_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Calabarzon_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Mimaropa_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Bicol_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Western_Visayas_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Central_Visayas_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Eastern_Visayas_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Zamboanga_Peninsula_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Northern_Mindanao_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Davao_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Soccsksargen_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Caraga_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Bangsamoro_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Cordillera_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_NCR_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Sumatra_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Java_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Kalimantan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Sulawesi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Lesser_Sunda_Islands_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Papua_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Spain_Ceuta_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Spain_Melilla_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Pacific_Wallis_and_Futuna_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Pacific_Guam_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Pacific_Northern_Mariana_Islands_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Bougainville_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Central_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Chimbu_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Eastern_Highlands_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_East_New_Britain_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_East_Sepik_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Enga_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Gulf_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Hela_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Jiwaka_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Madang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Manus_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Milne_Bay_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Morobe_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Oro_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Sandaun_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Southern_Highlands_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_West_New_Britain_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Western_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_Western_Highlands_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Fiji_Central_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Fiji_Eastern_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Fiji_Northern_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Fiji_Western_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SolomonIslands_Central_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SolomonIslands_Choiseul_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SolomonIslands_Guadalcanal_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SolomonIslands_Isabel_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SolomonIslands_Makira_Ulawa_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SolomonIslands_Malaita_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SolomonIslands_Rennell_and_Bellona_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SolomonIslands_Temotu_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SolomonIslands_Western_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Armenia_Yerevan_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Georgia_Tbilisi_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Azerbaijan_Absheron_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Azerbaijan_Baku_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Azerbaijan_Ganja_Dashkasan_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Azerbaijan_Guba_Khachmaz_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Azerbaijan_Lankaran_Astara_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Azerbaijan_Central_Aran_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Azerbaijan_Mil_Mugan_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Azerbaijan_Shaki_Zaqatala_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Azerbaijan_Shamkir_Tovuz_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Azerbaijan_Nakhchivan_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Angola_Cuando_Cubango_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mozambique_Cabo_Delgado_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mozambique_Gaza_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mozambique_Inhambane_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mozambique_Manica_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mozambique_Maputo_City_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mozambique_Maputo_Province_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mozambique_Nampula_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mozambique_Niassa_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mozambique_Sofala_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mozambique_Tete_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mozambique_Zambezia_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zambia_Central_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zambia_Copperbelt_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zambia_Eastern_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zambia_Luapula_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zambia_Muchinga_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zambia_Northern_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zambia_North_Western_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zambia_Southern_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zambia_Western_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cameroon_Adamawa_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cameroon_Centre_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cameroon_East_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cameroon_Far_North_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cameroon_Littoral_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cameroon_North_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cameroon_North_West_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cameroon_South_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cameroon_South_West_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cameroon_West_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Analamanga_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Vakinankaratra_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Itasy_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Bongolava_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Sofia_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Boeny_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Betsiboka_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Melaky_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Alaotra_Mangoro_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Atsinanana_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Analanjirofo_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Amoroni_Mania_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Haute_Matsiatra_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Vatovavy_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Fitovinany_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Atsimo_Atsinanana_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Ihorombe_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Androy_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Anosy_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Atsimo_Andrefana_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Madagascar_Menabe_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zimbabwe_Bulawayo_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zimbabwe_Harare_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zimbabwe_Manicaland_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zimbabwe_Mashonaland_Central_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zimbabwe_Mashonaland_East_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zimbabwe_Mashonaland_West_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zimbabwe_Masvingo_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zimbabwe_Matabeleland_North_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zimbabwe_Matabeleland_South_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Zimbabwe_Midlands_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ethiopia_Addis_Ababa_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ethiopia_Afar_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ethiopia_Amhara_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ethiopia_Benishangul_Gumuz_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ethiopia_Dire_Dawa_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ethiopia_Gambela_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ethiopia_Harari_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ethiopia_Oromia_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ethiopia_Sidama_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ethiopia_Somali_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ethiopia_South_West_Ethiopia_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ethiopia_Southern_Nations_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ethiopia_Tigray_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uganda_Central_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uganda_Eastern_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uganda_Northern_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uganda_Western_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ghana_Ahafo_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ghana_Ashanti_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ghana_Bono_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ghana_Bono_East_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ghana_Eastern_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ghana_North_East_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ghana_Northern_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ghana_Oti_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ghana_Savannah_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ghana_Upper_East_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ghana_Upper_West_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ghana_Volta_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ghana_Western_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ghana_Western_North_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Arusha_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Dar_es_Salaam_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Dodoma_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Geita_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Iringa_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Kagera_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Katavi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Kigoma_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Kilimanjaro_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Lindi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Manyara_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Mara_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Mbeya_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Morogoro_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Mtwara_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Mwanza_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Njombe_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Pemba_North_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Pemba_South_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Pwani_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Ruvuma_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Shinyanga_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Simiyu_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Singida_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Songwe_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Tabora_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Tanga_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Zanzibar_North_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Zanzibar_South_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Zanzibar_West_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kyrgyzstan_Batken_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kyrgyzstan_Chuy_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kyrgyzstan_Jalal_Abad_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kyrgyzstan_Naryn_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kyrgyzstan_Osh_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kyrgyzstan_Talas_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kyrgyzstan_Issyk_Kul_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Tajikistan_Sughd_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Tajikistan_Khatlon_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Tajikistan_Gorno_Badakhshan_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Tajikistan_Dushanbe_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Alta_Verapaz_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Baja_Verapaz_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Chimaltenango_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Chiquimula_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_El_Progreso_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Escuintla_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Huehuetenango_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Izabal_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Jalapa_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Jutiapa_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Peten_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Quetzaltenango_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Quiche_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Retalhuleu_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Sacatepequez_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Santa_Rosa_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Solola_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Suchitepequez_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Totonicapan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Guatemala_Zacapa_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_Atlantida_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_Choluteca_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_Colon_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_Comayagua_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_Copan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_Cortes_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_El_Paraiso_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_Francisco_Morazan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_Gracias_a_Dios_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_Intibuca_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_Lempira_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_Ocotepeque_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_Olancho_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_Santa_Barbara_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_Valle_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Honduras_Yoro_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_Boaco_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_Carazo_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_Chinandega_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_Chontales_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_Esteli_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_Granada_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_Jinotega_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_Leon_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_Madriz_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_Managua_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_Masaya_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_Matagalpa_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_Nueva_Segovia_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_Rivas_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_RACCN_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Nicaragua_RACCS_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Pacific_Fiji_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Pacific_Kiribati_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Pacific_Marshall_Islands_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Pacific_Micronesia_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Pacific_Nauru_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Pacific_Palau_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Pacific_Samoa_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Pacific_Tonga_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Pacific_Tuvalu_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Pacific_Vanuatu_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Macedonia_Skopje_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Macedonia_Bitola_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Macedonia_Kumanovo_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Macedonia_Prilep_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Macedonia_Tetovo_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Macedonia_Veles_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Macedonia_Stip_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Macedonia_Ohrid_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Macedonia_Strumica_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Abai_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Akmola_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Aktobe_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Almaty_City_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Almaty_Region_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Atyrau_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_East_Kazakhstan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Jetisu_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Karagandy_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Kostanay_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Kyzylorda_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Mangystau_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_North_Kazakhstan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Pavlodar_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Shymkent_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Turkistan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Ulytau_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_West_Kazakhstan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_Astana_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Aceh_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Bali_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Banten_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Bengkulu_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Central_Java_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Central_Kalimantan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Central_Papua_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Central_Sulawesi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_East_Java_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_East_Kalimantan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_East_Papua_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Gorontalo_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Highland_Papua_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Jakarta_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Jambi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Lampung_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_North_Kalimantan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_North_Papua_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_North_Sulawesi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_North_Sumatra_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Riau_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Riau_Islands_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_South_Kalimantan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_South_Papua_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_South_Sulawesi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_South_Sumatra_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Southeast_Sulawesi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Southwest_Papua_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_West_Java_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_West_Kalimantan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_West_Papua_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_West_Sulawesi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_West_Sumatra_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_Yogyakarta_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Azuay_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Bolivar_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Canar_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Carchi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Chimborazo_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Cotopaxi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_El_Oro_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Esmeraldas_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Galapagos_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Guayas_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Imbabura_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Loja_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Manabi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Morona_Santiago_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Napo_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Orellana_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Pastaza_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Pichincha_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Santa_Elena_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Santo_Domingo_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Sucumbios_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Tungurahua_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_Zamora_Chinchipe_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bolivia_Beni_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bolivia_Chuquisaca_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bolivia_Cochabamba_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bolivia_Oruro_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bolivia_Pando_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bolivia_Potosi_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bolivia_Santa_Cruz_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bolivia_Tarija_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mali_Bamako_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mali_Gao_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mali_Kayes_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mali_Kidal_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mali_Koulikoro_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mali_Menaka_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mali_Mopti_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mali_Nioro_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mali_Segou_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mali_Sikasso_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mali_Taoudenit_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Senegal_Dakar_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Senegal_Diourbel_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Senegal_Fatick_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Senegal_Kaffrine_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Senegal_Kaolack_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Senegal_Kedougou_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Senegal_Kolda_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Senegal_Louga_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Senegal_Matam_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Senegal_Saint_Louis_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Senegal_Sedhiou_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Senegal_Tambacounda_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Senegal_Thies_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Senegal_Ziguinchor_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IvoryCoast_Abidjan_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IvoryCoast_Bas_Sassandra_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IvoryCoast_Comoe_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IvoryCoast_Denguele_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IvoryCoast_Goh_Djiboua_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IvoryCoast_Lacs_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IvoryCoast_Lagunes_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IvoryCoast_Montagnes_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IvoryCoast_Sassandra_Marahoue_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IvoryCoast_Savanes_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IvoryCoast_Vallee_du_Bandama_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IvoryCoast_Woroba_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IvoryCoast_Zanzan_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Banteay_Meanchey_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Battambang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Kampong_Cham_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Kampong_Chhnang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Kampong_Speu_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Kampong_Thom_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Kampot_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Kandal_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Koh_Kong_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Kratie_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Mondulkiri_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Preah_Vihear_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Prey_Veng_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Pursat_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Ratanakiri_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Siem_Reap_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Stung_Treng_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Svay_Rieng_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Takeo_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Oddar_Meanchey_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Kep_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Pailin_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_Tboung_Khmum_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Attapeu_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Bokeo_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Bolikhamsai_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Champasak_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Houaphanh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Khammouane_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Louang_Namtha_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Louangphabang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Oudomxay_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Phongsaly_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Sayabouly_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Salavan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Savannakhet_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Sekong_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Vientiane_Capital_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Vientiane_Province_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Xaisomboun_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_Xiangkhouang_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kyrgyzstan_Bishkek_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kyrgyzstan_Osh_City_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kyrgyzstan_Osh_Region_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Tajikistan_Districts_of_Republican_Subordination_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Turkmenistan_Ashgabat_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Turkmenistan_Ahal_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Turkmenistan_Balkan_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Turkmenistan_Dashoguz_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Turkmenistan_Lebap_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Turkmenistan_Mary_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_Aleppo_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_Al_Hasakah_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_Al_Latakia_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_Al_Qunaytirah_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_Al_Raqqah_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_Al_Suwayda_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_Daraa_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_Deir_ez_Zor_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_Damascus_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_Hama_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_Homs_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_Idlib_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_Rif_Dimashq_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_Tartus_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Oman_Ad_Dakhiliyah_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Oman_Ad_Dhahirah_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Oman_Al_Batinah_North_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Oman_Al_Batinah_South_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Oman_Al_Buraymi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Oman_Al_Wusta_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Oman_Ash_Sharqiyah_North_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Oman_Al_Sharqiyah_South_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Oman_Dhofar_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Oman_Muscat_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Nepal_Koshi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Nepal_Madhesh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Nepal_Bagmati_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Nepal_Gandaki_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Nepal_Lumbini_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Nepal_Karnali_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Nepal_Sudurpashchim_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Bjelovar_Bilogora_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Brod_Posavina_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Dubrovnik_Neretva_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Istria_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Karlovac_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Koprivnica_Krizevci_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Krapina_Zagorje_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Lika_Senj_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Medjimurje_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Osijek_Baranja_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Pozega_Slavonia_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Primorje_Gorski_Kotar_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Sibenik_Knin_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Sisak_Moslavina_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Split_Dalmatia_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Varazdin_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Virovitica_Podravina_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Zadar_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Zagreb_County_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Croatia_Zagreb_City_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Bor_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Branicevo_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Jablanica_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Kolubara_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Macva_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Moravica_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Nisava_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Pcinja_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Pirot_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Podunavlje_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Pomoravlje_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Rasina_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Raska_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Sumadija_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Toplica_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Zajecar_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Zlatibor_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Belgrade_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_North_Backa_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Central_Banat_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_North_Banat_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_South_Backa_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_South_Banat_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Srem_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_West_Backa_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Kosovo_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Kosovo_Pomoravlje_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Kosovska_Mitrovica_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Pec_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_Prizren_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Blagoevgrad_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Burgas_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Dobrich_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Gabrovo_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Haskovo_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Kardzhali_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Kyustendil_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Lovech_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Montana_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Pazardzhik_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Pernik_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Pleven_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Plovdiv_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Razgrad_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Ruse_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Shumen_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Silistra_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Sliven_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Smolyan_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Sofia_City_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Stara_Zagora_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Targovishte_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Varna_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Veliko_Tarnovo_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Vidin_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Vratsa_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_Yambol_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Albania_Berat_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Albania_Diber_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Albania_Durres_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Albania_Elbasan_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Albania_Fier_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Albania_Gjirokaster_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Albania_Korce_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Albania_Lezhe_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Albania_Shkoder_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Albania_Vlore_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bosnia_Federation_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bosnia_Republika_Srpska_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bosnia_Brcko_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bosnia_Unsko_Sanski_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bosnia_Posavski_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bosnia_Tuzlanski_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bosnia_Zenicko_Dobojski_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bosnia_Bosansko_Podrinjski_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bosnia_Srednjobosanski_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bosnia_Hercegovacko_Neretvanski_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bosnia_Zapadnohercegovacki_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bosnia_Sarajevski_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bosnia_Kanton_10_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Slovakia_Bratislava_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Slovakia_Trnava_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Slovakia_Trencin_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Slovakia_Nitra_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Slovakia_Zilina_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Slovakia_Banska_Bystrica_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Slovakia_Presov_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Slovakia_Kosice_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Estonia_Harju_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Estonia_Hiiu_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Estonia_Ida_Viru_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Estonia_Jogeva_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Estonia_Jarva_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Estonia_Laane_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Estonia_Laane_Viru_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Estonia_Polva_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Estonia_Parnu_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Estonia_Rapla_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Estonia_Saare_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Estonia_Tartu_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Estonia_Valga_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Estonia_Viljandi_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Estonia_Voru_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Lithuania_Alytus_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Lithuania_Kaunas_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Lithuania_Klaipeda_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Lithuania_Marijampole_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Lithuania_Panevezys_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Lithuania_Siauliai_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Lithuania_Taurage_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Lithuania_Telsiai_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Lithuania_Utena_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Lithuania_Vilnius_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Trinidad_Arima_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Trinidad_Chaguanas_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Trinidad_Mayaro_Guayaguayare_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Trinidad_Penal_Debe_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Trinidad_Point_Fortin_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Trinidad_Port_of_Spain_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Trinidad_Princes_Town_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Trinidad_Rio_Claro_Mayaro_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Trinidad_San_Fernando_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Trinidad_Sangre_Grande_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Trinidad_Siparia_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Trinidad_Tunapuna_Piarco_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Acklins_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Berry_Islands_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Bimini_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Cat_Island_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Central_Abaco_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Central_Andros_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Central_Eleuthera_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_City_of_Freeport_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Crooked_Island_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_East_Grand_Bahama_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Exuma_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Grand_Cay_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Harbour_Island_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Hope_Town_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Inagua_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Long_Island_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Mangrove_Cay_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Mayaguana_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Moores_Island_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_North_Abaco_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_North_Andros_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_North_Eleuthera_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Ragged_Island_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_Rum_Cay_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_San_Salvador_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_South_Abaco_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_South_Andros_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_South_Eleuthera_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Bahamas_Spanish_Wells_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_West_Grand_Bahama_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Azua_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Baoruco_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Barahona_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Dajabon_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Distrito_Nacional_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Duarte_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Elias_Pina_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_El_Seibo_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Espaillat_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Hato_Mayor_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Hermanas_Mirabal_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Independencia_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_La_Altagracia_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_La_Romana_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_La_Vega_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Maria_Trinidad_Sanchez_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Monsenor_Nouel_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Monte_Cristi_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Monte_Plata_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Pedernales_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Peravia_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Puerto_Plata_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Samana_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Sanchez_Ramirez_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_San_Cristobal_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Santiago_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Santiago_Rodriguez_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Santo_Domingo_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DominicanRepublic_Valverde_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Haiti_Artibonite_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Haiti_Centre_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Haiti_GrandAnse_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Haiti_Nippes_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Haiti_Nord_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Haiti_Nord_Est_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Haiti_Nord_Ouest_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Haiti_Ouest_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Haiti_Sud_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Haiti_Sud_Est_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Alba_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Arad_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Arges_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Bacau_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Bihor_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Bistrita_Nasaud_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Botosani_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Braila_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Brasov_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Bucuresti_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Buzau_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Calarasi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Caras_Severin_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Cluj_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Constanta_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Covasna_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Dambovita_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Dolj_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Galati_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Giurgiu_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Gorj_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Harghita_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Hunedoara_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Ialomita_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Iasi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Ilfov_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Maramures_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Mehedinti_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Mures_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Neamt_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Olt_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Prahova_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Salaj_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Satu_Mare_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Sibiu_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Suceava_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Teleorman_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Timis_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Tulcea_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Valcea_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Vaslui_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Romania_Vrancea_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Bacs_Kiskun_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Baranya_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Bekes_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Borsod_Abauj_Zemplen_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Budapest_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Csongrad_Csanad_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Fejer_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Gyor_Moson_Sopron_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Hajdu_Bihar_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Heves_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Jasz_Nagykun_Szolnok_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Komarom_Esztergom_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Nograd_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Pest_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Somogy_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Szabolcs_Szatmar_Bereg_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Tolna_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Vas_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Veszprem_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hungary_Zala_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Auckland_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Bay_of_Plenty_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Canterbury_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Chatham_Islands_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Gisborne_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Hawke's_Bay_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Manawatu_Wanganui_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Marlborough_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Nelson_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Northland_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Otago_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Southland_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Taranaki_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Tasman_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Waikato_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_Wellington_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NZ_West_Coast_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Myanmar_Ayeyarwady_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Myanmar_Bago_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Myanmar_Chin_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Myanmar_Kachin_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Myanmar_Kayah_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Myanmar_Kayin_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Myanmar_Magway_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Myanmar_Mandalay_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Myanmar_Mon_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Myanmar_Naypyidaw_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Myanmar_Rakhine_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Myanmar_Sagaing_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Myanmar_Shan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Myanmar_Tanintharyi_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Israel_Haifa_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Israel_Northern_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Israel_Southern_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "UAE_Ajman_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "UAE_Dubai_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "UAE_Fujairah_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "UAE_Ras_Al_Khaimah_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "UAE_Sharjah_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "UAE_Umm_Al_Quwain_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_Al_Anbar_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_Al_Basrah_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_Al_Muthanna_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_Al_Qadisiyah_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_An_Najaf_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_Arbil_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_As_Sulaymaniyah_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_Babil_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_Baghdad_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_Diyala_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_Karbala_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_Maysan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_Ninawa_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_Salah_ad_Din_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_Wasit_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_Halabja_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jordan_Ajloun_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jordan_Amman_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jordan_Aqaba_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jordan_Balqa_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jordan_Irbid_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jordan_Jerash_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jordan_Karak_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jordan_Ma'an_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jordan_Madaba_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jordan_Mafraq_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jordan_Tafilah_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jordan_Zarqa_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Alto_Paraguay_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Alto_Parana_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Amambay_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Asuncion_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Boqueron_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Caaguazu_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Caazapa_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Canindeyu_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Central_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Concepcion_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Cordillera_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Guaira_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Itapua_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Misiones_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Neembucu_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Paraguari_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_Presidente_Hayes_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_San_Pedro_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Artigas_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Canelones_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Cerro_Largo_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Colonia_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Durazno_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Flores_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Florida_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Lavalleja_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Maldonado_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Montevideo_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Paysandu_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Rio_Negro_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Rivera_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Rocha_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Salto_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Soriano_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Tacuarembo_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uruguay_Treinta_y_Tres_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Amazonas_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Anzoategui_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Apure_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Aragua_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Barinas_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Bolivar_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Carabobo_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Cojedes_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Delta_Amacuro_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Falcon_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Guarico_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Lara_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Merida_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Monagas_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Nueva_Esparta_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Portuguesa_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Sucre_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Tachira_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Trujillo_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Vargas_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Yaracuy_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Venezuela_Zulia_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Greece_Central_Macedonia_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Greece_Crete_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Greece_Eastern_Macedonia_and_Thrace_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Greece_Epirus_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Greece_Ionian_Islands_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Greece_North_Aegean_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Greece_Peloponnese_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Greece_South_Aegean_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Greece_Thessaly_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SriLanka_Central_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SriLanka_Eastern_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SriLanka_North_Central_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SriLanka_Northern_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SriLanka_North_Western_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SriLanka_Sabaragamuwa_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SriLanka_Southern_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SriLanka_Uva_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SriLanka_Western_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Belgium_Brussels_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Belgium_Flanders_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Belgium_Wallonia_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malaysia_Johor_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malaysia_Kedah_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malaysia_Kelantan_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malaysia_Malacca_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malaysia_Negeri_Sembilan_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malaysia_Pahang_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malaysia_Penang_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malaysia_Perak_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malaysia_Perlis_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malaysia_Sabah_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malaysia_Sarawak_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malaysia_Terengganu_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malaysia_Labuan_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malaysia_Putrajaya_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Saudi_Al_Bahah_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Saudi_Al_Jawf_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Saudi_Al_Hudud_al_Shamaliyah_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Saudi_Al_Qassim_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Saudi_Ha'il_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Saudi_Jazan_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Saudi_Madinah_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Saudi_Makkah_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Saudi_Najran_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Saudi_Riyadh_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Saudi_Ash_Sharqiyah_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Saudi_Asir_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Alexandria_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Aswan_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Asyut_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Beheira_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Beni_Suef_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Cairo_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Dakahlia_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Damietta_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Faiyum_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Gharbia_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Giza_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Ismailia_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Kafr_el-Sheikh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Luxor_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Matruh_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Minya_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Monufia_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_New_Valley_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_North_Sinai_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Port_Said_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Qalyubia_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Qena_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Red_Sea_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Sharqia_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Sohag_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_South_Sinai_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_Suez_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Austria_Burgenland_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Austria_Carinthia_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Austria_Lower_Austria_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Austria_Upper_Austria_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Austria_Salzburg_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Austria_Styria_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Austria_Tyrol_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Austria_Vorarlberg_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Austria_Vienna_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Netherlands_Drenthe_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Netherlands_Flevoland_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Netherlands_Friesland_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Netherlands_Gelderland_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Netherlands_Groningen_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Netherlands_Limburg_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Netherlands_North_Brabant_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Netherlands_North_Holland_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Netherlands_Overijssel_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Netherlands_Utrecht_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Netherlands_Zeeland_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Netherlands_South_Holland_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Amnat_Charoen_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Ang_Thong_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Bangkok_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Bueng_Kan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Buriram_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Chachoengsao_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Chai_Nat_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Chaiyaphum_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Chanthaburi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Chonburi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Chumphon_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Kalasin_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Kamphaeng_Phet_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Kanchanaburi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Krabi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Lampang_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Lamphun_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Loei_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Lopburi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Mae_Hong_Son_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Nakhon_Nayok_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Nakhon_Pathom_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Nakhon_Phanom_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Nakhon_Ratchasima_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Nakhon_Sawan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Nakhon_Si_Thammarat_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Nan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Narathiwat_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Nong_Bua_Lamphu_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Nong_Khai_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Nonthaburi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Pathum_Thani_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Pattani_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Phang_Nga_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Phatthalung_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Phayao_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Phetchabun_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Phetchaburi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Phichit_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Phitsanulok_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Phra_Nakhon_Si_Ayutthaya_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Phrae_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Prachinburi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Prachuap_Khiri_Khan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Ranong_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Ratchaburi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Rayong_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Roi_Et_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Sa_Kaeo_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Sakon_Nakhon_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Samut_Prakan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Samut_Sakhon_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Samut_Songkhram_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Saraburi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Satun_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Sing_Buri_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Sisaket_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Songkhla_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Suphan_Buri_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Surat_Thani_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Surin_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Tak_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Trang_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Trat_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Ubon_Ratchasima_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Udon_Thani_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Uthai_Thani_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Uttaradit_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Yala_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_Yasothon_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Abra_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Aklan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Albay_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Antique_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Apayao_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Aurora_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Basilan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Bataan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Batanes_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Batangas_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Benguet_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Biliran_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Bohol_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Bulacan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Cagayan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Camarines_Norte_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Camarines_Sur_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Camiguin_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Capiz_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Catanduanes_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Cavite_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Cebu_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Compostela_Valley_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Cotabato_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Davao_del_Sur_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Davao_Occidental_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Davao_Oriental_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Dinagat_Islands_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Eastern_Samar_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Guimaras_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Ifugao_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Ilocos_Norte_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Ilocos_Sur_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Iloilo_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Isabela_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Kalinga_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_La_Union_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Laguna_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Lanao_del_Sur_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Leyte_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Maguindanao_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Marinduque_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Masbate_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Misamis_Occidental_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Misamis_Oriental_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Mountain_Province_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Negros_Occidental_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Negros_Oriental_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Northern_Samar_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Nueva_Ecija_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Nueva_Vizcaya_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Occidental_Mindoro_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Oriental_Mindoro_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Palawan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Pampanga_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Pangasinan_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Quezon_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Quirino_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Rizal_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Romblon_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Samar_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Sarangani_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Siquijor_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Sorsogon_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_South_Cotabato_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Southern_Leyte_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Sultan_Kudarat_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Sulu_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Surigao_del_Sur_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Tarlac_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Tawi-Tawi_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Zambales_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Zamboanga_del_Sur_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Zamboanga_Sibugay_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Metro_Manila_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_LU_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_UR_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_SZ_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_OW_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_NW_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_GL_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_ZG_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_FR_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_SO_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_BS_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_BL_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_SH_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_AR_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_AI_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_SG_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_GR_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_AG_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_TG_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_TI_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_VS_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_NE_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_GE_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Swiss_JU_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Greenland_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "FaroeIslands_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PuertoRico_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Guam_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NewCaledonia_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Reunion_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mayotte_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "HongKong_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "CaymanIslands_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Gibraltar_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "CookIslands_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Niue_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Tokelau_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kyrgyzstan_Archive_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Philippines_Archive_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Belarus_Archive_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Slovakia_Archive_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Tanzania_Archive_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SriLanka_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "PNG_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_Assad_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Namibia_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Kazakhstan_NL_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Azerbaijan_NL_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Barbados_NL_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Belize_NL_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Guyana_NL_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ethiopia_NationalArchives_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_NationalArchives_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Thailand_NationalArchives_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "UAE_NationalArchives_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_NationalArchives_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahamas_NationalArchives_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Fiji_NationalArchives_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "OECD_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "AZGS_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "AlexanderTurnbull_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Vatican_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cyprus_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "BeirutArabUni_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "AUB_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "At_the_Circulating_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "AZGS_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ACM_Digital_Library_author_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "African_Music_Library_artist_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Alexander_Turnbull_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "At_the_Circulating_Library_ID": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Boris_Yeltsin_Presidential_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "British_Library_system_number": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Capitular_Library_Verona": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Chinese_Library_Classification": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "EZB_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ACM_Digital_Library_citation_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ACM_Digital_Library_event_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Central_Library_of_Volos_authority_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Digital_Library_of_Armenian_Literature_author_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Digital_Valencian_Library_author_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Digital_Library_of_Mathematical_Functions_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Digital_Mechanism_and_Gear_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "National_Library_Board_Singapore_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "National_Library_of_Albania_edition_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "National_Library_of_Indonesia_Control_Headings_ID": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "National_Library_of_Malaysia_OPAC_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "National_Library_of_Uruguay_authority_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "National_Library_of_Israel_ID_old": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "National_Library_of_Uruguay_book_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Vatican_Library_ID_former_scheme": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Vatican_Library_OPAC": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Dimitri_and_Aliki_Perrotis_Central_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Frankfurt_University_Library_Digital_Collection_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Frick_Art_Research_Library_Artist_File_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Game_Font_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Hill_Museum_and_Manuscript_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "INEGI_Digital_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ia\u0219i_Central_University_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iowa_State_University_Library_Vocabularies_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jewish_Virtual_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jisc_Library_Hub_Authority": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jisc_Library_Hub_Works": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Keratsini_Drapetsona_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kramerius_of_Moravian_Library_UUID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kramerius_of_Regional_Library_in_Pardubice_UUID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "LTI_Korea_Library_writer_ID": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Levadia_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Library_Parliament_Riding": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Library_of_Congress_Format_Description_Document_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Library_of_Congress_providers_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Media_Library_for_Dance_and_Theatre_person_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Michigan_State_University_Library_Comic_Art_Collection_Record_Number": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Municipal_Library_of_Trikala_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "National_Marine_Biological_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Open_Library_publisher_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Open_Library_subject_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Oroklini_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Panjab_Digital_Library_ID": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "OECD_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "WTO_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IAEA_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ERIC_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "OSTI_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cambodia_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Laos_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Mongolia_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NLI_Israel_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NLG_Greece_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "BSB_Bavaria_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SBB_Berlin_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "FUB_Berlin_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "HUB_Berlin_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "TUB_Berlin_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SLQ_Queensland_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "BC_Catalonia_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "CSL_California_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SLP_Pennsylvania_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SLO_Ohio_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "OSL_Oregon_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "LVA_Virginia_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SLNC_NorthCarolina_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SLF_Florida_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NYSL_NewYork_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "TSLAC_Texas_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "RERO_Swiss_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Euskariana_Basque_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "WISC_Law_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "CSL_Colorado_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "MSU_Missouri_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "BVPB_Spain_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Galiciana_Galicia_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "BVA_Andalucia_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Sailor_Maryland_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Serbia_NL_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bulgaria_NL_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "MassState_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "MichiganState_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "WashingtonState_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "GeorgiaState_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "BC_Legislative_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Syria_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "KSA_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Egypt_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jordan_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Georgia_NL_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Korea_NL_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Taiwan_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Singapore_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malaysia_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Indonesia_NL_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ArizonaState_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NevadaState_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "TennesseeState_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "KentuckyState_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ConnecticutState_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NJ_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "AL_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "AK_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "KS_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "UT_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "OK_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ME_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "VT_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NM_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NH_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "RI_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "DE_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SC_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ND_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SD_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ID_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "MT_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "WY_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "LA_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "MS_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "WV_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "HI_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "LaRioja_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Sicilia_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Asturias_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "CastillaLaMancha_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Canarias_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Piemonte_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Lazio_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Campania_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Iraq_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Palestine_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kuwait_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Qatar_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Moldova_NL_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Albania_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Montenegro_NL_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kosovo_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jamaica_NL_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Malta_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "AR_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IN_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "IA_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NE_State_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "YT_Territory_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NT_Territory_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NU_Territory_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "Ecuador_NL_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Paraguay_NL_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Myanmar_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Lombardia_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Gallica_BnF_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Redalyc_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SciELO_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Dialnet_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "UN_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "UNESCO_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "WHO_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NYPL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "BHL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "CiNii_Books_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Jisc_Hub_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NSZL_Hungary_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NSK_Croatia_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "BL_EThOS_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "WorldLII_Law_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Trinidad_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Aruba_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Nepal_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ethiopia_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Uganda_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Ghana_NL_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ZLB_Berlin_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Tokyo_Met_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "London_Met_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ArchivesACT_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ArchivesNZ_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ArchivesBosnia_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "BarbadosArchives_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "BelizeArchives_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "JamaicaArchives_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "LC_Work_Id": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Google_Books": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "OCLC_Record": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "HathiTrust": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Murcia_Regional_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Aragon_Regional_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Cyprus_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "VIAF_Title": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Wikidata_Title": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "NationalArchives_Global_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "InternetArchive_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ISSN_International_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "ArchiveGrid_OCLC_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
+    },
+    "RISS_Korea_Library": {
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Bahrain_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Turkmenistan_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Tajikistan_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Kyrgyzstan_NL_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "SanMarino_Library": {
-        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Armenia_Archive_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Azerbaijan_Archive_Library": {
-        "rest": "https://api.europeana.eu/record/v2/search.json"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Haiti_Archive_Library": {
-        "rest": "http://api.redalyc.org/search/"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     },
     "Senegal_Archive_Library": {
-        "rest": "https://api.core.ac.uk/v3/search/outputs"
+        "status": "inactive",
+        "reason": "No verified direct endpoint discovered"
     }
 }
-API_REGISTRY.update(FINAL_LONG_TAIL)
+API_REGISTRY.update(INACTIVE_REGISTRY)
