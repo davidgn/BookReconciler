@@ -20038,3 +20038,908 @@ PHASE2_HONEST_HUBS = {
     }
 }
 API_REGISTRY.update(PHASE2_HONEST_HUBS)
+
+# Global National and Union Referral Phase 3
+PHASE3_HONEST_HUBS = {
+    "Peru_NL_Library": {
+        "z3950": "200.48.102.26:7090/Default"
+    },
+    "Russia_NLR_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB"
+    },
+    "Morocco_NL_Library": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN"
+    },
+    "Tunisia_NL_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT"
+    },
+    "Pakistan_NL_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Tunisia_Ariana_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Beja_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Ben_Arous_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Bizerte_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Gabes_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Gafsa_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Jendouba_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Kairouan_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Kasserine_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Kebili_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Kef_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Mahdia_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Manouba_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Medenine_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Monastir_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Nabeul_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Sfax_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Sidi_Bouzid_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Siliana_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Sousse_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Tataouine_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Tozeur_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Tunis_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Zaghouan_Archive": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Morocco_Beni_Mellal_Khenifra_Archive": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Casablanca_Settat_Archive": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Draa_Tafilalet_Archive": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Dakhla_Oued_Ed_Dahab_Archive": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Fes_Meknes_Archive": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Guelmim_Oued_Noun_Archive": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Laayoune_Sakia_El_Hamra_Archive": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Marrakesh_Safi_Archive": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Oriental_Archive": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Rabat_Sale_Kenitra_Archive": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Souss_Massa_Archive": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Tanger_Tetouan_Al_Hoceima_Archive": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Beni_Mellal_Khenifra_Library": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Casablanca_Settat_Library": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Draa_Tafilalet_Library": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Dakhla_Oued_Ed_Dahab_Library": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Fes_Meknes_Library": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Guelmim_Oued_Noun_Library": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Laayoune_Sakia_El_Hamra_Library": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Marrakesh_Safi_Library": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Oriental_Library": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Rabat_Sale_Kenitra_Library": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Souss_Massa_Library": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Morocco_Tanger_Tetouan_Al_Hoceima_Library": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Pakistan_Bahawalpur_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Dera_Ghazi_Khan_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Faisalabad_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Gujranwala_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Lahore_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Multan_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Rawalpindi_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Sahiwal_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Sargodha_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Karachi_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Hyderabad_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Sukkur_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Larkana_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Mirpur_Khas_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Shaheed_Benazirabad_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Bannu_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Dera_Ismail_Khan_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Hazara_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Kohat_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Malakand_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Mardan_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Peshawar_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Kalat_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Makran_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Nasirabad_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Quetta_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Sibi_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Zhob_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Tunisia_Ariana_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Beja_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Ben_Arous_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Bizerte_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Gabes_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Gafsa_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Jendouba_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Kairouan_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Kasserine_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Kebili_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Kef_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Mahdia_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Manouba_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Medenine_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Monastir_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Nabeul_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Sfax_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Sidi_Bouzid_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Siliana_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Sousse_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Tataouine_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Tozeur_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Tunis_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Tunisia_Zaghouan_Library": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Peru_Amazonas_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Ancash_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Apurimac_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Arequipa_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Ayacucho_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Cajamarca_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Callao_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Cusco_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Huancavelica_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Huanuco_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Ica_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Junin_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_La_Libertad_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Lambayeque_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Lima_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Loreto_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Madre_de_Dios_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Moquegua_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Pasco_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Piura_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Puno_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_San_Martin_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Tacna_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Tumbes_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Peru_Ucayali_Library": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Pakistan_Punjab_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Sindh_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Khyber_Pakhtunkhwa_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Balochistan_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Islamabad_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_Gilgit_Baltistan_Library": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Russia_Adygea_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Altai_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Amur_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Arkhangelsk_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Astrakhan_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Bashkortostan_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Belgorod_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Bryansk_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Buryatia_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Chechnya_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Chelyabinsk_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Chukotka_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Chuvashia_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Dagestan_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Ingushetia_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Irkutsk_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Ivanovo_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Jewish_Autonomous_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Kabardino_Balkaria_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Kaliningrad_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Kalmykia_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Kaluga_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Kamchatka_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Karachay_Cherkessia_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Karelia_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Kemerovo_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Khabarovsk_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Khakassia_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Khanty_Mansi_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Kirov_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Komi_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Kostroma_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Krasnodar_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Krasnoyarsk_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Kurgan_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Kursk_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Leningrad_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Lipetsk_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Magadan_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Mari_El_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Mordovia_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Moscow_City_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Moscow_Oblast_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Murmansk_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Nenets_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Nizhny_Novgorod_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_North_Ossetia_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Novgorod_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Novosibirsk_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Omsk_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Orenburg_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Oryol_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Penza_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Perm_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Primorsky_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Pskov_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Rostov_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Ryazan_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Saint_Petersburg_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Sakha_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Sakhalin_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Samara_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Saratov_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Sevastopol_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Smolensk_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Sverdlovsk_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Tambov_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Tatarstan_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Tomsk_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Tula_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Tuva_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Tver_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Tyumen_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Udmurtia_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Ulyanovsk_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Vladimir_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Volgograd_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Vologda_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Voronezh_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Yamalo_Nenets_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Yaroslavl_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_Zabaykalsky_Library": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Russia_RSL_Work": {
+        "z3950": "z3950.nlr.ru:210/NLR_BIB",
+        "type": "union_referral"
+    },
+    "Peru_BNP_Work": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Morocco_NL_Corp": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Peru_NL_Work": {
+        "z3950": "200.48.102.26:7090/Default",
+        "type": "union_referral"
+    },
+    "Tunisia_NL_Work": {
+        "z3950": "bibliotheque.nat.tn:210/BNT",
+        "type": "union_referral"
+    },
+    "Morocco_NL_Work": {
+        "z3950": "catalogue.bnrm.ma:210/UNICORN",
+        "type": "union_referral"
+    },
+    "Pakistan_NA_Work": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Pakistan_NL_Work": {
+        "z3950": "202.125.144.135:210/DEFAULT",
+        "type": "union_referral"
+    }
+}
+API_REGISTRY.update(PHASE3_HONEST_HUBS)
