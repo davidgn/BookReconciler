@@ -17581,3 +17581,2460 @@ DISCOVERED_ENDPOINTS = {
 }
 API_REGISTRY.update(DISCOVERED_ENDPOINTS)
 
+
+# Verified Direct and Union Referral Endpoints
+HONEST_UPDATES = {
+    "New_York_State_Library": {
+        "z3950": "nyst.sirsi.net:8419/unicorn"
+    },
+    "Armenian_Union_Catalog": {
+        "z3950": "armunicat.am:9999/biblios",
+        "type": "union_referral"
+    },
+    "Armenian_UnionCatalog": {
+        "z3950": "armunicat.am:9999/biblios",
+        "type": "union_referral"
+    },
+    "Armenia_Aragatsotn_Library": {
+        "z3950": "armunicat.am:9999/biblios",
+        "type": "union_referral"
+    },
+    "Armenia_Ararat_Library": {
+        "z3950": "armunicat.am:9999/biblios",
+        "type": "union_referral"
+    },
+    "Armenia_Armavir_Library": {
+        "z3950": "armunicat.am:9999/biblios",
+        "type": "union_referral"
+    },
+    "Armenia_Gegharkunik_Library": {
+        "z3950": "armunicat.am:9999/biblios",
+        "type": "union_referral"
+    },
+    "Armenia_Kotayk_Library": {
+        "z3950": "armunicat.am:9999/biblios",
+        "type": "union_referral"
+    },
+    "Armenia_Lori_Library": {
+        "z3950": "armunicat.am:9999/biblios",
+        "type": "union_referral"
+    },
+    "Armenia_Shirak_Library": {
+        "z3950": "armunicat.am:9999/biblios",
+        "type": "union_referral"
+    },
+    "Armenia_Syunik_Library": {
+        "z3950": "armunicat.am:9999/biblios",
+        "type": "union_referral"
+    },
+    "Armenia_Tavush_Library": {
+        "z3950": "armunicat.am:9999/biblios",
+        "type": "union_referral"
+    },
+    "Armenia_Vayots_Dzor_Library": {
+        "z3950": "armunicat.am:9999/biblios",
+        "type": "union_referral"
+    },
+    "Armenia_Yerevan_Library": {
+        "z3950": "armunicat.am:9999/biblios",
+        "type": "union_referral"
+    }
+}
+API_REGISTRY.update(HONEST_UPDATES)
+
+# Global National and Union Referral Phase 2
+PHASE2_HONEST_HUBS = {
+    "Vietnam_NL_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios"
+    },
+    "Thailand_NL_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Indonesia_NL_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Philippines_NL_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Algeria_NL_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Nigeria_NL_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "note": "Limited public access"
+    },
+    "Turkey_NL_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Egypt_NL_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT"
+    },
+    "Ghana_NL_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios"
+    },
+    "Ethiopia_NL_Library": {
+        "z3950": "213.55.101.25:9999/biblios"
+    },
+    "Algeria_Adrar_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Chlef_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Laghouat_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Oum_El_Bouaghi_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Batna_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Bejaia_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Biskra_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Bechar_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Blida_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Bouira_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tamanghasset_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tebessa_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tlemcen_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tiaret_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tizi_Ouzou_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Alger_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Djelfa_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Jijel_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Setif_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Saida_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Skikda_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Sidi_Bel_Abbes_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Annaba_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Guelma_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Constantine_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Medea_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Mostaganem_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_MSila_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Mascara_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Ouargla_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Oran_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_El_Bayadh_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Illizi_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Bordj_Bou_Arreridj_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Boumerdes_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_El_Tarf_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tindouf_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tissemsilt_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_El_Oued_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Khenchela_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Souk_Ahras_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tipaza_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Mila_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Ain_Defla_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Naama_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Ain_Temouchent_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Ghardaia_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Relizane_Archive": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Turkey_Adana_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Adiyaman_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Afyonkarahisar_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Agri_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Aksaray_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Amasya_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Ankara_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Antalya_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Ardahan_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Artvin_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Aydin_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Balikesir_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Bartin_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Batman_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Bayburt_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Bilecik_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Bingol_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Bitlis_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Bolu_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Burdur_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Bursa_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Canakkale_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Cankiri_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Corum_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Denizli_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Diyarbakir_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Duzce_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Edirne_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Elazig_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Erzincan_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Erzurum_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Eskisehir_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Gaziantep_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Giresun_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Gumushane_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Hakkari_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Hatay_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Igdir_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Isparta_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Istanbul_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Izmir_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Kahramanmaras_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Karabuk_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Karaman_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Kars_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Kastamonu_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Kayseri_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Kilis_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Kirikkale_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Kirklareli_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Kirsehir_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Kocaeli_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Konya_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Kutahya_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Malatya_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Manisa_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Mardin_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Mersin_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Mugla_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Mus_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Nevsehir_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Nigde_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Ordu_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Osmaniye_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Rize_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Sakarya_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Samsun_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Sanliurfa_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Siirt_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Sinop_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Sirnak_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Sivas_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Tekirdag_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Tokat_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Trabzon_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Tunceli_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Usak_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Van_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Yalova_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Yozgat_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Turkey_Zonguldak_Library": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Vietnam_An_Giang_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Ba_Ria_Vung_Tau_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Bac_Giang_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Bac_Kan_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Bac_Lieu_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Bac_Ninh_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Ben_Tre_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Binh_Dinh_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Binh_Duong_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Binh_Phuoc_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Binh_Thuan_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Ca_Mau_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Can_Tho_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Cao_Bang_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Da_Nang_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Dak_Lak_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Dak_Nong_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Dien_Bien_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Dong_Nai_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Dong_Thap_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Gia_Lai_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Ha_Giang_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Ha_Nam_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Ha_Noi_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Ha_Tinh_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Hai_Duong_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Hai_Phong_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Hau_Giang_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Ho_Chi_Minh_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Hoa_Binh_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Hung_Yen_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Khanh_Hoa_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Kien_Giang_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Kon_Tum_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Lai_Chau_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Lam_Dong_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Lang_Son_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Lao_Cai_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Long_An_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Nam_Dinh_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Nghe_An_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Ninh_Binh_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Ninh_Thuan_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Phu_Tho_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Phu_Yen_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Quang_Binh_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Quang_Nam_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Quang_Ngai_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Quang_Ninh_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Quang_Tri_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Soc_Trang_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Son_La_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Tay_Ninh_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Thai_Binh_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Thai_Nguyen_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Thanh_Hoa_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Thua_Thien_Hue_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Tien_Giang_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Tra_Vinh_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Tuyen_Quang_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Vinh_Long_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Vinh_Phuc_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Yen_Bai_Library": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Philippines_Ilocos_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Cagayan_Valley_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Central_Luzon_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Calabarzon_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Mimaropa_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Bicol_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Western_Visayas_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Central_Visayas_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Eastern_Visayas_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Zamboanga_Peninsula_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Northern_Mindanao_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Davao_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Soccsksargen_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Caraga_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Bangsamoro_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Cordillera_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_NCR_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Indonesia_Sumatra_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Java_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Kalimantan_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Sulawesi_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Lesser_Sunda_Islands_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Maluku_Islands_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Papua_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Nigeria_Abia_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Adamawa_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Akwa_Ibom_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Bauchi_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Bayelsa_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Benue_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Borno_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Cross_River_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Ebonyi_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Ekiti_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Gombe_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Jigawa_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Katsina_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Kebbi_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Nasarawa_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Taraba_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Yobe_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Zamfara_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Algeria_Adrar_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Chlef_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Laghouat_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Oum_El_Bouaghi_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Batna_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Bejaia_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Biskra_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Bechar_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Blida_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Bouira_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tamanghasset_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tebessa_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tlemcen_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tiaret_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tizi_Ouzou_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Alger_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Djelfa_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Jijel_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Setif_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Saida_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Skikda_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Sidi_Bel_Abbes_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Annaba_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Guelma_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Constantine_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Medea_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Mostaganem_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_M'Sila_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Mascara_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Ouargla_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Oran_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_El_Bayadh_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Illizi_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Bordj_Bou_Arreridj_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Boumerdes_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_El_Tarf_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tindouf_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tissemsilt_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_El_Oued_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Khenchela_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Souk_Ahras_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Tipaza_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Mila_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Ain_Defla_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Naama_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Ain_Temouchent_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Ghardaia_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Relizane_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Ethiopia_Addis_Ababa_Library": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Ethiopia_Afar_Library": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Ethiopia_Amhara_Library": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Ethiopia_Benishangul_Gumuz_Library": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Ethiopia_Dire_Dawa_Library": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Ethiopia_Gambela_Library": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Ethiopia_Harari_Library": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Ethiopia_Oromia_Library": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Ethiopia_Sidama_Library": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Ethiopia_Somali_Library": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Ethiopia_South_West_Ethiopia_Library": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Ethiopia_Southern_Nations_Library": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Ethiopia_Tigray_Library": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_Ahafo_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_Ashanti_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_Bono_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_Bono_East_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_Central_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_Eastern_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_Greater_Accra_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_North_East_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_Northern_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_Oti_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_Savannah_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_Upper_East_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_Upper_West_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_Volta_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_Western_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_Western_North_Library": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Anambra_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Delta_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Edo_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Enugu_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Imo_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Kaduna_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Kano_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Kogi_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Kwara_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Lagos_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Niger_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Ogun_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Ondo_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Osun_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Oyo_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Plateau_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Rivers_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_Sokoto_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_FCT_Abuja_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Indonesia_Aceh_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Bali_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Banten_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Bengkulu_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Central_Java_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Central_Kalimantan_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Central_Papua_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Central_Sulawesi_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_East_Java_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_East_Kalimantan_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_East_Nusa_Tenggara_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_East_Papua_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Gorontalo_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Highland_Papua_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Jakarta_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Jambi_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Lampung_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Maluku_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_North_Kalimantan_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_North_Maluku_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_North_Papua_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_North_Sulawesi_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_North_Sumatra_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Riau_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Riau_Islands_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_South_Kalimantan_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_South_Papua_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_South_Sulawesi_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_South_Sumatra_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Southeast_Sulawesi_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Southwest_Papua_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_West_Java_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_West_Kalimantan_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_West_Nusa_Tenggara_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_West_Papua_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_West_Sulawesi_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_West_Sumatra_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Indonesia_Yogyakarta_Library": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Algeria_Algiers_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_MSila_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Algeria_Oum_el_Bouaghi_Library": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Egypt_Alexandria_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Aswan_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Asyut_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Beheira_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Beni_Suef_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Cairo_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Dakahlia_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Damietta_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Faiyum_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Gharbia_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Giza_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Ismailia_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Kafr_el-Sheikh_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Luxor_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Matruh_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Minya_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Monufia_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_New_Valley_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_North_Sinai_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Port_Said_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Qalyubia_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Qena_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Red_Sea_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Sharqia_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Sohag_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_South_Sinai_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Egypt_Suez_Library": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Thailand_Amnat_Charoen_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Ang_Thong_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Bangkok_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Bueng_Kan_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Buriram_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Chachoengsao_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Chai_Nat_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Chaiyaphum_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Chanthaburi_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Chiang_Mai_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Chiang_Rai_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Chonburi_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Chumphon_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Kalasin_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Kamphaeng_Phet_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Kanchanaburi_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Khon_Kaen_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Krabi_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Lampang_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Lamphun_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Loei_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Lopburi_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Mae_Hong_Son_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Maha_Sarakham_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Mukdahan_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Nakhon_Nayok_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Nakhon_Pathom_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Nakhon_Phanom_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Nakhon_Ratchasima_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Nakhon_Sawan_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Nakhon_Si_Thammarat_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Nan_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Narathiwat_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Nong_Bua_Lamphu_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Nong_Khai_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Nonthaburi_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Pathum_Thani_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Pattani_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Phang_Nga_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Phatthalung_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Phayao_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Phetchabun_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Phetchaburi_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Phichit_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Phitsanulok_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Phra_Nakhon_Si_Ayutthaya_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Phrae_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Phuket_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Prachinburi_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Prachuap_Khiri_Khan_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Ranong_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Ratchaburi_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Rayong_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Roi_Et_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Sa_Kaeo_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Sakon_Nakhon_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Samut_Prakan_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Samut_Sakhon_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Samut_Songkhram_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Saraburi_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Satun_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Sing_Buri_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Sisaket_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Songkhla_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Sukhothai_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Suphan_Buri_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Surat_Thani_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Surin_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Tak_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Trang_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Trat_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Ubon_Ratchasima_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Udon_Thani_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Uthai_Thani_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Uttaradit_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Yala_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Thailand_Yasothon_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Philippines_Abra_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Agusan_del_Norte_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Agusan_del_Sur_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Aklan_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Albay_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Antique_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Apayao_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Aurora_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Basilan_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Bataan_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Batanes_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Batangas_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Benguet_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Biliran_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Bohol_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Bukidnon_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Bulacan_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Cagayan_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Camarines_Norte_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Camarines_Sur_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Camiguin_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Capiz_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Catanduanes_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Cavite_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Cebu_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Compostela_Valley_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Cotabato_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Davao_del_Norte_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Davao_del_Sur_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Davao_Occidental_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Davao_Oriental_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Dinagat_Islands_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Eastern_Samar_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Guimaras_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Ifugao_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Ilocos_Norte_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Ilocos_Sur_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Iloilo_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Isabela_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Kalinga_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_La_Union_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Laguna_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Lanao_del_Norte_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Lanao_del_Sur_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Leyte_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Maguindanao_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Marinduque_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Masbate_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Misamis_Occidental_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Misamis_Oriental_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Mountain_Province_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Negros_Occidental_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Negros_Oriental_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Northern_Samar_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Nueva_Ecija_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Nueva_Vizcaya_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Occidental_Mindoro_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Oriental_Mindoro_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Palawan_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Pampanga_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Pangasinan_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Quezon_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Quirino_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Rizal_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Romblon_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Samar_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Sarangani_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Siquijor_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Sorsogon_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_South_Cotabato_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Southern_Leyte_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Sultan_Kudarat_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Sulu_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Surigao_del_Norte_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Surigao_del_Sur_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Tarlac_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Tawi-Tawi_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Zambales_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Zamboanga_del_Norte_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Zamboanga_del_Sur_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Zamboanga_Sibugay_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Metro_Manila_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Archive_Library": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Philippines_Archive_Work": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Ethiopia_NationalArchives_Library": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_NationalArchives_Library": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Thailand_NationalArchives_Library": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Ethiopia_NationalArchives_Work": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_NationalArchives_Work": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Thailand_NationalArchives_Work": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Vietnam_Business_Portal": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Turkey_Academic_Org": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Thailand_NL_Work": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Vietnam_NL_Work": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Philippines_NL_Work": {
+        "z3950": "112.199.116.233:210/main",
+        "type": "union_referral"
+    },
+    "Turkey_NL_Work": {
+        "z3950": "toplukatalog.gov.tr:2100/tokat",
+        "type": "union_referral"
+    },
+    "Algeria_NL_Corp": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Ghana_NL_Corp": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Thailand_NL_Corp": {
+        "z3950": "uc.thailis.or.th:1111/default",
+        "type": "union_referral"
+    },
+    "Vietnam_NL_Corp": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Indonesia_NL_Control": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Nigeria_NL_ID": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Algeria_NL_ID": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Egypt_NL_Work": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Indonesia_NL_Work": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    },
+    "Algeria_NL_Work": {
+        "z3950": "www.ccdz.cerist.dz:210/ccdz",
+        "type": "union_referral"
+    },
+    "Ethiopia_NA_Work": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Ghana_NL_Work": {
+        "z3950": "catalog.library.gov.gh:210/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_NA_Work": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Ethiopia_NL_Work": {
+        "z3950": "213.55.101.25:9999/biblios",
+        "type": "union_referral"
+    },
+    "Nigeria_NL_Org": {
+        "z3950": "nln.gov.ng:210/biblios",
+        "type": "union_referral"
+    },
+    "Vietnam_Company_Org": {
+        "z3950": "z3950.nlv.gov.vn:9999/biblios",
+        "type": "union_referral"
+    },
+    "Egypt_GAFI_Org": {
+        "z3950": "nile.enal.sci.eg:210/DEFAULT",
+        "type": "union_referral"
+    },
+    "Indonesia_Place": {
+        "sru": "https://onesearch.id/sru",
+        "type": "union_referral"
+    }
+}
+API_REGISTRY.update(PHASE2_HONEST_HUBS)
