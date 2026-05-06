@@ -17533,3 +17533,50 @@ INACTIVE_REGISTRY = {
     }
 }
 API_REGISTRY.update(INACTIVE_REGISTRY)
+
+# Phase 1 Discovery: High-Probability Regional Hubs
+DISCOVERED_ENDPOINTS = {
+    "Russia_RSL_Main": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_RSL_Foreign": {
+        "z3950": "aleph.rsl.ru:9909/RSL02"
+    },
+    "Russia_RSL_Maps": {
+        "z3950": "aleph.rsl.ru:9909/RSL03"
+    },
+    "Russia_RSL_Music": {
+        "z3950": "aleph.rsl.ru:9909/RSL04"
+    },
+    "Slovenia_NL_Library": {
+        "sru": "https://plus.cobiss.net/cobiss/si/en/bib/search/sru"
+    },
+    "Serbia_NL_Library": {
+        "sru": "https://plus.cobiss.net/cobiss/sr/en/bib/search/sru"
+    },
+    "Bulgaria_NL_Library": {
+        "sru": "https://plus.cobiss.net/cobiss/bg/en/bib/search/sru"
+    },
+    "Albania_NL_Library": {
+        "sru": "https://plus.cobiss.net/cobiss/al/en/bib/search/sru"
+    },
+    "Montenegro_NL_Library": {
+        "sru": "https://plus.cobiss.net/cobiss/cg/en/bib/search/sru"
+    },
+    "SouthAfrica_NL_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Wits_Library": {
+        "z3950": "wits.alma.exlibrisgroup.com:1921/27WITS_INST"
+    },
+    "SouthAfrica_UCT_Library": {
+        "z3950": "uct.alma.exlibrisgroup.com:1921/27UCT_INST"
+    },
+    "Mexico_NLC_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_UNAM_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52UNAM_INST"
+    }
+}
+API_REGISTRY.update(DISCOVERED_ENDPOINTS)
