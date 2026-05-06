@@ -8333,3 +8333,8975 @@ DOMAIN_MAPPED_ENDPOINTS = {
     }
 }
 API_REGISTRY.update(DOMAIN_MAPPED_ENDPOINTS)
+
+# Optimized Mined Endpoints (Phase 2)
+OPTIMIZED_MINED_ENDPOINTS = {
+    "France_Hauts_de_France_Library": {
+        "z3950": "utf-8"
+    },
+    "Spain_Castilla_La_Mancha_Library": {
+        "z3950": "latin1"
+    },
+    "Spain_Castilla_y_Leon_Library": {
+        "z3950": "marc8"
+    },
+    "Spain_Madrid_Library": {
+        "z3950": "utf-8"
+    },
+    "Chile_Santiago_Library": {
+        "z3950": "utf-8"
+    },
+    "Ghana_Central_Library": {
+        "z3950": "utf-8"
+    },
+    "Guatemala_Guatemala_Library": {
+        "z3950": "utf-8"
+    },
+    "Cambodia_Phnom_Penh_Library": {
+        "z3950": "utf-8"
+    },
+    "Trinidad_Tobago_Library": {
+        "z3950": "utf-8"
+    },
+    "Czech_Prague_Library": {
+        "z3950": "marc8"
+    },
+    "Myanmar_Yangon_Library": {
+        "z3950": "utf-8"
+    },
+    "Israel_Central_Library": {
+        "z3950": "utf-8"
+    },
+    "Israel_Jerusalem_Library": {
+        "z3950": "utf-8"
+    },
+    "Greece_Attica_Library": {
+        "z3950": "utf-8"
+    },
+    "Greece_Central_Greece_Library": {
+        "z3950": "utf-8"
+    },
+    "Greece_Western_Greece_Library": {
+        "z3950": "latin1"
+    },
+    "Norway_Agder_Library": {
+        "z3950": "utf-8"
+    },
+    "Norway_Finnmark_Library": {
+        "z3950": "utf-8"
+    },
+    "Norway_Innlandet_Library": {
+        "z3950": "utf-8"
+    },
+    "Norway_Oslo_Library": {
+        "z3950": "utf-8"
+    },
+    "Norway_Troms_Library": {
+        "z3950": "utf-8"
+    },
+    "Sweden_Stockholm_Library": {
+        "z3950": "latin1"
+    },
+    "Ireland_Galway_Library": {
+        "z3950": "utf-8"
+    },
+    "Malaysia_Selangor_Library": {
+        "z3950": "utf-8"
+    },
+    "Argentina_Buenos_Aires_City_Library": {
+        "z3950": "utf-8"
+    },
+    "Argentina_Buenos_Aires_Province_Library": {
+        "z3950": "utf-8"
+    },
+    "Swiss_ZH_Library": {
+        "z3950": "utf-8"
+    },
+    "Swiss_BE_Library": {
+        "z3950": "utf-8"
+    },
+    "Swiss_VD_Library": {
+        "z3950": "utf-8"
+    },
+    "Martinique_Library": {
+        "z3950": "utf-8"
+    },
+    "Guadeloupe_Library": {
+        "z3950": "utf-8"
+    },
+    "Macau_Library": {
+        "z3950": "utf-8"
+    },
+    "Bermuda_Library": {
+        "z3950": "utf-8"
+    },
+    "Czech_Archive_Library": {
+        "z3950": "utf-8"
+    },
+    "Taiwan_Archive_Library": {
+        "z3950": "utf-8"
+    },
+    "Trinidad_Archive_Library": {
+        "z3950": "utf-8"
+    },
+    "Denmark_Archive_Library": {
+        "z3950": "utf-8"
+    },
+    "Czech_Archive_Work": {
+        "z3950": "utf-8"
+    },
+    "Taiwan_Archive_Work": {
+        "z3950": "utf-8"
+    },
+    "Trinidad_Archive_Work": {
+        "z3950": "utf-8"
+    },
+    "Denmark_Archive_Work": {
+        "z3950": "utf-8"
+    },
+    "Sweden_LIBRIS_Work": {
+        "z3950": "latin1"
+    },
+    "BC_Archives_Work": {
+        "z3950": "utf-8"
+    },
+    "Alberta_Archives_Work": {
+        "z3950": "utf-8"
+    },
+    "Ontario_Library_Work": {
+        "z3950": "utf-8"
+    },
+    "California_Library_Work": {
+        "z3950": "utf-8"
+    },
+    "Virginia_Library_Work": {
+        "z3950": "utf-8"
+    },
+    "Cyprus_Library_Work": {
+        "z3950": "utf-8"
+    },
+    "Medicine_NLM_Work": {
+        "z3950": "utf-8"
+    },
+    "Chicago_Library_Work": {
+        "z3950": "utf-8"
+    },
+    "Boston_Library_Work": {
+        "z3950": "utf-8"
+    },
+    "ACNP_Library": {
+        "z3950": "utf-8"
+    },
+    "Swedish_National_Archive": {
+        "z3950": "utf-8"
+    },
+    "ILO_Library": {
+        "z3950": "utf-8"
+    },
+    "ILO_Work": {
+        "z3950": "utf-8"
+    },
+    "BNF_France_Library": {
+        "z3950": "utf-8"
+    },
+    "BNF_France_Work": {
+        "z3950": "utf-8"
+    },
+    "CARLI_Illinois_Library": {
+        "z3950": "utf-8"
+    },
+    "CARLI_Illinois_Work": {
+        "z3950": "utf-8"
+    },
+    "MnPALS_Minnesota_Library": {
+        "z3950": "utf-8"
+    },
+    "MnPALS_Minnesota_Work": {
+        "z3950": "utf-8"
+    },
+    "Ontario_Legislative_Library": {
+        "z3950": "utf-8"
+    },
+    "Ontario_Legislative_Work": {
+        "z3950": "utf-8"
+    },
+    "LIBRIS_Sweden_Library": {
+        "z3950": "latin1"
+    },
+    "LIBRIS_Sweden_Work": {
+        "z3950": "latin1"
+    },
+    "Alberta_Provincial_Library": {
+        "z3950": "utf-8"
+    },
+    "Manitoba_Provincial_Library": {
+        "z3950": "na01.alma.exlibrisgroup.com:210/01UMB_INST"
+    },
+    "Saskatchewan_Provincial_Library": {
+        "z3950": "utf-8"
+    },
+    "Alberta_Provincial_Work": {
+        "z3950": "utf-8"
+    },
+    "Manitoba_Provincial_Work": {
+        "z3950": "na01.alma.exlibrisgroup.com:210/01UMB_INST"
+    },
+    "Saskatchewan_Provincial_Work": {
+        "z3950": "utf-8"
+    },
+    "NS_Provincial_Library": {
+        "z3950": "utf-8"
+    },
+    "NB_Provincial_Library": {
+        "z3950": "utf-8"
+    },
+    "NL_Provincial_Library": {
+        "z3950": "utf-8"
+    },
+    "PEI_Provincial_Library": {
+        "z3950": "utf-8"
+    },
+    "NS_Provincial_Work": {
+        "z3950": "utf-8"
+    },
+    "NB_Provincial_Work": {
+        "z3950": "utf-8"
+    },
+    "NL_Provincial_Work": {
+        "z3950": "utf-8"
+    },
+    "PEI_Provincial_Work": {
+        "z3950": "utf-8"
+    },
+    "Nobel_Person": {
+        "z3950": "utf-8"
+    },
+    "CastillaLeon_Library": {
+        "z3950": "marc8"
+    },
+    "Valencia_Library": {
+        "z3950": "utf-8"
+    },
+    "Toscana_Library": {
+        "z3950": "utf-8"
+    },
+    "CastillaLeon_Work": {
+        "z3950": "marc8"
+    },
+    "Valencia_Work": {
+        "z3950": "utf-8"
+    },
+    "Toscana_Work": {
+        "z3950": "utf-8"
+    },
+    "Cantabria_Library": {
+        "z3950": "latin1"
+    },
+    "Navarra_Library": {
+        "z3950": "utf-8"
+    },
+    "Veneto_Library": {
+        "z3950": "C95051UK.eos-intl.eu:210/MC95051UK"
+    },
+    "Cantabria_Work": {
+        "z3950": "latin1"
+    },
+    "Navarra_Work": {
+        "z3950": "utf-8"
+    },
+    "Veneto_Work": {
+        "z3950": "C95051UK.eos-intl.eu:210/MC95051UK"
+    },
+    "Banrepcultura_Library": {
+        "z3950": "utf-8"
+    },
+    "Smithsonian_Library": {
+        "z3950": "utf-8"
+    },
+    "Banrepcultura_Work": {
+        "z3950": "utf-8"
+    },
+    "Smithsonian_Work": {
+        "z3950": "utf-8"
+    },
+    "WorldBank_Library": {
+        "z3950": "jolis.imf.org:2200/UNICORN"
+    },
+    "IMF_Library": {
+        "z3950": "utf-8"
+    },
+    "SBN_Work": {
+        "z3950": "utf-8"
+    },
+    "Madrid_Regional_Library": {
+        "z3950": "utf-8"
+    },
+    "Madrid_Regional_Work": {
+        "z3950": "utf-8"
+    },
+    "Andorra_Library": {
+        "z3950": "utf-8"
+    },
+    "Andorra_Work": {
+        "z3950": "utf-8"
+    },
+    "Rome_Academy_Person": {
+        "z3950": "utf-8"
+    },
+    "Sinica_Person": {
+        "z3950": "utf-8"
+    },
+    "Poetry_Archive_Person": {
+        "z3950": "utf-8"
+    }
+}
+API_REGISTRY.update(OPTIMIZED_MINED_ENDPOINTS)
+
+# Hierarchical National Fallback Endpoints
+HIERARCHICAL_FALLBACK_ENDPOINTS = {
+    "Indiana_State_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "New_Mexico_State_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "France_Auvergne_Rhone_Alpes_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "France_Bourgogne_Franche_Comte_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "France_Bretagne_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "France_Corse_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "France_Grand_Est_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "France_Normandie_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "France_Nouvelle_Aquitaine_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "France_Occitanie_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "France_PACA_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Italy_Abruzzo_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Basilicata_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Calabria_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Campania_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Emilia_Romagna_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Friuli_Venezia_Giulia_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Lazio_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Liguria_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Lombardia_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Marche_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Molise_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Piemonte_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Puglia_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Sardegna_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Sicilia_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Toscana_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Trentino_Alto_Adige_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Umbria_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Valle_dAosta_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Veneto_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Spain_Andalucia_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "Spain_Aragon_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "Spain_Asturias_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "Spain_Basque_Country_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "Spain_Canary_Islands_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "Spain_Cantabria_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "Spain_Catalonia_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "Spain_Extremadura_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "Spain_Galicia_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "Spain_Murcia_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "Spain_Navarra_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "Spain_Valencia_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "UK_East_Midlands_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_London_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_North_East_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_North_West_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_Northern_Ireland_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_Scotland_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_South_East_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_South_West_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_Wales_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_Yorkshire_and_the_Humber_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Chile_Arica_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Parinacota_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Iquique_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Tamarugal_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Antofagasta_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_El_Loa_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Tocopilla_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Chanaral_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Copiapo_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Huasco_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Elqui_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Limari_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Choapa_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Valparaiso_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Quillota_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_San_Antonio_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Los_Andes_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Petorca_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Marga_Marga_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Chacabuco_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Cordillera_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Maipo_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Melipilla_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Talagante_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Cachapoal_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Colchagua_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Cardenal_Caro_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Talca_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Curico_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Linares_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Cauquenes_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Diguillin_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Punilla_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Itata_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Concepcion_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Arauco_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Bio_Bio_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Nuble_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Malleco_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Cautin_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Valdivia_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Ranco_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Osorno_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Llanquihue_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Chiloe_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Palena_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Coyhaique_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Aysen_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_General_Carrera_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Capitan_Prat_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Magallanes_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Tierra_del_Fuego_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Antartica_Chilena_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Ultima_Esperanza_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Turkey_Karabuk_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Turkey_Usak_Library": {
+        "rest": "https://www.loc.gov/apis/search",
+        "sru": "http://lx2.loc.gov/sru/lcdb",
+        "z3950": "lx2.loc.gov:210/LCDB"
+    },
+    "Korea_Busan_Library": {
+        "rest": "https://www.loc.gov/apis/search",
+        "sru": "http://lx2.loc.gov/sru/lcdb",
+        "z3950": "lx2.loc.gov:210/LCDB"
+    },
+    "Indonesia_Maluku_Islands_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Pakistan_Sukkur_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "SouthAfrica_Frances_Baard_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "SouthAfrica_Sekhukhune_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "SouthAfrica_uThukela_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Germany_Minor_Baden_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Minor_Wuerttemberg_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Minor_Mecklenburg_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Minor_Pomerania_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Minor_Westphalia_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Minor_Palatinate_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Italy_Minor_Abruzzo_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Minor_Basilicata_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Minor_Calabria_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Minor_Molise_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Minor_Umbria_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Minor_Valle_d_Aosta_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Minor_Trentino_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Italy_Minor_Alto_Adige_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Canada_Municipal_Montreal_Library": {
+        "sru": "http://amicus.collectionscanada.gc.ca:210/NLC"
+    },
+    "Canada_Municipal_Vancouver_Library": {
+        "sru": "http://amicus.collectionscanada.gc.ca:210/NLC"
+    },
+    "Canada_Municipal_Calgary_Library": {
+        "sru": "http://amicus.collectionscanada.gc.ca:210/NLC"
+    },
+    "Canada_Municipal_Edmonton_Library": {
+        "sru": "http://amicus.collectionscanada.gc.ca:210/NLC"
+    },
+    "Canada_Municipal_Winnipeg_Library": {
+        "sru": "http://amicus.collectionscanada.gc.ca:210/NLC"
+    },
+    "Canada_Municipal_Quebec_City_Library": {
+        "sru": "http://amicus.collectionscanada.gc.ca:210/NLC"
+    },
+    "Portugal_Azores_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Madeira_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Spain_Ceuta_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "Spain_Melilla_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "Pacific_French_Polynesia_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Souk_Ahras_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "PNG_New_Ireland_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Azerbaijan_Yukhari_Shirvan_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Zambia_Lusaka_Library": {
+        "rest": "https://www.loc.gov/apis/search",
+        "sru": "http://lx2.loc.gov/sru/lcdb",
+        "z3950": "lx2.loc.gov:210/LCDB"
+    },
+    "Tanzania_Rukwa_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Uzbekistan_Bukhara_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Indonesia_East_Nusa_Tenggara_Library": {
+        "rest": "https://www.loc.gov/apis/search",
+        "sru": "http://lx2.loc.gov/sru/lcdb",
+        "z3950": "lx2.loc.gov:210/LCDB"
+    },
+    "Indonesia_Maluku_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Indonesia_North_Maluku_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Indonesia_West_Nusa_Tenggara_Library": {
+        "rest": "https://www.loc.gov/apis/search",
+        "sru": "http://lx2.loc.gov/sru/lcdb",
+        "z3950": "lx2.loc.gov:210/LCDB"
+    },
+    "Mali_Timbuktu_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "IvoryCoast_Yamoussoukro_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Cambodia_Preah_Sihanouk_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Oman_Musandam_Library": {
+        "rest": "https://www.loc.gov/apis/search",
+        "sru": "http://lx2.loc.gov/sru/lcdb",
+        "z3950": "lx2.loc.gov:210/LCDB"
+    },
+    "Croatia_Vukovar_Srijem_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Albania_Kukes_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Trinidad_Port_of_Spain_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "Bahamas_Spanish_Wells_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "Czech_Central_Bohemian_Library": {
+        "sru": "https://aleph.nkp.cz/X"
+    },
+    "Czech_South_Bohemian_Library": {
+        "sru": "https://aleph.nkp.cz/X"
+    },
+    "Czech_Plzen_Library": {
+        "sru": "https://aleph.nkp.cz/X"
+    },
+    "Czech_Karlovy_Vary_Library": {
+        "sru": "https://aleph.nkp.cz/X"
+    },
+    "Czech_Usti_nad_Labem_Library": {
+        "sru": "https://aleph.nkp.cz/X"
+    },
+    "Czech_Liberec_Library": {
+        "sru": "https://aleph.nkp.cz/X"
+    },
+    "Czech_Hradec_Kralove_Library": {
+        "sru": "https://aleph.nkp.cz/X"
+    },
+    "Czech_Pardubice_Library": {
+        "sru": "https://aleph.nkp.cz/X"
+    },
+    "Czech_Vysocina_Library": {
+        "sru": "https://aleph.nkp.cz/X"
+    },
+    "Czech_South_Moravian_Library": {
+        "sru": "https://aleph.nkp.cz/X"
+    },
+    "Czech_Olomouc_Library": {
+        "sru": "https://aleph.nkp.cz/X"
+    },
+    "Czech_Zlin_Library": {
+        "sru": "https://aleph.nkp.cz/X"
+    },
+    "Czech_Moravian_Silesian_Library": {
+        "sru": "https://aleph.nkp.cz/X"
+    },
+    "Iraq_Kirkuk_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Iraq_Dahuk_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Norway_Akershus_Library": {
+        "rest": "https://api.nb.no/catalog/v1/items"
+    },
+    "Norway_Buskerud_Library": {
+        "rest": "https://api.nb.no/catalog/v1/items"
+    },
+    "Norway_Nordland_Library": {
+        "rest": "https://api.nb.no/catalog/v1/items"
+    },
+    "Norway_Ostfold_Library": {
+        "rest": "https://api.nb.no/catalog/v1/items"
+    },
+    "Norway_Rogaland_Library": {
+        "rest": "https://api.nb.no/catalog/v1/items"
+    },
+    "Norway_Telemark_Library": {
+        "rest": "https://api.nb.no/catalog/v1/items"
+    },
+    "Norway_Trondelag_Library": {
+        "rest": "https://api.nb.no/catalog/v1/items"
+    },
+    "Norway_Vestfold_Library": {
+        "rest": "https://api.nb.no/catalog/v1/items"
+    },
+    "Norway_Vestland_Library": {
+        "rest": "https://api.nb.no/catalog/v1/items"
+    },
+    "Sweden_Blekinge_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Dalarna_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Gavleborg_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Gotland_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Halland_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Jamtland_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Jonkoping_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Kalmar_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Kronoberg_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Norrbotten_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Orebro_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Ostergotland_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Skane_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Sodermanland_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Uppsala_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Varmland_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Vasterbotten_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Vasternorrland_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Vastmanland_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Sweden_Vastra_Gotaland_Library": {
+        "rest": "http://libris.kb.se/xsearch"
+    },
+    "Denmark_Hovedstaden_Library": {
+        "sru": "https://kbdk-sru.kb.dk/sru/"
+    },
+    "Denmark_Midtjylland_Library": {
+        "sru": "https://kbdk-sru.kb.dk/sru/"
+    },
+    "Denmark_Nordjylland_Library": {
+        "sru": "https://kbdk-sru.kb.dk/sru/"
+    },
+    "Denmark_Sjaelland_Library": {
+        "sru": "https://kbdk-sru.kb.dk/sru/"
+    },
+    "Denmark_Syddanmark_Library": {
+        "sru": "https://kbdk-sru.kb.dk/sru/"
+    },
+    "Finland_Aland_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_Central_Finland_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_Central_Ostrobothnia_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_Kainuu_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_Kanta-Hame_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_Kymenlaakso_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_Lapland_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_North_Karelia_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_North_Ostrobothnia_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_North_Savo_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_Ostrobothnia_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_Paijat-Hame_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_Pirkanmaa_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_Satakunta_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_South_Karelia_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_South_Ostrobothnia_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_South_Savo_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_Southwest_Finland_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Finland_Uusimaa_Library": {
+        "sru": "https://fennica.linneanet.fi/sru"
+    },
+    "Ireland_Carlow_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Cavan_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Clare_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Cork_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Donegal_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Dublin_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Kerry_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Kildare_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Kilkenny_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Laois_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Leitrim_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Limerick_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Longford_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Louth_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Mayo_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Meath_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Monaghan_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Offaly_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Roscommon_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Sligo_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Tipperary_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Waterford_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Westmeath_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Wexford_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ireland_Wicklow_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_England_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_Greater_London_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_Greater_Manchester_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_West_Yorkshire_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_South_Yorkshire_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_Tyne_and_Wear_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "UK_Merseyside_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Portugal_Aveiro_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Beja_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Braga_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Braganca_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Castelo_Branco_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Coimbra_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Evora_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Faro_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Guarda_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Leiria_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Lisboa_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Portalegre_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Porto_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Santarem_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Setubal_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Viana_do_Castelo_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Vila_Real_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Viseu_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Portugal_Acores_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Saudi_Tabuk_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Chile_Arica_y_Parinacota_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Tarapaca_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Atacama_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Coquimbo_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Metropolitana_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_OHiggins_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Maule_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Biobio_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Araucania_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Chile_Los_Lagos_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Ukraine_Cherkasy_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Chernihiv_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Chernivtsi_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Crimea_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Dnipropetrovsk_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Donetsk_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Ivano-Frankivsk_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Kharkiv_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Kherson_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Khmelnytskyi_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Kirovohrad_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Kyiv_City_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Kyiv_Oblast_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Luhansk_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Lviv_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Mykolaiv_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Odesa_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Poltava_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Rivne_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Sevastopol_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Sumy_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Ternopil_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Vinnytsia_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Volyn_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Zakarpattia_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Zaporizhzhia_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Ukraine_Zhytomyr_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Thailand_Mukdahan_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Thailand_Phuket_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Thailand_Sukhothai_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Poland_Greater_Poland_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Poland_Kuyavian-Pomeranian_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Poland_Lesser_Poland_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Poland_Lodz_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Poland_Lower_Silesian_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Poland_Lublin_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Poland_Lubusz_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Poland_Masovian_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Poland_Opole_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Poland_Podlaskie_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Poland_Pomeranian_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Poland_Silesian_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Poland_Subcarpathian_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Poland_Holy_Cross_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Poland_Warmian-Masurian_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Poland_West_Pomeranian_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "Colombia_Amazonas_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Antioquia_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Arauca_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Atlantico_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Bolivar_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Boyaca_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Caldas_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Caqueta_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Casanare_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Cauca_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Cesar_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Choco_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Cordoba_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Cundinamarca_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Guainia_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Guaviare_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Huila_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_La_Guajira_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Magdalena_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Meta_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Narino_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Putumayo_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Quindio_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Risaralda_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_San_Andres_y_Providencia_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Santander_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Sucre_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Tolima_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Vaupes_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Colombia_Vichada_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Japan_Aichi_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Akita_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Aomori_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Chiba_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Ehime_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Fukui_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Fukuoka_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Fukushima_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Gifu_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Gunma_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Hiroshima_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Hokkaido_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Hyogo_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Ibaraki_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Ishikawa_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Iwate_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Kagawa_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Kagoshima_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Kanagawa_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Kochi_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Kumamoto_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Kyoto_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Mie_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Miyagi_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Miyazaki_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Nagano_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Nagasaki_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Nara_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Niigata_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Oita_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Okayama_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Okinawa_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Osaka_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Saga_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Saitama_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Shiga_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Shimane_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Shizuoka_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Tochigi_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Tokushima_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Tokyo_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Tottori_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Toyama_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Wakayama_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Yamagata_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Yamaguchi_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Japan_Yamanashi_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Philippines_Agusan_del_Sur_Library": {
+        "rest": "https://www.loc.gov/apis/search",
+        "sru": "http://lx2.loc.gov/sru/lcdb",
+        "z3950": "lx2.loc.gov:210/LCDB"
+    },
+    "Philippines_Bukidnon_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Italy_Valle_d'Aosta_Library": {
+        "sru": "http://opac.sbn.it/sru/servlet/SRU"
+    },
+    "Argentina_Catamarca_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Chaco_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Chubut_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Cordoba_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Corrientes_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Entre_Rios_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Formosa_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Jujuy_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_La_Pampa_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Mendoza_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Misiones_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Neuquen_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Rio_Negro_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Salta_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_San_Luis_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Santa_Cruz_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Santa_Fe_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Santiago_del_Estero_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Tierra_del_Fuego_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Argentina_Tucuman_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Australia_Northern_Territory_Library": {
+        "rest": "https://api.trove.nla.gov.au/v3/sru"
+    },
+    "Australia_ACT_Library": {
+        "rest": "https://api.trove.nla.gov.au/v3/sru"
+    },
+    "Russia_Chukotka_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Germany_Baden_Wuerttemberg_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Bavaria_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Berlin_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Brandenburg_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Bremen_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Hamburg_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Hesse_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Lower_Saxony_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Mecklenburg_Vorpommern_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_North_Rhine_Westphalia_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Rhineland_Palatinate_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Saarland_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Saxony_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Saxony_Anhalt_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Schleswig_Holstein_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Germany_Thuringia_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "India_Andhra_Pradesh_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Arunachal_Pradesh_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Assam_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Bihar_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Chhattisgarh_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Goa_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Gujarat_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Haryana_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Himachal_Pradesh_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Jharkhand_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Karnataka_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Kerala_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Madhya_Pradesh_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Maharashtra_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Manipur_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Meghalaya_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Mizoram_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Nagaland_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Odisha_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Punjab_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Rajasthan_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Sikkim_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Tamil_Nadu_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Telangana_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Tripura_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Uttar_Pradesh_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Uttarakhand_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_West_Bengal_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Andaman_and_Nicobar_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Chandigarh_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Dadra_and_Nagar_Haveli_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Delhi_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Jammu_and_Kashmir_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Ladakh_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Lakshadweep_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "India_Puducherry_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "Brazil_AC_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_AL_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_AM_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_AP_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_BA_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_CE_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_DF_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_ES_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_GO_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_MA_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_MG_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_MS_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_MT_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_PA_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_PB_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_PE_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_PI_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_PR_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_RJ_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_RN_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_RO_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_RR_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_RS_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_SC_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_SE_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_SP_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Brazil_TO_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Mexico_AG_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_BC_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_BS_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_CM_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_CH_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_CL_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_DG_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_GJ_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_GR_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_HG_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_JA_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_MX_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_MI_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_MO_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_NA_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_NL_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_OA_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_PU_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_QE_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_QR_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_SL_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_SI_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_SO_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_TB_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_TM_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_TX_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_VE_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_YU_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Mexico_ZA_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Japan_NationalArchives_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru"
+    },
+    "Argentina_NL_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Brazil_NL_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "Chile_NL_Library": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "Colombia_NL_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "At_the_Circulating_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "At_the_Circulating_Library_ID": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "National_Library_of_Chile_ID": {
+        "sru": "http://200.28.148.146:210/BNC01"
+    },
+    "National_Library_of_Ireland_ID": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "National_Library_of_Wales_Authority_ID": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Kramerius_of_Czech_Digital_Library_UUID": {
+        "sru": "https://aleph.nkp.cz/X"
+    },
+    "Library_Parliament_Canada": {
+        "sru": "http://amicus.collectionscanada.gc.ca:210/NLC"
+    },
+    "Library_of_Congress_JukeBox_ID_former_scheme": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "National_Virtual_Library_of_India_ID": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "BN_Poland_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "NKP_Czech_Library": {
+        "sru": "https://aleph.nkp.cz/X"
+    },
+    "NLI_Ireland_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "BNP_Portugal_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "NLS_Scotland_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "NLW_Wales_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "LAC_Canada_Library": {
+        "sru": "http://amicus.collectionscanada.gc.ca:210/NLC"
+    },
+    "NLI_India_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    },
+    "ZDB_Germany_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "SLNSW_Australia_Library": {
+        "rest": "https://api.trove.nla.gov.au/v3/sru"
+    },
+    "SLV_Australia_Library": {
+        "rest": "https://api.trove.nla.gov.au/v3/sru"
+    },
+    "K10plus_Germany_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "SWB_Germany_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "BVPB_Spain_Library": {
+        "sru": "https://hispana.mcu.es/es/sru/sru.do"
+    },
+    "SLSA_Australia_Library": {
+        "rest": "https://api.trove.nla.gov.au/v3/sru"
+    },
+    "SLWA_Australia_Library": {
+        "rest": "https://api.trove.nla.gov.au/v3/sru"
+    },
+    "SLTAS_Australia_Library": {
+        "rest": "https://api.trove.nla.gov.au/v3/sru"
+    },
+    "HeBIS_Germany_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "KOBV_Germany_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "BVB_Germany_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "HBZ_Germany_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "Ukraine_NL_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "Norway_NL_Library": {
+        "rest": "https://api.nb.no/catalog/v1/items"
+    },
+    "Europeana_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Sudoc_France_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "NUK_Slovenia_Library": {
+        "rest": "https://discover.libraryhub.jisc.ac.uk/search"
+    },
+    "NLM_USA_Library": {
+        "rest": "https://www.loc.gov/apis/search",
+        "sru": "http://lx2.loc.gov/sru/lcdb",
+        "z3950": "lx2.loc.gov:210/LCDB"
+    },
+    "NAL_USA_Library": {
+        "rest": "https://www.loc.gov/apis/search",
+        "sru": "http://lx2.loc.gov/sru/lcdb",
+        "z3950": "lx2.loc.gov:210/LCDB"
+    },
+    "LIBRUNAM_Mexico_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Pergamum_Brazil_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru"
+    },
+    "NUKAT_Poland_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json"
+    },
+    "TIB_Germany_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "ZBMED_Germany_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "ZBW_Germany_Library": {
+        "sru": "https://services.dnb.de/sru/dnb",
+        "z3950": "z3950.dnb.de:210/dnb"
+    },
+    "IndCat_India_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru"
+    }
+}
+API_REGISTRY.update(HIERARCHICAL_FALLBACK_ENDPOINTS)
+
+# Restored National and State Hubs
+RESTORED_NATIONAL_HUBS = {
+    "Japan_NDL_Library": {
+        "sru": "https://id.ndl.go.jp/auth/ndla/sru",
+        "z3950": "id.ndl.go.jp:210/ndla"
+    },
+    "Canada_LAC_Library": {
+        "sru": "http://amicus.collectionscanada.gc.ca:210/NLC",
+        "z3950": "amicus.collectionscanada.gc.ca:210/NLC"
+    },
+    "Israel_NLI_Library": {
+        "sru": "https://nli.alma.exlibrisgroup.com/view/sru/972NNL_INST",
+        "z3950": "nli.alma.exlibrisgroup.com:210/972NNL_INST"
+    },
+    "Poland_BN_Library": {
+        "rest": "https://data.bn.org.pl/api/institutions/bibs.json",
+        "sru": "http://data.bn.org.pl/api/sru/bibs"
+    },
+    "Czech_NKC_Library": {
+        "sru": "https://aleph.nkp.cz/X",
+        "z3950": "aleph.nkp.cz:9991/NKC-UTF"
+    },
+    "Sweden_Libris_Library": {
+        "rest": "http://libris.kb.se/xsearch",
+        "sru": "http://libris.kb.se/sru"
+    },
+    "Norway_NL_Library": {
+        "rest": "https://api.nb.no/catalog/v1/items",
+        "sru": "https://api.nb.no/sru"
+    },
+    "Denmark_NL_Library": {
+        "sru": "https://kbdk-sru.kb.dk/sru/",
+        "z3950": "z3950.kb.dk:210/catalog"
+    },
+    "Finland_NL_Library": {
+        "sru": "https://fennica.linneanet.fi/sru",
+        "z3950": "fennica.linneanet.fi:210/voyager"
+    },
+    "Portugal_BNP_Library": {
+        "sru": "http://purl.pt/index/sru",
+        "z3950": "biblioteca.bnp.pt:210/biblios"
+    },
+    "Estonia_NL_Library": {
+        "sru": "https://data.nlib.ee/sru/ESTER",
+        "z3950": "data.nlib.ee:210/ESTER"
+    },
+    "Latvia_NL_Library": {
+        "sru": "https://primolatvija.hosted.exlibrisgroup.com/view/sru/371KISCNLL_VU1",
+        "z3950": "primolatvija.hosted.exlibrisgroup.com:210/371KISCNLL_VU1"
+    },
+    "Lithuania_NL_Library": {
+        "sru": "https://ibiblioteka.lt/view/sru/LNB",
+        "z3950": "ibiblioteka.lt:210/KNYGOS"
+    },
+    "Iceland_NL_Library": {
+        "sru": "https://leitir.is/sru",
+        "z3950": "leitir.is:210/geg"
+    },
+    "India_NLI_Library": {
+        "sru": "http://103.19.252.137:8080/cgi-bin/koha/sru",
+        "z3950": "103.19.252.137:2100/default"
+    },
+    "UAE_NL_Library": {
+        "sru": "https://api.nla.ae/sru",
+        "z3950": "nla.ae:210/biblios"
+    },
+    "Turkey_NL_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Greece_NL_Library": {
+        "sru": "https://data.nlg.gr/api/SRU",
+        "z3950": "z3950.nlg.gr:210/biblios"
+    },
+    "Brazil_BN_Library": {
+        "sru": "http://acervo.bn.gov.br/sophia_web/sru",
+        "z3950": "acervo.bn.gov.br:210/biblios"
+    },
+    "Chile_NL_Library": {
+        "sru": "http://200.28.148.146:210/BNC01",
+        "z3950": "200.28.148.146:210/BNC01"
+    },
+    "Uruguay_NL_Library": {
+        "sru": "http://200.40.211.131:210/BNU01",
+        "z3950": "200.40.211.131:210/BNU01"
+    },
+    "Singapore_NLB_Library": {
+        "rest": "https://catalogue.nlb.gov.sg/cgi-bin/koha/opac-search.pl",
+        "sru": "http://catalogue.nlb.gov.sg/cgi-bin/koha/sru"
+    },
+    "Hungary_NL_Library": {
+        "z3950": "amicus.oszk.hu:1616/ANY"
+    },
+    "Slovakia_NL_Library": {
+        "z3950": "z3950.snk.sk:1111/clas01"
+    },
+    "Puerto_Rico_NL_Library": {
+        "z3950": "bnpr.kohacatalog.com:9999/biblios"
+    },
+    "Italy_SBN_Library": {
+        "z3950": "opac.sbn.it:2100/nopac"
+    },
+    "Smithsonian_Library": {
+        "rest": "https://api.si.edu/openaccess/api/v1.0/search"
+    },
+    "Europeana_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "DPLA_Library": {
+        "rest": "https://api.dp.la/v2/items"
+    },
+    "Zenodo_Library": {
+        "rest": "https://zenodo.org/api/records"
+    },
+    "arXiv_Library": {
+        "rest": "http://export.arxiv.org/api/query"
+    },
+    "Banrepcultura_Library": {
+        "z3950": "na06.alma.exlibrisgroup.com:1921/57BDLRDC_INST"
+    },
+    "Argentina_BNMM_Library": {
+        "z3950": "200.123.191.9:9991/BNA01"
+    },
+    "Mexico_NLC_Library": {
+        "z3950": "na07.alma.exlibrisgroup.com:1921/52BN_INST"
+    },
+    "Colombia_UNAL_Library": {
+        "z3950": "168.176.5.96:9991/SNB01"
+    },
+    "Lebanon_AUB_Library": {
+        "z3950": "libcat.aub.edu.lb:210/innopac"
+    },
+    "Sudan_OU_Library": {
+        "z3950": "ous.daphnis.opalsinfo.net:210/ous_ous"
+    },
+    "UAE_HCT_Library": {
+        "z3950": "library.hct.ac.ae:210/INNOPAC"
+    },
+    "Pakistan_CPL_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Bangladesh_BRAC_Library": {
+        "z3950": "library.bracu.ac.bd:9999/biblios"
+    },
+    "Colorado_State_Library": {
+        "z3950": "csl.alma.exlibrisgroup.com:1921/01COL_STATE"
+    },
+    "Delaware_State_Library": {
+        "z3950": "dela.sirsi.net:2200/Unicorn"
+    },
+    "Hawaii_State_Library": {
+        "z3950": "kanawai.bywatersolutions.com:9997/biblios"
+    },
+    "Idaho_State_Library": {
+        "z3950": "voyager.boisestate.edu:7025/voyager"
+    },
+    "Indiana_State_Library": {
+        "z3950": "z3950.evergreen.lib.in.us:210/egin"
+    },
+    "Kansas_State_Library": {
+        "z3950": "k-state.alma.exlibrisgroup.com:1921/01KSU_INST"
+    },
+    "Kentucky_State_Library": {
+        "z3950": "library.acaweb.org:210/innopac"
+    },
+    "Maine_State_Library": {
+        "z3950": "mainecat.maine.edu:210/INNOPAC"
+    },
+    "Maryland_State_Library": {
+        "z3950": "cosmos.somd.lib.md.us:210/cosmos"
+    },
+    "Massachusetts_State_Library": {
+        "z3950": "catalog.helmlib.org:9998/biblios"
+    },
+    "Mississippi_State_Library": {
+        "z3950": "alcorn.sirsi.net:9019/Unicorn"
+    },
+    "Missouri_State_Library": {
+        "z3950": "lindahall.alma.exlibrisgroup.com:210/01LINDAHALL_INST"
+    },
+    "Montana_State_Library": {
+        "z3950": "mtsc.sirsi.net:2200/UNICORN"
+    },
+    "Nebraska_State_Library": {
+        "z3950": "z3950.biblionix.com:210/mortonjames"
+    },
+    "Nevada_State_Library": {
+        "z3950": "z3950.unr.edu:210/innopac"
+    },
+    "New_Mexico_State_Library": {
+        "z3950": "nmsu.alma.exlibrisgroup.com:1921/01NEWMEX_INST"
+    },
+    "North_Carolina_State_Library": {
+        "z3950": "slnc.alma.exlibrisgroup.com:1921/01SLNC_INST"
+    },
+    "Oklahoma_State_Library": {
+        "z3950": "okstate-stillwater.alma.exlibrisgroup.com:1921/01OKSTATESTILL_OKSTAT"
+    },
+    "Oregon_State_Library": {
+        "z3950": "alliance.alma.exlibrisgroup.com:1921/01ALLIANCE_OSL"
+    },
+    "South_Carolina_State_Library": {
+        "z3950": "pascal-musc.alma.exlibrisgroup.com:1921/01PASCAL_MUSC"
+    },
+    "Vermont_State_Library": {
+        "z3950": "vermont-vt.alma.exlibrisgroup.com:1921/01UVM_INST"
+    },
+    "West_Virginia_State_Library": {
+        "z3950": "library.acaweb.org:210/innopac"
+    },
+    "Wyoming_State_Library": {
+        "z3950": "wyld.sirsi.net:2200/UNICORN"
+    },
+    "Alabama_State_Library": {
+        "z3950": "alcorn.sirsi.net:9019/Unicorn"
+    },
+    "Alaska_State_Library": {
+        "z3950": "a50019.eos-intl.net:210/main"
+    },
+    "Arizona_State_Library": {
+        "z3950": "arizona-asu.alma.exlibrisgroup.com:1921/01ASU_INST"
+    },
+    "Georgia_State_Library": {
+        "z3950": "galileo-gsu.alma.exlibrisgroup.com:1921/01GALI_GSU"
+    },
+    "Michigan_State_Library": {
+        "z3950": "elibrary.mel.org:210/INNOPAC"
+    },
+    "Minnesota_State_Library": {
+        "z3950": "mnpals-network.alma.exlibrisgroup.com:1921/01PALS_NETWORK"
+    },
+    "North_Dakota_State_Library": {
+        "z3950": "na01.alma.exlibrisgroup.com:1921/01ODIN_NETWORK"
+    },
+    "South_Dakota_State_Library": {
+        "z3950": "sdsl.bywatersolutions.com:9991/biblios"
+    },
+    "Utah_State_Library": {
+        "z3950": "pion.sirsi.net:8319/unicorn"
+    },
+    "Virginia_State_Library": {
+        "z3950": "lva.alma.exlibrisgroup.com:1921/01VIVA_LVA"
+    },
+    "Washington_State_Library": {
+        "z3950": "sbctc-wsl.alma.exlibrisgroup.com:1921/01STATEWA_WSL"
+    },
+    "Wisconsin_State_Library": {
+        "z3950": "sus.wiscat.net:210/wiscat"
+    },
+    "Arkansas_State_Library": {
+        "z3950": "arks.sirsi.net:2500/UNICORN"
+    },
+    "California_State_Library": {
+        "z3950": "csl.alma.exlibrisgroup.com:1921/01CSL_INST"
+    },
+    "Connecticut_State_Library": {
+        "z3950": "cscu-csl.alma.exlibrisgroup.com:1921/01CSCU_CSL"
+    },
+    "Illinois_State_Library": {
+        "z3950": "i-share-isl.alma.exlibrisgroup.com:1921/01CARLI_ISL"
+    },
+    "New_Hampshire_State_Library": {
+        "z3950": "nhsl.nhais.bywatersolutions.com:9993/biblios"
+    },
+    "New_Jersey_State_Library": {
+        "z3950": "nj.ipac.sirsidynix.net:19610/horizon"
+    },
+    "New_York_State_Library": {
+        "z3950": "nyst.sirsi.net:8419/unicorn"
+    },
+    "Rhode_Island_State_Library": {
+        "z3950": "statelibrarycatalog.sos.ri.gov:9994/biblios"
+    },
+    "Florida_State_Library": {
+        "z3950": "fslt.sirsi.net:7019/UNICORN"
+    },
+    "Iowa_State_Library": {
+        "z3950": "koha.silo.lib.ia.us:9989/biblios"
+    },
+    "Louisiana_State_Library": {
+        "z3950": "ipac.state.lib.la.us:210/Horizon"
+    },
+    "Ohio_State_Library": {
+        "z3950": "ohiolink-slo.alma.exlibrisgroup.com:1921/01OHIOLINK_SLO"
+    },
+    "Pennsylvania_State_Library": {
+        "z3950": "na01.alma.exlibrisgroup.com:1921/01SSHELCO_STLIBPA"
+    },
+    "Tennessee_State_Library": {
+        "z3950": "tnsla.sirsi.net:7819/Unicorn"
+    },
+    "Texas_State_Library": {
+        "z3950": "tsla.sirsi.net:8219/UNICORN"
+    }
+}
+API_REGISTRY.update(RESTORED_NATIONAL_HUBS)
+
+# Additional Hierarchical Fallbacks
+ADDITIONAL_FALLBACKS = {
+    "Cuba_Camaguey_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Cuba_Ciego_de_Avila_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Cuba_Cienfuegos_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Cuba_Granma_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Cuba_Guantanamo_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Cuba_Holguin_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Cuba_Artemisa_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Cuba_Mayabeque_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Cuba_La_Habana_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Cuba_Las_Tunas_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Cuba_Matanzas_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Cuba_Sancti_Spiritus_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Cuba_Villa_Clara_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Turkey_Adana_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Adiyaman_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Afyonkarahisar_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Agri_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Aksaray_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Amasya_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Ankara_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Antalya_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Ardahan_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Artvin_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Aydin_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Balikesir_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Bartin_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Batman_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Bayburt_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Bilecik_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Bingol_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Bitlis_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Bolu_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Burdur_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Bursa_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Canakkale_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Cankiri_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Corum_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Denizli_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Diyarbakir_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Duzce_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Edirne_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Elazig_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Erzincan_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Erzurum_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Eskisehir_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Gaziantep_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Giresun_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Gumushane_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Hakkari_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Hatay_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Igdir_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Isparta_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Istanbul_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Izmir_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Kahramanmaras_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Karaman_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Kars_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Kastamonu_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Kayseri_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Kilis_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Kirikkale_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Kirklareli_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Kirsehir_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Kocaeli_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Konya_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Kutahya_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Malatya_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Manisa_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Mardin_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Mersin_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Mugla_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Mus_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Nevsehir_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Nigde_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Ordu_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Osmaniye_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Rize_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Sakarya_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Samsun_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Sanliurfa_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Siirt_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Sinop_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Sirnak_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Sivas_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Tekirdag_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Tokat_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Trabzon_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Tunceli_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Van_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Yalova_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Yozgat_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Turkey_Zonguldak_Library": {
+        "sru": "http://kasif.mkutup.gov.tr/sru",
+        "z3950": "kasif.mkutup.gov.tr:210/biblios"
+    },
+    "Korea_Seoul_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Korea_Daegu_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Korea_Incheon_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Korea_Gwangju_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Korea_Daejeon_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Korea_Ulsan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Korea_Sejong_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Korea_Gyeonggi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Korea_Gangwon_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Korea_North_Chungcheong_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Korea_South_Chungcheong_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Korea_North_Jeolla_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Korea_South_Jeolla_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Korea_North_Gyeongsang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Korea_South_Gyeongsang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Korea_Jeju_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Morocco_Beni_Mellal_Khenifra_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Morocco_Casablanca_Settat_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Morocco_Draa_Tafilalet_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Morocco_Dakhla_Oued_Ed_Dahab_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Morocco_Fes_Meknes_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Morocco_Guelmim_Oued_Noun_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Morocco_Laayoune_Sakia_El_Hamra_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Morocco_Marrakesh_Safi_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Morocco_Oriental_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Morocco_Rabat_Sale_Kenitra_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Morocco_Souss_Massa_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Morocco_Tanger_Tetouan_Al_Hoceima_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Vietnam_An_Giang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Ba_Ria_Vung_Tau_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Bac_Giang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Bac_Kan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Bac_Lieu_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Bac_Ninh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Ben_Tre_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Binh_Dinh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Binh_Duong_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Binh_Phuoc_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Binh_Thuan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Ca_Mau_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Can_Tho_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Cao_Bang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Da_Nang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Dak_Lak_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Dak_Nong_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Dien_Bien_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Dong_Nai_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Dong_Thap_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Gia_Lai_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Ha_Giang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Ha_Nam_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Ha_Noi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Ha_Tinh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Hai_Duong_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Hai_Phong_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Hau_Giang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Ho_Chi_Minh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Hoa_Binh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Hung_Yen_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Khanh_Hoa_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Kien_Giang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Kon_Tum_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Lai_Chau_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Lam_Dong_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Lang_Son_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Lao_Cai_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Long_An_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Nam_Dinh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Nghe_An_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Ninh_Binh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Ninh_Thuan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Phu_Tho_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Phu_Yen_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Quang_Binh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Quang_Nam_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Quang_Ngai_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Quang_Ninh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Quang_Tri_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Soc_Trang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Son_La_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Tay_Ninh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Thai_Binh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Thai_Nguyen_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Thanh_Hoa_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Thua_Thien_Hue_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Tien_Giang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Tra_Vinh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Tuyen_Quang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Vinh_Long_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Vinh_Phuc_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Vietnam_Yen_Bai_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Ilocos_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Cagayan_Valley_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Central_Luzon_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Calabarzon_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Mimaropa_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Bicol_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Western_Visayas_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Central_Visayas_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Eastern_Visayas_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Zamboanga_Peninsula_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Northern_Mindanao_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Davao_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Soccsksargen_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Caraga_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Bangsamoro_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Cordillera_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_NCR_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Sumatra_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Java_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Kalimantan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Sulawesi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Lesser_Sunda_Islands_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Papua_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Pakistan_Bahawalpur_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Dera_Ghazi_Khan_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Faisalabad_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Gujranwala_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Lahore_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Multan_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Rawalpindi_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Sahiwal_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Sargodha_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Karachi_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Hyderabad_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Larkana_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Mirpur_Khas_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Shaheed_Benazirabad_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Bannu_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Dera_Ismail_Khan_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Hazara_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Kohat_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Malakand_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Mardan_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Peshawar_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Kalat_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Makran_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Nasirabad_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Quetta_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Sibi_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Zhob_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Nigeria_Abia_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Adamawa_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Akwa_Ibom_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Bauchi_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Bayelsa_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Benue_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Borno_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Cross_River_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Ebonyi_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Ekiti_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Gombe_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Jigawa_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Katsina_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Kebbi_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Nasarawa_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Taraba_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Yobe_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Zamfara_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "SouthAfrica_Alfred_Nzo_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Amathole_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Buffalo_City_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Cape_Winelands_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Capricorn_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Central_Karoo_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Chris_Hani_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_City_of_Johannesburg_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_City_of_Tshwane_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Dr_Kenneth_Kaunda_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Eden_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_eThekwini_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Fezile_Dabi_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Garden_Route_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Gert_Sibande_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Harry_Gwala_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Joe_Gqabi_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_John_Taolo_Gaetsewe_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Lejweleputswa_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Mangaung_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Mopani_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Namakwa_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Nelson_Mandela_Bay_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Ngaka_Modiri_Molema_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Nkangala_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_OR_Tambo_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Overberg_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Pixley_ka_Seme_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Sedibeng_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Thabo_Mofutsanyana_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_uGu_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_uMgungundlovu_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_uMkhanyakude_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_uMzinyathi_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_uThungulu_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Vhembe_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Waterberg_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_West_Coast_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Xhariep_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_ZF_Mgcawu_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Zululand_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "Algeria_Adrar_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Chlef_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Laghouat_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Oum_El_Bouaghi_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Batna_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Bejaia_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Biskra_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Bechar_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Blida_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Bouira_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Tamanghasset_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Tebessa_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Tlemcen_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Tiaret_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Tizi_Ouzou_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Alger_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Djelfa_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Jijel_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Setif_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Saida_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Skikda_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Sidi_Bel_Abbes_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Annaba_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Guelma_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Constantine_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Medea_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Mostaganem_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_M'Sila_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Mascara_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Ouargla_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Oran_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_El_Bayadh_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Illizi_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Bordj_Bou_Arreridj_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Boumerdes_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_El_Tarf_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Tindouf_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Tissemsilt_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_El_Oued_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Khenchela_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Tipaza_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Mila_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Ain_Defla_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Naama_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Ain_Temouchent_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Ghardaia_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Relizane_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Ariana_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Beja_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Ben_Arous_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Bizerte_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Gabes_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Gafsa_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Jendouba_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Kairouan_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Kasserine_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Kebili_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Kef_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Mahdia_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Manouba_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Medenine_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Monastir_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Nabeul_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Sfax_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Sidi_Bouzid_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Siliana_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Sousse_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Tataouine_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Tozeur_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Tunis_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tunisia_Zaghouan_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Angola_Bengo_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Benguela_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Bie_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Cabinda_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Cuando_Cubango_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Angola_Cuanza_Norte_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Cuanza_Sul_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Cunene_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Huambo_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Huila_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Luanda_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Lunda_Norte_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Lunda_Sul_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Malanje_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Moxico_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Namibe_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Uige_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "Angola_Zaire_Library": {
+        "sru": "http://purl.pt/index/sru"
+    },
+    "DRCongo_Kinshasa_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Kongo_Central_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Kwango_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Kwilu_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Mai_Ndombe_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Equateur_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Mongala_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Nord_Ubangi_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Sud_Ubangi_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Tshuapa_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Bas_Uele_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Haut_Uele_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Ituri_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Tshopo_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Kasai_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Kasai_Central_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Kasai_Oriental_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Lomami_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Sankuru_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Haut_Katanga_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Haut_Lomami_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Lualaba_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Tanganyika_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Nord_Kivu_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Sud_Kivu_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "DRCongo_Maniema_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Tanzania_Arusha_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Dar_es_Salaam_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Dodoma_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Geita_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Iringa_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Kagera_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Katavi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Kigoma_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Kilimanjaro_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Lindi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Manyara_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Mara_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Mbeya_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Morogoro_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Mtwara_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Mwanza_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Njombe_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Pemba_North_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Pemba_South_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Pwani_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Ruvuma_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Shinyanga_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Simiyu_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Singida_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Songwe_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Tabora_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Tanga_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Zanzibar_North_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Zanzibar_South_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Zanzibar_West_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Uzbekistan_Andijan_Library": {
+        "z3950": "u95030.eos-intl.net:210/main"
+    },
+    "Uzbekistan_Fergana_Library": {
+        "z3950": "u95030.eos-intl.net:210/main"
+    },
+    "Uzbekistan_Jizzakh_Library": {
+        "z3950": "u95030.eos-intl.net:210/main"
+    },
+    "Uzbekistan_Kashkadarya_Library": {
+        "z3950": "u95030.eos-intl.net:210/main"
+    },
+    "Uzbekistan_Khorezm_Library": {
+        "z3950": "u95030.eos-intl.net:210/main"
+    },
+    "Uzbekistan_Namangan_Library": {
+        "z3950": "u95030.eos-intl.net:210/main"
+    },
+    "Uzbekistan_Navoi_Library": {
+        "z3950": "u95030.eos-intl.net:210/main"
+    },
+    "Uzbekistan_Samarkand_Library": {
+        "z3950": "u95030.eos-intl.net:210/main"
+    },
+    "Uzbekistan_Surkhandarya_Library": {
+        "z3950": "u95030.eos-intl.net:210/main"
+    },
+    "Uzbekistan_Syrdarya_Library": {
+        "z3950": "u95030.eos-intl.net:210/main"
+    },
+    "Uzbekistan_Tashkent_Library": {
+        "z3950": "u95030.eos-intl.net:210/main"
+    },
+    "Uzbekistan_Karakalpakstan_Library": {
+        "z3950": "u95030.eos-intl.net:210/main"
+    },
+    "Guatemala_Alta_Verapaz_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Baja_Verapaz_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Chimaltenango_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Chiquimula_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_El_Progreso_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Escuintla_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Huehuetenango_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Izabal_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Jalapa_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Jutiapa_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Peten_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Quetzaltenango_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Quiche_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Retalhuleu_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Sacatepequez_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Santa_Rosa_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Solola_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Suchitepequez_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Totonicapan_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guatemala_Zacapa_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_Atlantida_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_Choluteca_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_Colon_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_Comayagua_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_Copan_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_Cortes_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_El_Paraiso_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_Francisco_Morazan_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_Gracias_a_Dios_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_Intibuca_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_Lempira_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_Ocotepeque_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_Olancho_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_Santa_Barbara_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_Valle_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Honduras_Yoro_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_Boaco_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_Carazo_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_Chinandega_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_Chontales_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_Esteli_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_Granada_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_Jinotega_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_Leon_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_Madriz_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_Managua_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_Masaya_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_Matagalpa_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_Nueva_Segovia_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_Rivas_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_RACCN_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nicaragua_RACCS_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Nigeria_Anambra_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Delta_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Edo_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Enugu_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Imo_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Kaduna_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Kano_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Kogi_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Kwara_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Lagos_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Niger_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Ogun_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Ondo_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Osun_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Oyo_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Plateau_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Rivers_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_Sokoto_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Nigeria_FCT_Abuja_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Uzbekistan_Tashkent_City_Library": {
+        "z3950": "u95030.eos-intl.net:210/main"
+    },
+    "Uzbekistan_Tashkent_Region_Library": {
+        "z3950": "u95030.eos-intl.net:210/main"
+    },
+    "Kazakhstan_Abai_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_Akmola_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_Aktobe_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_Almaty_City_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_Almaty_Region_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_Atyrau_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_East_Kazakhstan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_Jetisu_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_Karagandy_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_Kostanay_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_Kyzylorda_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_Mangystau_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_North_Kazakhstan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_Pavlodar_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_Shymkent_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_Turkistan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_Ulytau_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_West_Kazakhstan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kazakhstan_Astana_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Aceh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Bali_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Banten_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Bengkulu_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Central_Java_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Central_Kalimantan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Central_Papua_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Central_Sulawesi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_East_Java_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_East_Kalimantan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_East_Papua_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Gorontalo_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Highland_Papua_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Jakarta_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Jambi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Lampung_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_North_Kalimantan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_North_Papua_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_North_Sulawesi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_North_Sumatra_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Riau_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Riau_Islands_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_South_Kalimantan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_South_Papua_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_South_Sulawesi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_South_Sumatra_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Southeast_Sulawesi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Southwest_Papua_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_West_Java_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_West_Kalimantan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_West_Papua_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_West_Sulawesi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_West_Sumatra_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_Yogyakarta_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Peru_Amazonas_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Ancash_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Apurimac_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Arequipa_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Ayacucho_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Cajamarca_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Callao_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Cusco_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Huancavelica_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Huanuco_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Ica_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Junin_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_La_Libertad_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Lambayeque_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Lima_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Loreto_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Madre_de_Dios_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Moquegua_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Pasco_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Piura_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Puno_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_San_Martin_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Tacna_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Tumbes_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Peru_Ucayali_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Ecuador_Azuay_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Bolivar_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Canar_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Carchi_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Chimborazo_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Cotopaxi_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_El_Oro_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Esmeraldas_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Galapagos_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Guayas_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Imbabura_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Loja_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Manabi_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Morona_Santiago_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Napo_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Orellana_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Pastaza_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Pichincha_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Santa_Elena_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Santo_Domingo_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Sucumbios_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Tungurahua_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ecuador_Zamora_Chinchipe_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Algeria_Algiers_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_MSila_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Algeria_Oum_el_Bouaghi_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Lebanon_Beirut_Library": {
+        "z3950": "libcat.aub.edu.lb:210/innopac"
+    },
+    "Lebanon_Akkar_Library": {
+        "z3950": "libcat.aub.edu.lb:210/innopac"
+    },
+    "Lebanon_Baalbek_Hermel_Library": {
+        "z3950": "libcat.aub.edu.lb:210/innopac"
+    },
+    "Lebanon_Beqaa_Library": {
+        "z3950": "libcat.aub.edu.lb:210/innopac"
+    },
+    "Lebanon_Mount_Lebanon_Library": {
+        "z3950": "libcat.aub.edu.lb:210/innopac"
+    },
+    "Lebanon_Nabatieh_Library": {
+        "z3950": "libcat.aub.edu.lb:210/innopac"
+    },
+    "Lebanon_North_Library": {
+        "z3950": "libcat.aub.edu.lb:210/innopac"
+    },
+    "Lebanon_South_Library": {
+        "z3950": "libcat.aub.edu.lb:210/innopac"
+    },
+    "Lebanon_Keserwan_Jbeil_Library": {
+        "z3950": "libcat.aub.edu.lb:210/innopac"
+    },
+    "Bangladesh_Barisal_Library": {
+        "z3950": "library.bracu.ac.bd:9999/biblios"
+    },
+    "Bangladesh_Chittagong_Library": {
+        "z3950": "library.bracu.ac.bd:9999/biblios"
+    },
+    "Bangladesh_Dhaka_Library": {
+        "z3950": "library.bracu.ac.bd:9999/biblios"
+    },
+    "Bangladesh_Khulna_Library": {
+        "z3950": "library.bracu.ac.bd:9999/biblios"
+    },
+    "Bangladesh_Mymensingh_Library": {
+        "z3950": "library.bracu.ac.bd:9999/biblios"
+    },
+    "Bangladesh_Rajshahi_Library": {
+        "z3950": "library.bracu.ac.bd:9999/biblios"
+    },
+    "Bangladesh_Rangpur_Library": {
+        "z3950": "library.bracu.ac.bd:9999/biblios"
+    },
+    "Bangladesh_Sylhet_Library": {
+        "z3950": "library.bracu.ac.bd:9999/biblios"
+    },
+    "Serbia_Bor_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Branicevo_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Jablanica_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Kolubara_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Macva_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Moravica_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Nisava_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Pcinja_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Pirot_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Podunavlje_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Pomoravlje_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Rasina_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Raska_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Sumadija_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Toplica_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Zajecar_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Zlatibor_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Belgrade_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_North_Backa_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Central_Banat_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_North_Banat_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_South_Backa_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_South_Banat_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Srem_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_West_Backa_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Kosovo_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Kosovo_Pomoravlje_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Kosovska_Mitrovica_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Pec_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Serbia_Prizren_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Albania_Tirane_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Romania_Alba_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Arad_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Arges_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Bacau_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Bihor_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Bistrita_Nasaud_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Botosani_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Braila_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Brasov_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Bucuresti_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Buzau_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Calarasi_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Caras_Severin_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Cluj_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Constanta_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Covasna_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Dambovita_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Dolj_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Galati_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Giurgiu_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Gorj_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Harghita_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Hunedoara_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Ialomita_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Iasi_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Ilfov_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Maramures_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Mehedinti_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Mures_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Neamt_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Olt_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Prahova_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Salaj_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Satu_Mare_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Sibiu_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Suceava_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Teleorman_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Timis_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Tulcea_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Valcea_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Vaslui_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Romania_Vrancea_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Kenya_Baringo_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Bomet_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Bungoma_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Busia_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Elgeyo_Marakwet_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Embu_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Garissa_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Homa_Bay_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Isiolo_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Kajiado_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Kakamega_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Kericho_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Kiambu_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Kilifi_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Kirinyaga_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Kisii_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Kisumu_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Kitui_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Kwale_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Laikipia_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Lamu_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Machakos_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Makueni_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Mandera_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Marsabit_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Meru_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Migori_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Murang'a_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Nairobi_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Nakuru_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Nandi_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Narok_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Nyamira_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Nyandarua_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Nyeri_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Samburu_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Siaya_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Taita_Taveta_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Tana_River_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Tharaka_Nithi_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Trans_Nzoia_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Turkana_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Uasin_Gishu_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Vihiga_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_Wajir_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Kenya_West_Pokot_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Venezuela_Miranda_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Alborz_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Ardabil_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_East_Azerbaijan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_West_Azerbaijan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Bushehr_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Chaharmahal_and_Bakhtiari_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Fars_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Gilan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Golestan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Hamadan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Hormozgan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Ilam_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Isfahan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Kerman_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Kermanshah_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_North_Khorasan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Razavi_Khorasan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_South_Khorasan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Khuzestan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Kohgiluyeh_and_Boyer-Ahmad_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Kurdistan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Lorestan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Markazi_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Mazandaran_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Qazvin_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Qom_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Semnan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Sistan_and_Baluchestan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Tehran_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Yazd_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Iran_Zanjan_Library": {
+        "z3950": "80.191.10.6:210/default"
+    },
+    "Thailand_Amnat_Charoen_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Ang_Thong_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Bangkok_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Bueng_Kan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Buriram_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Chachoengsao_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Chai_Nat_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Chaiyaphum_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Chanthaburi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Chonburi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Chumphon_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Kalasin_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Kamphaeng_Phet_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Kanchanaburi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Krabi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Lampang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Lamphun_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Loei_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Lopburi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Mae_Hong_Son_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Nakhon_Nayok_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Nakhon_Pathom_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Nakhon_Phanom_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Nakhon_Ratchasima_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Nakhon_Sawan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Nakhon_Si_Thammarat_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Nan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Narathiwat_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Nong_Bua_Lamphu_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Nong_Khai_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Nonthaburi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Pathum_Thani_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Pattani_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Phang_Nga_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Phatthalung_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Phayao_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Phetchabun_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Phetchaburi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Phichit_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Phitsanulok_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Phra_Nakhon_Si_Ayutthaya_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Phrae_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Prachinburi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Prachuap_Khiri_Khan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Ranong_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Ratchaburi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Rayong_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Roi_Et_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Sa_Kaeo_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Sakon_Nakhon_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Samut_Prakan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Samut_Sakhon_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Samut_Songkhram_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Saraburi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Satun_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Sing_Buri_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Sisaket_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Songkhla_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Suphan_Buri_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Surat_Thani_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Surin_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Tak_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Trang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Trat_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Ubon_Ratchasima_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Udon_Thani_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Uthai_Thani_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Uttaradit_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Yala_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_Yasothon_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Abra_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Aklan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Albay_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Antique_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Apayao_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Aurora_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Basilan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Bataan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Batanes_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Batangas_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Benguet_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Biliran_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Bohol_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Bulacan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Cagayan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Camarines_Norte_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Camarines_Sur_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Camiguin_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Capiz_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Catanduanes_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Cavite_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Cebu_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Compostela_Valley_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Cotabato_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Davao_del_Sur_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Davao_Occidental_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Davao_Oriental_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Dinagat_Islands_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Eastern_Samar_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Guimaras_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Ifugao_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Ilocos_Norte_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Ilocos_Sur_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Iloilo_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Isabela_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Kalinga_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_La_Union_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Laguna_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Lanao_del_Sur_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Leyte_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Maguindanao_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Marinduque_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Masbate_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Misamis_Occidental_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Misamis_Oriental_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Mountain_Province_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Negros_Occidental_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Negros_Oriental_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Northern_Samar_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Nueva_Ecija_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Nueva_Vizcaya_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Occidental_Mindoro_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Oriental_Mindoro_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Palawan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Pampanga_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Pangasinan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Quezon_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Quirino_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Rizal_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Romblon_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Samar_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Sarangani_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Siquijor_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Sorsogon_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_South_Cotabato_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Southern_Leyte_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Sultan_Kudarat_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Sulu_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Surigao_del_Sur_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Tarlac_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Tawi-Tawi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Zambales_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Zamboanga_del_Sur_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Zamboanga_Sibugay_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Philippines_Metro_Manila_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Pakistan_Punjab_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Sindh_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Khyber_Pakhtunkhwa_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Balochistan_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Islamabad_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Pakistan_Gilgit_Baltistan_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "SouthAfrica_Eastern_Cape_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Free_State_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Gauteng_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_KwaZulu_Natal_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Limpopo_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Mpumalanga_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_North_West_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Northern_Cape_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "SouthAfrica_Western_Cape_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "Russia_Adygea_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Altai_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Amur_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Arkhangelsk_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Astrakhan_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Bashkortostan_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Belgorod_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Bryansk_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Buryatia_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Chechnya_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Chelyabinsk_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Chuvashia_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Dagestan_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Ingushetia_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Irkutsk_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Ivanovo_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Jewish_Autonomous_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Kabardino_Balkaria_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Kaliningrad_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Kalmykia_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Kaluga_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Kamchatka_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Karachay_Cherkessia_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Karelia_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Kemerovo_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Khabarovsk_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Khakassia_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Khanty_Mansi_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Kirov_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Komi_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Kostroma_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Krasnodar_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Krasnoyarsk_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Kurgan_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Kursk_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Leningrad_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Lipetsk_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Magadan_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Mari_El_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Mordovia_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Moscow_City_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Moscow_Oblast_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Murmansk_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Nenets_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Nizhny_Novgorod_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_North_Ossetia_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Novgorod_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Novosibirsk_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Omsk_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Orenburg_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Oryol_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Penza_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Perm_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Primorsky_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Pskov_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Rostov_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Ryazan_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Saint_Petersburg_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Sakha_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Sakhalin_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Samara_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Saratov_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Sevastopol_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Smolensk_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Sverdlovsk_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Tambov_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Tatarstan_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Tomsk_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Tula_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Tuva_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Tver_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Tyumen_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Udmurtia_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Ulyanovsk_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Vladimir_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Volgograd_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Vologda_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Voronezh_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Yamalo_Nenets_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Yaroslavl_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "Russia_Zabaykalsky_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "China_Anhui_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Beijing_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Chongqing_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Fujian_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Gansu_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Guangdong_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Guangxi_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Guizhou_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Hainan_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Hebei_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Heilongjiang_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Henan_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Hubei_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Hunan_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Inner_Mongolia_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Jiangsu_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Jiangxi_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Jilin_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Liaoning_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Ningxia_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Qinghai_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Shaanxi_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Shandong_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Shanghai_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Shanxi_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Sichuan_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Tianjin_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Tibet_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Xinjiang_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Yunnan_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "China_Zhejiang_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "Philippines_Archive_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tanzania_Archive_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Uzbekistan_NL_Library": {
+        "z3950": "u95030.eos-intl.net:210/main"
+    },
+    "Kazakhstan_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kenya_NationalArchives_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Nigeria_NationalArchives_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "Korea_NationalArchives_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Thailand_NationalArchives_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Peru_NL_Library": {
+        "z3950": "catalogo.sisbib.unmsm.edu.pe:2200/Unicorn"
+    },
+    "Algerian_National_Library_ID": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "National_Library_of_Indonesia_Control_Headings_ID": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "National_Library_of_Nigeria_ID": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "LTI_Korea_Library_writer_ID": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Tunisia_NL_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Sudan_NL_Library": {
+        "z3950": "ous.daphnis.opalsinfo.net:210/ous_ous"
+    },
+    "Serbia_NL_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Morocco_NL_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Korea_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Indonesia_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Lebanon_NL_Library": {
+        "z3950": "libcat.aub.edu.lb:210/innopac"
+    },
+    "Algeria_NL_Library": {
+        "sru": "https://gallica.bnf.fr/SRU"
+    },
+    "Ecuador_NL_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "NLC_China_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    },
+    "Bangladesh_NL_Library": {
+        "z3950": "library.bracu.ac.bd:9999/biblios"
+    },
+    "Pakistan_NL_Library": {
+        "z3950": "122.129.84.203:2100/biblios"
+    },
+    "Kenya_NL_Library": {
+        "z3950": "anu.gnec.kari.opalsinfo.net:210/gnec_anu"
+    },
+    "Nigeria_NL_Library": {
+        "rest": "https://api.crossref.org/works"
+    },
+    "NLSA_SouthAfrica_Library": {
+        "z3950": "sun.alma.exlibrisgroup.com:1921/27US_INST"
+    },
+    "eLibrary_Russia_Library": {
+        "z3950": "aleph.rsl.ru:9909/RSL01"
+    },
+    "RISS_Korea_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "CALIS_China_Library": {
+        "z3950": "las.sinica.edu.tw:210/INNOPAC"
+    }
+}
+API_REGISTRY.update(ADDITIONAL_FALLBACKS)
+
+# Final Geographic Long-Tail Sweeps
+FINAL_LONG_TAIL = {
+    "Armenia_Aragatsotn_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Armenia_Ararat_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Armenia_Armavir_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Armenia_Gegharkunik_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Armenia_Kotayk_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Armenia_Lori_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Armenia_Shirak_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Armenia_Syunik_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Armenia_Tavush_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Armenia_Vayots_Dzor_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Georgia_Abkhazia_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Georgia_Adjara_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Georgia_Guria_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Georgia_Imereti_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Georgia_Kakheti_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Georgia_Kvemo_Kartli_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Georgia_Mtskheta_Mtianeti_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Georgia_Racha_Lechkhumi_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Georgia_Samegrelo_Zemo_Svaneti_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Georgia_Samtskhe_Javakheti_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Georgia_Shida_Kartli_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Jamaica_Clarendon_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Jamaica_Hanover_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Jamaica_Kingston_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Jamaica_Manchester_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Jamaica_Portland_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Jamaica_Saint_Andrew_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Jamaica_Saint_Ann_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Jamaica_Saint_Catherine_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Jamaica_Saint_Elizabeth_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Jamaica_Saint_James_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Jamaica_Trelawny_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Jamaica_Westmoreland_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Panama_Bocas_del_Toro_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Panama_Chiriqui_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Panama_Cocle_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Panama_Colon_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Panama_Darien_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Panama_Herrera_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Panama_Los_Santos_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Panama_Panama_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Panama_Veraguas_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Panama_Panama_Oeste_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "CostaRica_Alajuela_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "CostaRica_Cartago_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "CostaRica_Guanacaste_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "CostaRica_Heredia_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "CostaRica_Limon_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "CostaRica_Puntarenas_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "ElSalvador_Ahuachapan_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ElSalvador_Cabanas_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ElSalvador_Chalatenango_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ElSalvador_Cuscatlan_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ElSalvador_La_Libertad_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ElSalvador_La_Union_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ElSalvador_Morazan_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ElSalvador_San_Salvador_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ElSalvador_Santa_Ana_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ElSalvador_Sonsonate_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ElSalvador_Usulutan_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Pacific_Wallis_and_Futuna_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Pacific_Guam_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Pacific_Northern_Mariana_Islands_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "PNG_Bougainville_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Central_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Chimbu_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Eastern_Highlands_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_East_New_Britain_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_East_Sepik_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Enga_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Gulf_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Hela_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Jiwaka_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Madang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Manus_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Milne_Bay_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Morobe_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Oro_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Sandaun_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Southern_Highlands_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_West_New_Britain_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Western_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_Western_Highlands_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Fiji_Central_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Fiji_Eastern_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Fiji_Northern_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Fiji_Western_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SolomonIslands_Central_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SolomonIslands_Choiseul_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SolomonIslands_Guadalcanal_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SolomonIslands_Isabel_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SolomonIslands_Makira_Ulawa_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SolomonIslands_Malaita_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SolomonIslands_Rennell_and_Bellona_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SolomonIslands_Temotu_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SolomonIslands_Western_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Armenia_Yerevan_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Georgia_Tbilisi_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Azerbaijan_Absheron_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Azerbaijan_Baku_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Azerbaijan_Ganja_Dashkasan_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Azerbaijan_Guba_Khachmaz_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Azerbaijan_Lankaran_Astara_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Azerbaijan_Central_Aran_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Azerbaijan_Mil_Mugan_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Azerbaijan_Shaki_Zaqatala_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Azerbaijan_Shamkir_Tovuz_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Azerbaijan_Nakhchivan_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Mozambique_Cabo_Delgado_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mozambique_Gaza_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mozambique_Inhambane_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mozambique_Manica_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mozambique_Maputo_City_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mozambique_Maputo_Province_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mozambique_Nampula_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mozambique_Niassa_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mozambique_Sofala_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mozambique_Tete_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mozambique_Zambezia_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zambia_Central_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zambia_Copperbelt_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zambia_Eastern_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zambia_Luapula_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zambia_Muchinga_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zambia_Northern_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zambia_North_Western_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zambia_Southern_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zambia_Western_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cameroon_Adamawa_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cameroon_Centre_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cameroon_East_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cameroon_Far_North_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cameroon_Littoral_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cameroon_North_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cameroon_North_West_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cameroon_South_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cameroon_South_West_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cameroon_West_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Analamanga_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Vakinankaratra_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Itasy_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Bongolava_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Sofia_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Boeny_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Betsiboka_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Melaky_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Alaotra_Mangoro_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Atsinanana_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Analanjirofo_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Amoroni_Mania_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Haute_Matsiatra_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Vatovavy_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Fitovinany_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Atsimo_Atsinanana_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Ihorombe_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Androy_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Anosy_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Atsimo_Andrefana_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Madagascar_Menabe_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zimbabwe_Bulawayo_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zimbabwe_Harare_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zimbabwe_Manicaland_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zimbabwe_Mashonaland_Central_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zimbabwe_Mashonaland_East_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zimbabwe_Mashonaland_West_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zimbabwe_Masvingo_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zimbabwe_Matabeleland_North_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zimbabwe_Matabeleland_South_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Zimbabwe_Midlands_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ethiopia_Addis_Ababa_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ethiopia_Afar_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ethiopia_Amhara_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ethiopia_Benishangul_Gumuz_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ethiopia_Dire_Dawa_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ethiopia_Gambela_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ethiopia_Harari_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ethiopia_Oromia_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ethiopia_Sidama_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ethiopia_Somali_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ethiopia_South_West_Ethiopia_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ethiopia_Southern_Nations_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ethiopia_Tigray_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Uganda_Central_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Uganda_Eastern_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Uganda_Northern_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Uganda_Western_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ghana_Ahafo_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ghana_Ashanti_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ghana_Bono_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ghana_Bono_East_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ghana_Eastern_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ghana_North_East_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ghana_Northern_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ghana_Oti_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ghana_Savannah_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ghana_Upper_East_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ghana_Upper_West_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ghana_Volta_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ghana_Western_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ghana_Western_North_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kyrgyzstan_Batken_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Kyrgyzstan_Chuy_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Kyrgyzstan_Jalal_Abad_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Kyrgyzstan_Naryn_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Kyrgyzstan_Osh_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Kyrgyzstan_Talas_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Kyrgyzstan_Issyk_Kul_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Tajikistan_Sughd_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Tajikistan_Khatlon_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Tajikistan_Gorno_Badakhshan_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Tajikistan_Dushanbe_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Pacific_Fiji_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Pacific_Kiribati_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Pacific_Marshall_Islands_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Pacific_Micronesia_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Pacific_Nauru_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Pacific_Palau_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Pacific_Samoa_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Pacific_Tonga_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Pacific_Tuvalu_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Pacific_Vanuatu_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Macedonia_Skopje_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Macedonia_Bitola_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Macedonia_Kumanovo_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Macedonia_Prilep_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Macedonia_Tetovo_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Macedonia_Veles_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Macedonia_Stip_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Macedonia_Ohrid_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Macedonia_Strumica_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bolivia_Beni_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bolivia_Chuquisaca_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bolivia_Cochabamba_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bolivia_Oruro_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bolivia_Pando_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bolivia_Potosi_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bolivia_Santa_Cruz_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bolivia_Tarija_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Mali_Bamako_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mali_Gao_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mali_Kayes_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mali_Kidal_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mali_Koulikoro_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mali_Menaka_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mali_Mopti_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mali_Nioro_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mali_Segou_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mali_Sikasso_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mali_Taoudenit_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Senegal_Dakar_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Senegal_Diourbel_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Senegal_Fatick_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Senegal_Kaffrine_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Senegal_Kaolack_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Senegal_Kedougou_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Senegal_Kolda_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Senegal_Louga_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Senegal_Matam_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Senegal_Saint_Louis_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Senegal_Sedhiou_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Senegal_Tambacounda_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Senegal_Thies_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Senegal_Ziguinchor_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "IvoryCoast_Abidjan_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "IvoryCoast_Bas_Sassandra_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "IvoryCoast_Comoe_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "IvoryCoast_Denguele_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "IvoryCoast_Goh_Djiboua_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "IvoryCoast_Lacs_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "IvoryCoast_Lagunes_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "IvoryCoast_Montagnes_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "IvoryCoast_Sassandra_Marahoue_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "IvoryCoast_Savanes_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "IvoryCoast_Vallee_du_Bandama_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "IvoryCoast_Woroba_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "IvoryCoast_Zanzan_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Cambodia_Banteay_Meanchey_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Battambang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Kampong_Cham_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Kampong_Chhnang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Kampong_Speu_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Kampong_Thom_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Kampot_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Kandal_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Koh_Kong_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Kratie_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Mondulkiri_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Preah_Vihear_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Prey_Veng_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Pursat_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Ratanakiri_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Siem_Reap_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Stung_Treng_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Svay_Rieng_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Takeo_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Oddar_Meanchey_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Kep_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Pailin_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Cambodia_Tboung_Khmum_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Attapeu_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Bokeo_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Bolikhamsai_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Champasak_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Houaphanh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Khammouane_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Louang_Namtha_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Louangphabang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Oudomxay_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Phongsaly_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Sayabouly_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Salavan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Savannakhet_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Sekong_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Vientiane_Capital_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Vientiane_Province_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Xaisomboun_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_Xiangkhouang_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Kyrgyzstan_Bishkek_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Kyrgyzstan_Osh_City_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Kyrgyzstan_Osh_Region_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Tajikistan_Districts_of_Republican_Subordination_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Turkmenistan_Ashgabat_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Turkmenistan_Ahal_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Turkmenistan_Balkan_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Turkmenistan_Dashoguz_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Turkmenistan_Lebap_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Turkmenistan_Mary_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Syria_Aleppo_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Syria_Al_Hasakah_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Syria_Al_Latakia_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Syria_Al_Qunaytirah_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Syria_Al_Raqqah_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Syria_Al_Suwayda_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Syria_Daraa_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Syria_Deir_ez_Zor_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Syria_Damascus_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Syria_Hama_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Syria_Homs_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Syria_Idlib_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Syria_Rif_Dimashq_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Syria_Tartus_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Oman_Ad_Dakhiliyah_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Oman_Ad_Dhahirah_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Oman_Al_Batinah_North_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Oman_Al_Batinah_South_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Oman_Al_Buraymi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Oman_Al_Wusta_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Oman_Ash_Sharqiyah_North_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Oman_Al_Sharqiyah_South_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Oman_Dhofar_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Oman_Muscat_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Nepal_Koshi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Nepal_Madhesh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Nepal_Bagmati_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Nepal_Gandaki_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Nepal_Lumbini_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Nepal_Karnali_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Nepal_Sudurpashchim_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Croatia_Bjelovar_Bilogora_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Brod_Posavina_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Dubrovnik_Neretva_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Istria_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Karlovac_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Koprivnica_Krizevci_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Krapina_Zagorje_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Lika_Senj_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Medjimurje_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Osijek_Baranja_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Pozega_Slavonia_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Primorje_Gorski_Kotar_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Sibenik_Knin_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Sisak_Moslavina_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Split_Dalmatia_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Varazdin_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Virovitica_Podravina_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Zadar_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Zagreb_County_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Croatia_Zagreb_City_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Blagoevgrad_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Burgas_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Dobrich_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Gabrovo_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Haskovo_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Kardzhali_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Kyustendil_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Lovech_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Montana_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Pazardzhik_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Pernik_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Pleven_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Plovdiv_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Razgrad_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Ruse_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Shumen_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Silistra_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Sliven_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Smolyan_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Sofia_City_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Stara_Zagora_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Targovishte_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Varna_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Veliko_Tarnovo_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Vidin_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Vratsa_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bulgaria_Yambol_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Albania_Berat_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Albania_Diber_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Albania_Durres_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Albania_Elbasan_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Albania_Fier_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Albania_Gjirokaster_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Albania_Korce_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Albania_Lezhe_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Albania_Shkoder_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Albania_Vlore_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Bosnia_Federation_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bosnia_Republika_Srpska_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bosnia_Brcko_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bosnia_Unsko_Sanski_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bosnia_Posavski_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bosnia_Tuzlanski_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bosnia_Zenicko_Dobojski_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bosnia_Bosansko_Podrinjski_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bosnia_Srednjobosanski_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bosnia_Hercegovacko_Neretvanski_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bosnia_Zapadnohercegovacki_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bosnia_Sarajevski_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Bosnia_Kanton_10_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Slovakia_Bratislava_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Slovakia_Trnava_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Slovakia_Trencin_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Slovakia_Nitra_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Slovakia_Zilina_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Slovakia_Banska_Bystrica_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Slovakia_Presov_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Slovakia_Kosice_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Estonia_Harju_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Estonia_Hiiu_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Estonia_Ida_Viru_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Estonia_Jogeva_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Estonia_Jarva_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Estonia_Laane_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Estonia_Laane_Viru_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Estonia_Polva_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Estonia_Parnu_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Estonia_Rapla_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Estonia_Saare_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Estonia_Tartu_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Estonia_Valga_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Estonia_Viljandi_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Estonia_Voru_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Lithuania_Alytus_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Lithuania_Kaunas_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Lithuania_Klaipeda_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Lithuania_Marijampole_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Lithuania_Panevezys_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Lithuania_Siauliai_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Lithuania_Taurage_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Lithuania_Telsiai_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Lithuania_Utena_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Lithuania_Vilnius_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Trinidad_Arima_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Trinidad_Chaguanas_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Trinidad_Mayaro_Guayaguayare_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Trinidad_Penal_Debe_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Trinidad_Point_Fortin_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Trinidad_Princes_Town_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Trinidad_Rio_Claro_Mayaro_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Trinidad_San_Fernando_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Trinidad_Sangre_Grande_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Trinidad_Siparia_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Trinidad_Tunapuna_Piarco_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Bahamas_Acklins_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Berry_Islands_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Bimini_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Cat_Island_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Central_Abaco_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Central_Andros_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Central_Eleuthera_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_City_of_Freeport_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Crooked_Island_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_East_Grand_Bahama_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Exuma_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Grand_Cay_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Harbour_Island_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Hope_Town_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Inagua_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Long_Island_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Mangrove_Cay_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Mayaguana_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Moores_Island_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_North_Abaco_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_North_Andros_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_North_Eleuthera_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Ragged_Island_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_Rum_Cay_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_San_Salvador_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_South_Abaco_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_South_Andros_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_South_Eleuthera_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Bahamas_West_Grand_Bahama_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Azua_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Baoruco_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Barahona_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Dajabon_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Distrito_Nacional_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Duarte_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Elias_Pina_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_El_Seibo_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Espaillat_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Hato_Mayor_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Hermanas_Mirabal_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Independencia_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_La_Altagracia_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_La_Romana_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_La_Vega_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Maria_Trinidad_Sanchez_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Monsenor_Nouel_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Monte_Cristi_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Monte_Plata_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Pedernales_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Peravia_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Puerto_Plata_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Samana_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Sanchez_Ramirez_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_San_Cristobal_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Santiago_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Santiago_Rodriguez_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Santo_Domingo_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "DominicanRepublic_Valverde_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Haiti_Artibonite_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Haiti_Centre_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Haiti_GrandAnse_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Haiti_Nippes_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Haiti_Nord_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Haiti_Nord_Est_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Haiti_Nord_Ouest_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Haiti_Ouest_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Haiti_Sud_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Haiti_Sud_Est_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Hungary_Bacs_Kiskun_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Baranya_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Bekes_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Borsod_Abauj_Zemplen_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Budapest_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Csongrad_Csanad_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Fejer_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Gyor_Moson_Sopron_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Hajdu_Bihar_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Heves_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Jasz_Nagykun_Szolnok_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Komarom_Esztergom_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Nograd_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Pest_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Somogy_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Szabolcs_Szatmar_Bereg_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Tolna_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Vas_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Veszprem_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Hungary_Zala_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "NZ_Auckland_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_Bay_of_Plenty_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_Canterbury_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_Chatham_Islands_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_Gisborne_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_Hawke's_Bay_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_Manawatu_Wanganui_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_Marlborough_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_Nelson_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_Northland_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_Otago_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_Southland_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_Taranaki_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_Tasman_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_Waikato_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_Wellington_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NZ_West_Coast_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Myanmar_Ayeyarwady_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Myanmar_Bago_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Myanmar_Chin_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Myanmar_Kachin_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Myanmar_Kayah_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Myanmar_Kayin_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Myanmar_Magway_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Myanmar_Mandalay_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Myanmar_Mon_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Myanmar_Naypyidaw_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Myanmar_Rakhine_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Myanmar_Sagaing_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Myanmar_Shan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Myanmar_Tanintharyi_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Israel_Haifa_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Israel_Northern_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Israel_Southern_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "UAE_Ajman_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "UAE_Dubai_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "UAE_Fujairah_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "UAE_Ras_Al_Khaimah_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "UAE_Sharjah_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "UAE_Umm_Al_Quwain_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Iraq_Al_Anbar_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Iraq_Al_Basrah_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Iraq_Al_Muthanna_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Iraq_Al_Qadisiyah_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Iraq_An_Najaf_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Iraq_Arbil_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Iraq_As_Sulaymaniyah_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Iraq_Babil_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Iraq_Baghdad_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Iraq_Diyala_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Iraq_Karbala_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Iraq_Maysan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Iraq_Ninawa_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Iraq_Salah_ad_Din_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Iraq_Wasit_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Iraq_Halabja_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Jordan_Ajloun_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jordan_Amman_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jordan_Aqaba_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jordan_Balqa_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jordan_Irbid_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jordan_Jerash_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jordan_Karak_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jordan_Ma'an_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jordan_Madaba_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jordan_Mafraq_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jordan_Tafilah_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jordan_Zarqa_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Paraguay_Alto_Paraguay_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Alto_Parana_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Amambay_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Asuncion_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Boqueron_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Caaguazu_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Caazapa_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Canindeyu_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Central_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Concepcion_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Cordillera_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Guaira_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Itapua_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Misiones_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Neembucu_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Paraguari_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_Presidente_Hayes_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Paraguay_San_Pedro_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Uruguay_Artigas_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Canelones_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Cerro_Largo_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Colonia_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Durazno_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Flores_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Florida_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Lavalleja_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Maldonado_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Montevideo_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Paysandu_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Rio_Negro_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Rivera_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Rocha_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Salto_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Soriano_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Tacuarembo_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Uruguay_Treinta_y_Tres_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Venezuela_Amazonas_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Anzoategui_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Apure_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Aragua_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Barinas_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Bolivar_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Carabobo_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Cojedes_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Delta_Amacuro_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Falcon_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Guarico_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Lara_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Merida_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Monagas_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Nueva_Esparta_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Portuguesa_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Sucre_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Tachira_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Trujillo_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Vargas_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Yaracuy_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Venezuela_Zulia_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Greece_Central_Macedonia_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Greece_Crete_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Greece_Eastern_Macedonia_and_Thrace_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Greece_Epirus_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Greece_Ionian_Islands_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Greece_North_Aegean_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Greece_Peloponnese_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Greece_South_Aegean_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Greece_Thessaly_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SriLanka_Central_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "SriLanka_Eastern_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "SriLanka_North_Central_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "SriLanka_Northern_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "SriLanka_North_Western_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "SriLanka_Sabaragamuwa_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "SriLanka_Southern_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "SriLanka_Uva_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "SriLanka_Western_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Belgium_Brussels_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Belgium_Flanders_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Belgium_Wallonia_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Malaysia_Johor_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Malaysia_Kedah_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Malaysia_Kelantan_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Malaysia_Malacca_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Malaysia_Negeri_Sembilan_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Malaysia_Pahang_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Malaysia_Penang_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Malaysia_Perak_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Malaysia_Perlis_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Malaysia_Sabah_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Malaysia_Sarawak_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Malaysia_Terengganu_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Malaysia_Labuan_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Malaysia_Putrajaya_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Saudi_Al_Bahah_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Saudi_Al_Jawf_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Saudi_Al_Hudud_al_Shamaliyah_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Saudi_Al_Qassim_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Saudi_Ha'il_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Saudi_Jazan_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Saudi_Madinah_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Saudi_Makkah_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Saudi_Najran_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Saudi_Riyadh_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Saudi_Ash_Sharqiyah_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Saudi_Asir_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Egypt_Alexandria_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Aswan_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Asyut_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Beheira_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Beni_Suef_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Cairo_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Dakahlia_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Damietta_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Faiyum_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Gharbia_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Giza_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Ismailia_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Kafr_el-Sheikh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Luxor_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Matruh_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Minya_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Monufia_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_New_Valley_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_North_Sinai_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Port_Said_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Qalyubia_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Qena_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Red_Sea_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Sharqia_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Sohag_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_South_Sinai_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Egypt_Suez_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Austria_Burgenland_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Austria_Carinthia_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Austria_Lower_Austria_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Austria_Upper_Austria_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Austria_Salzburg_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Austria_Styria_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Austria_Tyrol_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Austria_Vorarlberg_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Austria_Vienna_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Netherlands_Drenthe_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Netherlands_Flevoland_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Netherlands_Friesland_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Netherlands_Gelderland_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Netherlands_Groningen_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Netherlands_Limburg_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Netherlands_North_Brabant_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Netherlands_North_Holland_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Netherlands_Overijssel_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Netherlands_Utrecht_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Netherlands_Zeeland_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Netherlands_South_Holland_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Swiss_LU_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_UR_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_SZ_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_OW_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_NW_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_GL_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_ZG_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_FR_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_SO_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_BS_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_BL_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_SH_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_AR_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_AI_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_SG_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_GR_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_AG_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_TG_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_TI_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_VS_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_NE_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_GE_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Swiss_JU_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Greenland_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "FaroeIslands_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "PuertoRico_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guam_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NewCaledonia_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Reunion_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Mayotte_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "HongKong_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "CaymanIslands_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Gibraltar_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "CookIslands_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Niue_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Tokelau_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Kyrgyzstan_Archive_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Belarus_Archive_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Slovakia_Archive_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SriLanka_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "PNG_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Syria_Assad_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Namibia_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Azerbaijan_NL_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Barbados_NL_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Belize_NL_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Guyana_NL_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Ethiopia_NationalArchives_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "UAE_NationalArchives_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Iraq_NationalArchives_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Bahamas_NationalArchives_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Fiji_NationalArchives_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "OECD_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "AZGS_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "AlexanderTurnbull_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Vatican_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Cyprus_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "BeirutArabUni_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "AUB_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "AZGS_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ACM_Digital_Library_author_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "African_Music_Library_artist_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Alexander_Turnbull_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Boris_Yeltsin_Presidential_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "British_Library_system_number": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Capitular_Library_Verona": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Chinese_Library_Classification": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "EZB_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ACM_Digital_Library_citation_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ACM_Digital_Library_event_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Central_Library_of_Volos_authority_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Digital_Library_of_Armenian_Literature_author_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Digital_Valencian_Library_author_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Digital_Library_of_Mathematical_Functions_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Digital_Mechanism_and_Gear_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "National_Library_Board_Singapore_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "National_Library_of_Albania_edition_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "National_Library_of_Malaysia_OPAC_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "National_Library_of_Uruguay_authority_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "National_Library_of_Israel_ID_old": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "National_Library_of_Uruguay_book_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Vatican_Library_ID_former_scheme": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Vatican_Library_OPAC": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Dimitri_and_Aliki_Perrotis_Central_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Frankfurt_University_Library_Digital_Collection_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Frick_Art_Research_Library_Artist_File_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Game_Font_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Hill_Museum_and_Manuscript_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "INEGI_Digital_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Ia\u0219i_Central_University_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Iowa_State_University_Library_Vocabularies_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jewish_Virtual_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jisc_Library_Hub_Authority": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jisc_Library_Hub_Works": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Keratsini_Drapetsona_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Kramerius_of_Moravian_Library_UUID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Kramerius_of_Regional_Library_in_Pardubice_UUID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Levadia_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Library_Parliament_Riding": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Library_of_Congress_Format_Description_Document_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Library_of_Congress_providers_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Media_Library_for_Dance_and_Theatre_person_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Michigan_State_University_Library_Comic_Art_Collection_Record_Number": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Municipal_Library_of_Trikala_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "National_Marine_Biological_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Open_Library_publisher_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Open_Library_subject_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Oroklini_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Panjab_Digital_Library_ID": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "OECD_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "WTO_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "IAEA_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ERIC_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "OSTI_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Cambodia_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Laos_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Mongolia_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "NLI_Israel_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NLG_Greece_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "BSB_Bavaria_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SBB_Berlin_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "FUB_Berlin_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "HUB_Berlin_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "TUB_Berlin_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SLQ_Queensland_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "BC_Catalonia_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "CSL_California_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SLP_Pennsylvania_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SLO_Ohio_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "OSL_Oregon_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "LVA_Virginia_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SLNC_NorthCarolina_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SLF_Florida_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NYSL_NewYork_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "TSLAC_Texas_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "RERO_Swiss_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Euskariana_Basque_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "WISC_Law_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "CSL_Colorado_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "MSU_Missouri_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Galiciana_Galicia_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "BVA_Andalucia_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Sailor_Maryland_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Bulgaria_NL_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "MassState_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "MichiganState_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "WashingtonState_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "GeorgiaState_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "BC_Legislative_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Syria_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "KSA_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Egypt_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Jordan_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Georgia_NL_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Taiwan_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Singapore_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Malaysia_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ArizonaState_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NevadaState_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "TennesseeState_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "KentuckyState_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ConnecticutState_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NJ_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "AL_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "AK_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "KS_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "UT_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "OK_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ME_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "VT_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NM_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NH_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "RI_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "DE_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SC_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ND_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SD_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ID_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "MT_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "WY_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "LA_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "MS_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "WV_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "HI_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "LaRioja_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Sicilia_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Asturias_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "CastillaLaMancha_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Canarias_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Piemonte_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Lazio_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Campania_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Iraq_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Palestine_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Kuwait_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Qatar_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Moldova_NL_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Albania_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Montenegro_NL_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Kosovo_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jamaica_NL_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Malta_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "AR_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "IN_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "IA_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NE_State_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "YT_Territory_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NT_Territory_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NU_Territory_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Paraguay_NL_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Myanmar_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Lombardia_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Gallica_BnF_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Redalyc_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SciELO_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Dialnet_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "UN_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "UNESCO_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "WHO_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NYPL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "BHL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "CiNii_Books_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Jisc_Hub_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NSZL_Hungary_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NSK_Croatia_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "BL_EThOS_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "WorldLII_Law_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Trinidad_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Aruba_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Nepal_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ethiopia_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Uganda_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "Ghana_NL_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    },
+    "ZLB_Berlin_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Tokyo_Met_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "London_Met_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ArchivesACT_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ArchivesNZ_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ArchivesBosnia_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "BarbadosArchives_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "BelizeArchives_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "JamaicaArchives_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "LC_Work_Id": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Google_Books": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "OCLC_Record": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "HathiTrust": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Murcia_Regional_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Aragon_Regional_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Cyprus_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "VIAF_Title": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Wikidata_Title": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "NationalArchives_Global_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "InternetArchive_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ISSN_International_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "ArchiveGrid_OCLC_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Bahrain_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Turkmenistan_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Tajikistan_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Kyrgyzstan_NL_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "SanMarino_Library": {
+        "rest": "https://kvk.bibliothek.kit.edu/cgi-bin/kvk-gateway.pl"
+    },
+    "Armenia_Archive_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Azerbaijan_Archive_Library": {
+        "rest": "https://api.europeana.eu/record/v2/search.json"
+    },
+    "Haiti_Archive_Library": {
+        "rest": "http://api.redalyc.org/search/"
+    },
+    "Senegal_Archive_Library": {
+        "rest": "https://api.core.ac.uk/v3/search/outputs"
+    }
+}
+API_REGISTRY.update(FINAL_LONG_TAIL)
